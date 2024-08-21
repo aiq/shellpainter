@@ -1,0 +1,69 @@
+#include "cmdscreen/csRect.h"
+
+#include "clingo/lang/algo.h"
+#include "clingo/io/write.h"
+
+/*******************************************************************************
+********************************************************************* Functions
+********************************************************************************
+
+*******************************************************************************/
+
+extern inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h );
+
+extern inline csRect make_rect_cs( csPoint topLeft, csSize size );
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+extern inline csPoint top_left_corner_cs( csRect rect );
+
+extern inline csPoint top_right_corner_cs( csRect rect );
+
+extern inline csPoint bottom_left_corner_cs( csRect rect );
+
+extern inline csPoint bottom_right_corner_cs( csRect rect );
+
+extern inline csSize rect_size_cs( csRect rect );
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+bool eq_rect_cs( csRect rect, csRect oth )
+{
+   return rect.x == oth.x and
+          rect.y == oth.y and
+          rect.w == oth.w and
+          rect.h == oth.h;
+}
+
+bool write_rect_cs( cRecorder rec[static 1],
+                                  csRect rect,
+                                  char const fmt[static 1] )
+{
+   cChars format = c_c( fmt );
+
+   if ( chars_is_any_c_( format, "", "dbg" ) )
+   {
+      int64_t const oldPos = rec->pos;
+      bool ok = write_c_( rec, "{{ .x={i16}", rect.x,
+                               ", .y={i16}", rect.y,
+                               ", .w={i16}", rect.w,
+                               ", .h={i16} }", rect.h );
+      if ( not ok )
+      {
+         move_recorder_to_c( rec, oldPos );
+      }
+      return ok;
+   }
+
+   return set_recorder_error_c( rec, c_InvalidWriteFormat );
+}
+
+static TAPE_C_( tape_func, csRect, write_rect_cs, do_deref_c_ )
+cTape rect_tape_cs( csRect const* rect )
+{
+   return (cTape){ .i=rect, .f=tape_func };
+}

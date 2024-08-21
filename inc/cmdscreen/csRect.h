@@ -1,0 +1,80 @@
+#ifndef CMDSCREEN_CSRECT_H
+#define CMDSCREEN_CSRECT_H
+
+#include "cmdscreen/csSize.h"
+
+/*******************************************************************************
+********************************************************* Types and Definitions
+********************************************************************************
+ type
+*******************************************************************************/
+
+struct csRect
+{
+   int16_t x;
+   int16_t y;
+   int16_t w;
+   int16_t h;
+};
+typedef struct csRect csRect;
+
+/*******************************************************************************
+********************************************************************* Functions
+********************************************************************************
+
+*******************************************************************************/
+
+CMDSCREEN_API inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h )
+{
+   return (csRect){ .x=x, .y=y, .w=w, .h=h };
+}
+
+CMDSCREEN_API inline csRect make_rect_cs( csPoint topLeft, csSize size )
+{
+   return (csRect){ .x=topLeft.x, .y=topLeft.y, .w=size.w, .h=size.h };
+}
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+CMDSCREEN_API inline csPoint top_left_corner_cs( csRect rect )
+{
+   return point_cs( rect.x, rect.y );
+}
+
+CMDSCREEN_API inline csPoint top_right_corner_cs( csRect rect )
+{
+   return point_cs( rect.x + ( rect.w - 1 ), rect.y );
+}
+
+CMDSCREEN_API inline csPoint bottom_left_corner_cs( csRect rect )
+{
+   return point_cs( rect.x, rect.y + ( rect.h - 1 ) );
+}
+
+CMDSCREEN_API inline csPoint bottom_right_corner_cs( csRect rect )
+{
+   return point_cs( rect.x + ( rect.w - 1 ), rect.y + ( rect.h - 1 ) );
+}
+
+CMDSCREEN_API inline csSize rect_size_cs( csRect rect )
+{
+   return size_cs( rect.w, rect.h );
+}
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+CMDSCREEN_API bool eq_rect_cs( csRect rect, csRect oth );
+
+CMDSCREEN_API bool write_rect_cs( cRecorder rec[static 1],
+                                  csRect rect,
+                                  char const fmt[static 1] );
+
+#define rect_tape_cs_( Rect )                                                  \
+   rect_tape_cs( ref_c_( csRect, (Rect) ) )
+CMDSCREEN_API cTape rect_tape_cs( csRect const* rect );
+
+#endif
