@@ -45,6 +45,11 @@ CMDSCREEN_API inline bool eq_size_cs( csSize size, csSize oth )
    return size.w == oth.w and size.h == oth.h;
 }
 
+CMDSCREEN_API inline bool is_null_size_cs( csSize size )
+{
+   return size.w == 0 and size.h == 0;
+}
+
 CMDSCREEN_API bool write_size_cs( cRecorder rec[static 1],
                                   csSize size,
                                   char const fmt[static 1] );

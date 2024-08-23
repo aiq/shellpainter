@@ -65,7 +65,29 @@ int main( void )
    layout_box_cs_( &root, limit, es );
    as_global_box_cs( &root );
 
+   csBox exp = layouted_box_cs_(
+      rect_cs( 0, 0, 20, 15 ),   // padding
+      layouted_box_cs_(
+         rect_cs( 2, 2, 16, 11 ),   // align
+         layouted_box_cs_(
+            rect_cs( 8, 5, 5, 5 ),    // fixed
+            layouted_box_cs_(
+               rect_cs( 8, 5, 5, 5 ), // align
+               layouted_box_cs_(
+                  rect_cs( 9, 6, 3, 3 ), // fixed
+                  none_cs_()
+               )
+            )
+         )
+      )
+   );
+
    dump_box_layout_cs( c_c( "layout_box.ppm" ), &root, es );
+
+   cRecorder* rec = &dyn_recorder_c_( 0 );
+   record_box_diff_cs( rec, cs_CheckRect, &exp, &root );
+   print_recorded_c( rec );
+   free_recorder_mem_c( rec );
 
    return finish_tap_c_();
 }

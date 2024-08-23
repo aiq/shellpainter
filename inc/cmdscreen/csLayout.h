@@ -134,9 +134,17 @@ struct csBox
    }                                                                           \
 }
 
+#define layouted_box_cs_( Rect, ... )                                          \
+(csBox){                                                                       \
+   .rect=(Rect),                                                               \
+   .layout=none_layout_cs(),                                                   \
+   .style=none_style_cs_(),                                                    \
+   .children=slice_c_( csBox, __VA_ARGS__ )                                    \
+}
+
 #define none_cs_()                                                             \
 (csBox){                                                                       \
-   .rect=(csRect){ .x=-2, .y=-2, .w=0, .h=0 },                                 \
+   .rect=(csRect){ .x=0, .y=0, .w=0, .h=0 },                                   \
    .layout=none_layout_cs(),                                                   \
    .style=none_style_cs_(),                                                    \
    .children=(csVarBoxes){ .s=0, .v=NULL }                                     \
@@ -180,5 +188,22 @@ CMDSCREEN_API void as_global_box_cs( csBox box[static 1] );
 CMDSCREEN_API bool dump_box_layout_cs( cChars path,
                                        csBox box[static 1],
                                        cErrorStack es[static 1] );
+
+#define csDIFF_CONFIG_DEFINITION_                                              \
+   XMAP_C_( cs_CheckRect, 1 << 0 )                                             \
+   XMAP_C_( cs_CheckStyle, 1 << 1 )                                            \
+   XMAP_C_( cs_CheckAll, cs_CheckRect|cs_CheckStyle )
+
+#define XMAP_C_( N, I ) N = I,
+enum cs_DiffConfig { csDIFF_CONFIG_DEFINITION_ };
+#undef XMAP_C_
+typedef enum cs_DiffConfig cs_DiffConfig;
+
+#define record_box_diff_cs_( Rec, Box, Oth )                                   \
+   record_box_diff_cs( (Rec), cs_CheckAll, (Box), (Oth) )
+CMDSCREEN_API bool record_box_diff_cs( cRecorder rec[static 1],
+                                       cs_DiffConfig cfg,
+                                       csBox const box[static 1],
+                                       csBox const oth[static 1] );
 
 #endif

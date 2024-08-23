@@ -18,6 +18,12 @@ struct csRect
 };
 typedef struct csRect csRect;
 
+SLICES_C_(
+   csRect,        // Type
+   csRectSlice,   // SliceType
+   csVarRectSlice // VarSliceType
+)
+
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
@@ -32,6 +38,11 @@ CMDSCREEN_API inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h 
 CMDSCREEN_API inline csRect make_rect_cs( csPoint topLeft, csSize size )
 {
    return (csRect){ .x=topLeft.x, .y=topLeft.y, .w=size.w, .h=size.h };
+}
+
+CMDSCREEN_API inline csRect null_rect_cs( void )
+{
+   return (csRect){ .x=0, .y=0, .w=0, .h=0 };
 }
 
 /*******************************************************************************
@@ -67,7 +78,23 @@ CMDSCREEN_API inline csSize rect_size_cs( csRect rect )
 
 *******************************************************************************/
 
-CMDSCREEN_API bool eq_rect_cs( csRect rect, csRect oth );
+CMDSCREEN_API inline bool eq_rect_cs( csRect rect, csRect oth )
+{
+   return rect.x == oth.x and
+          rect.y == oth.y and
+          rect.w == oth.w and
+          rect.h == oth.h;
+}
+
+CMDSCREEN_API inline bool is_null_rect_cs( csRect rect )
+{
+   return eq_rect_cs( rect, null_rect_cs() );
+}
+
+CMDSCREEN_API inline bool has_null_size_cs( csRect rect )
+{
+   return is_null_size_cs( rect_size_cs( rect ) );
+}
 
 CMDSCREEN_API bool write_rect_cs( cRecorder rec[static 1],
                                   csRect rect,

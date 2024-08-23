@@ -13,6 +13,8 @@ extern inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h );
 
 extern inline csRect make_rect_cs( csPoint topLeft, csSize size );
 
+extern inline csRect null_rect_cs( void );
+
 /*******************************************************************************
 
 *******************************************************************************/
@@ -31,13 +33,11 @@ extern inline csSize rect_size_cs( csRect rect );
 
 *******************************************************************************/
 
-bool eq_rect_cs( csRect rect, csRect oth )
-{
-   return rect.x == oth.x and
-          rect.y == oth.y and
-          rect.w == oth.w and
-          rect.h == oth.h;
-}
+extern inline bool eq_rect_cs( csRect rect, csRect oth );
+
+extern inline bool is_null_rect_cs( csRect rect );
+
+extern inline bool has_null_size_cs( csRect rect );
 
 bool write_rect_cs( cRecorder rec[static 1],
                                   csRect rect,

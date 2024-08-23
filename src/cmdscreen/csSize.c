@@ -19,6 +19,8 @@ extern inline csSize axis_size_cs( cs_Axis axis, int16_t main, int16_t cross );
 
 extern inline bool eq_size_cs( csSize size, csSize oth );
 
+extern inline bool is_null_size_cs( csSize size );
+
 bool write_size_cs( cRecorder rec[static 1],
                     csSize size,
                     char const fmt[static 1] )
