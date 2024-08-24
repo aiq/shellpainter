@@ -6,6 +6,7 @@ set( SRC_FILES
 )
 aux_source_directory( ${SRC_DIR}/cmdscreen SRC_FILES )
 aux_source_directory( ${SRC_DIR}/cmdscreen/_ SRC_FILES )
+aux_source_directory( ${SRC_DIR}/cmdscreen/layout SRC_FILES )
 
 ################################################################################
 # TEST_FILES

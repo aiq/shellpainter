@@ -1,6 +1,10 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
 #include "cmdscreen/csLayout.h"
+#include "cmdscreen/layout/align.h"
+#include "cmdscreen/layout/fixed.h"
+#include "cmdscreen/layout/none.h"
+#include "cmdscreen/layout/pad.h"
 
 #define cDISTINCT_RED_      rgb24_c_( 230,  25,  75 )
 #define cDISTINCT_GREEN_    rgb24_c_(  60, 180,  75 )
@@ -39,19 +43,19 @@ int main( void )
    init_tap_c_();
 
    csBox root = box_cs_(
-      pad_cs_( padding_cs( 2, 2, 2, 2 ) ),
+      pad_layout_cs_( padding_cs( 2, 2, 2, 2 ) ),
       TEAL_STYLE_,
       box_cs_(
-         align_cs_( center_cs_() ),
+         align_layout_cs_( center_cs_() ),
          MAROON_STYLE_,
          box_cs_(
-            fixed_cs_( size_cs( 5, 5 ) ),
+            fixed_layout_cs_( size_cs( 5, 5 ) ),
             GREY_STYLE_,
             box_cs_(
-               align_cs_( center_cs_() ),
+               align_layout_cs_( center_cs_() ),
                GREY_STYLE_,
                box_cs_(
-                  fixed_cs_( size_cs( 3, 3 ) ),
+                  fixed_layout_cs_( size_cs( 3, 3 ) ),
                   NAVY_STYLE_,
                   none_cs_()
                )

@@ -150,24 +150,6 @@ struct csBox
    .children=(csVarBoxes){ .s=0, .v=NULL }                                     \
 }
 
-CMDSCREEN_API bool layout_pad_cs( csBox box[static 1],
-                                  csLimit limit,
-                                  csPadding pad,
-                                  cErrorStack es[static 1] );
-
-#define pad_cs_( Pad )                                                         \
-   pad_cs( ref_c_( csPadding, (Pad) ) )
-CMDSCREEN_API csLayout pad_cs( csPadding const* pad );
-
-CMDSCREEN_API bool layout_align_cs( csBox box[static 1],
-                                    csLimit limit,
-                                    csAlignment align,
-                                    cErrorStack es[static 1] );
-
-#define align_cs_( Align )                                                     \
-   align_cs( ref_c_( csAlignment, (Align) ) )
-CMDSCREEN_API csLayout align_cs( csAlignment const* align );
-
 CMDSCREEN_API bool layout_fixed_cs( csBox box[static 1],
                                     csLimit limit,
                                     csSize size,
