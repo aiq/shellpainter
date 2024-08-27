@@ -7,6 +7,9 @@
 ********************************************************* Types and Definitions
 *******************************************************************************/
 
+#define csAREA_SIZE_ 8
+#define csBLOCK_SIZE_ 100*cKib_
+
 struct csMemBlock
 {
    int64_t pos;

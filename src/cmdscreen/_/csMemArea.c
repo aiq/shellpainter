@@ -3,9 +3,6 @@
 #include "clingo/container/pile.h"
 #include "clingo/lang/math.h"
 
-#define csAREA_SIZE_ 8
-#define csBLOCK_SIZE_ 4096
-
 static inline REALLOC_PILE_C_(
    realloc_area,  // FuncName
    csMemArea,     // PileType
@@ -51,6 +48,11 @@ bool init_mem_area_cs( csMemArea area[static 1], int64_t size )
 
 void cleanup_mem_area_cs( csMemArea area[static 1] )
 {
+   if ( area->v == NULL )
+   {
+      return;
+   }
+
    each_c_( csMemBlock*, block, *area )
    {
       free_mem_block_cs( block );
