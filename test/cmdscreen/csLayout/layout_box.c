@@ -1,6 +1,7 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
 #include "cmdscreen/csLayout.h"
+#include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/fixed.h"
 #include "cmdscreen/layout/none.h"
@@ -41,22 +42,28 @@
 int main( void )
 {
    init_tap_c_();
+   cmdscreen_cs();
+
+   csStyle const tealStyle = TEAL_STYLE_;
+   csStyle const maroonStyle = MAROON_STYLE_;
+   csStyle const greyStyle = GREY_STYLE_;
+   csStyle const navyStyle = NAVY_STYLE_;
 
    csBox root = box_cs_(
       pad_layout_cs_( padding_cs( 2, 2, 2, 2 ) ),
-      TEAL_STYLE_,
+      &tealStyle,
       box_cs_(
          align_layout_cs_( center_cs_() ),
-         MAROON_STYLE_,
+         &maroonStyle,
          box_cs_(
             fixed_layout_cs_( size_cs( 5, 5 ) ),
-            GREY_STYLE_,
+            &greyStyle,
             box_cs_(
                align_layout_cs_( center_cs_() ),
-               GREY_STYLE_,
+               &greyStyle,
                box_cs_(
                   fixed_layout_cs_( size_cs( 3, 3 ) ),
-                  NAVY_STYLE_,
+                  &navyStyle,
                   none_cs_()
                )
             )
@@ -93,5 +100,6 @@ int main( void )
    print_recorded_c( rec );
    free_recorder_mem_c( rec );
 
+   cleanup_cmdscreen_cs();
    return finish_tap_c_();
 }

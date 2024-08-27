@@ -1,5 +1,6 @@
 #include "cmdscreen/csLayout.h"
 
+#include "clingo/color/cRgb24.h"
 #include "clingo/io/jot.h"
 #include "clingo/io/write.h"
 #include "clingo/lang/error_type.h"
@@ -137,10 +138,15 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
    csPoint b = bottom_right_corner_cs( box->rect );
    if ( not has_null_size_cs( box->rect ) )
    {
+      csStyle const* style = &CS_DefaultStyle;
+      if ( box->style != NULL )
+      {
+         style = box->style;
+      }
       if ( not fill_rgb24_rect_c( image,
                                   pixel_c_( a.x, a.y ),
                                   pixel_c_( b.x, b.y ),
-                                  box->style.back ) )
+                                  style->back ) )
       {
          return false;
       }

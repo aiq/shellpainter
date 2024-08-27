@@ -28,9 +28,10 @@ struct csStyle
    cRgb24 front;
    cRgb24 back;
    bool bold;
-   bool active;
 };
 typedef struct csStyle csStyle;
+
+extern csStyle CS_DefaultStyle;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -38,7 +39,7 @@ typedef struct csStyle csStyle;
 
 *******************************************************************************/
 
-#define style_cs_( ... ) ((csStyle){__VA_ARGS__, .active=true})
+#define style_cs_( ... ) ((csStyle){__VA_ARGS__})
 
 #define none_style_cs_() ((csStyle){0})
 

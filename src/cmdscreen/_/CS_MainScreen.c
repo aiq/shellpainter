@@ -22,7 +22,7 @@ PILE_IMPL_C_(
    do_not_deref_c_  // DoDeref
 )
 
-struct MainScreen CS_MainScreen = {0};
+MainScreen CS_MainScreen = {0};
 
 /*******************************************************************************
 ********************************************************************* Functions

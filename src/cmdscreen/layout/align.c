@@ -1,12 +1,31 @@
-#include "cmdscreen/layout/pad.h"
+#include "cmdscreen/layout/align.h"
 
+#include "cmdscreen/_/CS_MainScreen.h"
 #include "cmdscreen/layout/_/util.h"
 
 csBox align_cs( csAlignment align,
                 csStyle const* style,
                 csBox child )
 {
-   return (csBox){};
+   csAlignment* newAlign = alloc_one_( csAlignment );
+   if ( newAlign == NULL ) return (csBox){0};
+   else *newAlign = align;
+
+   csBox* newChild = alloc_one_( csBox );
+   if ( newChild == NULL ) return (csBox){0};
+   else *newChild = child;
+
+   return (csBox){
+      .layout=align_layout_cs( newAlign ),
+      .style=style,
+      .children=(csVarBoxes){ .s=1, .v=newChild }
+   };
+}
+
+static LAYOUT_CS_( align_func, csAlignment, layout_align_cs, do_deref_c_ )
+csLayout align_layout_cs( csAlignment const* align )
+{
+   return (csLayout){ .i=align, .f=align_func };
 }
 
 bool layout_align_cs( csBox box[static 1],
@@ -56,10 +75,4 @@ bool layout_align_cs( csBox box[static 1],
    }
 
    return true;
-}
-
-static LAYOUT_CS_( align_func, csAlignment, layout_align_cs, do_deref_c_ )
-csLayout align_layout_cs( csAlignment const* align )
-{
-   return (csLayout){ .i=align, .f=align_func };
 }

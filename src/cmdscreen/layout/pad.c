@@ -1,6 +1,30 @@
 #include "cmdscreen/layout/pad.h"
 
+#include "cmdscreen/_/CS_MainScreen.h"
 #include "cmdscreen/layout/_/util.h"
+
+csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
+{
+   csPadding* newPad = alloc_one_( csPadding );
+   if ( newPad == NULL ) return (csBox){0};
+   else *newPad = pad;
+
+   csBox* newChild = alloc_one_( csBox );
+   if ( newChild == NULL ) return (csBox){0};
+   else *newChild = child;
+
+   return (csBox){
+      .layout=pad_layout_cs( newPad ),
+      .style=style,
+      .children=(csVarBoxes){ .s=1, .v=newChild }
+   };
+}
+
+static LAYOUT_CS_( pad_func, csPadding, layout_pad_cs, do_deref_c_ )
+csLayout pad_layout_cs( csPadding const* pad )
+{
+   return (csLayout){ .i=pad, .f=pad_func };
+}
 
 bool layout_pad_cs( csBox box[static 1],
                     csLimit limit,
@@ -26,10 +50,4 @@ bool layout_pad_cs( csBox box[static 1],
    child->rect.y = pad.top;
 
    return true;
-}
-
-static LAYOUT_CS_( pad_func, csPadding, layout_pad_cs, do_deref_c_ )
-csLayout pad_layout_cs( csPadding const* pad )
-{
-   return (csLayout){ .i=pad, .f=pad_func };
 }

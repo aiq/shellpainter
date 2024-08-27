@@ -1,6 +1,30 @@
-#include "cmdscreen/layout/pad.h"
+#include "cmdscreen/layout/fixed.h"
 
+#include "cmdscreen/_/CS_MainScreen.h"
 #include "cmdscreen/layout/_/util.h"
+
+csBox fixed_cs( csSize size, csStyle const* style, csBox child )
+{
+   csSize* newSize = alloc_one_( csSize );
+   if ( newSize == NULL ) return (csBox){0};
+   else *newSize = size;
+
+   csBox* newChild = alloc_one_( csBox );
+   if ( newChild == NULL ) return (csBox){0};
+   else *newChild = child;
+
+   return (csBox){
+      .layout=fixed_layout_cs( newSize ),
+      .style=style,
+      .children=(csVarBoxes){ .s=1, .v=newChild }
+   };
+}
+
+static LAYOUT_CS_( fixed_func, csSize, layout_fixed_cs, do_deref_c_ )
+csLayout fixed_layout_cs( csSize const* size )
+{
+   return (csLayout){ .i=size, .f=fixed_func };
+}
 
 bool layout_fixed_cs( csBox box[static 1],
                       csLimit limit,
@@ -26,10 +50,4 @@ bool layout_fixed_cs( csBox box[static 1],
    child->rect.x = 0;
    child->rect.y = 0;
    return true;
-}
-
-static LAYOUT_CS_( fixed_func, csSize, layout_fixed_cs, do_deref_c_ )
-csLayout fixed_layout_cs( csSize const* size )
-{
-   return (csLayout){ .i=size, .f=fixed_func };
 }

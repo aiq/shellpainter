@@ -115,7 +115,7 @@ struct csBox
 {
    csRect rect;
    csLayout layout;
-   csStyle style;
+   csStyle const* style;
    csVarBoxes children;
 };
 
@@ -138,7 +138,7 @@ struct csBox
 (csBox){                                                                       \
    .rect=(Rect),                                                               \
    .layout=none_layout_cs(),                                                   \
-   .style=none_style_cs_(),                                                    \
+   .style=NULL,                                                                \
    .children=slice_c_( csBox, __VA_ARGS__ )                                    \
 }
 
@@ -146,20 +146,11 @@ struct csBox
 (csBox){                                                                       \
    .rect=(csRect){ .x=0, .y=0, .w=0, .h=0 },                                   \
    .layout=none_layout_cs(),                                                   \
-   .style=none_style_cs_(),                                                    \
+   .style=NULL,                                                                \
    .children=(csVarBoxes){ .s=0, .v=NULL }                                     \
 }
 
-CMDSCREEN_API bool layout_fixed_cs( csBox box[static 1],
-                                    csLimit limit,
-                                    csSize size,
-                                    cErrorStack es[static 1] );
 
-#define fixed_cs_( Size )                                                     \
-   fixed_cs( ref_c_( csSize, (Size) ) )
-CMDSCREEN_API csLayout fixed_cs( csSize const* size );
-
-CMDSCREEN_API csLayout none_layout_cs( void );
 
 /*******************************************************************************
 

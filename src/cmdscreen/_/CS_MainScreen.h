@@ -50,7 +50,9 @@ struct MainScreen
    ColorPairTable colorPairs;
    csMemArea mem;
 };
-extern struct MainScreen CS_MainScreen;
+typedef struct MainScreen MainScreen;
+
+extern MainScreen CS_MainScreen;
 
 /*******************************************************************************
 ********************************************************************* Functions

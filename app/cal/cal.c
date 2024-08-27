@@ -4,7 +4,7 @@
 
 int main( int argc, char* argv[] )
 {
-   csScreen* main = new_main_screen_cs();
+   csScreen* main = cmdscreen_cs();
    box( main, 0, 0 );
 
    csScreen* dlg1 = new_screen_cs( rect_cs( 2, 4, 5, 20 ) );
@@ -31,7 +31,7 @@ int main( int argc, char* argv[] )
    getch();
 
    remove_screen_cs( dlg1 );
-   remove_main_screen_cs();
+   cleanup_cmdscreen_cs();
 
    return EXIT_SUCCESS;
 }

@@ -8,7 +8,7 @@
 
 *******************************************************************************/
 
-csScreen* new_main_screen_cs( void )
+csScreen* cmdscreen_cs( void )
 {
    csScreen* scr = initscr();
    raw();
@@ -18,7 +18,7 @@ csScreen* new_main_screen_cs( void )
    return scr;
 }
 
-void remove_main_screen_cs()
+void cleanup_cmdscreen_cs()
 {
    cleanup_main_screen();
    endwin();

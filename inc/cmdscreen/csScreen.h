@@ -17,9 +17,9 @@ typedef WINDOW csScreen;
  main screen
 *******************************************************************************/
 
-CMDSCREEN_API csScreen* new_main_screen_cs( void );
+CMDSCREEN_API csScreen* cmdscreen_cs( void );
 
-CMDSCREEN_API void remove_main_screen_cs();
+CMDSCREEN_API void cleanup_cmdscreen_cs();
 
 /*******************************************************************************
 
