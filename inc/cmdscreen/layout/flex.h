@@ -31,7 +31,7 @@ typedef struct csFlex csFlex;
 
 *******************************************************************************/
 
-CMDSCREEN_API csBox fill_cs( int16_t fill, csBox box );
+CMDSCREEN_API csBox fill_cs( int16_t fill, csStyle const* style, csBox box );
 
 CMDSCREEN_API
 csBox row_cs( int16_t space, csStyle const* style, csBoxes children );

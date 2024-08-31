@@ -34,16 +34,55 @@ static csLimit limit_for_fill( csLimit limit, cs_FlexType type, int16_t max )
    return limit;
 }
 
+static bool fill_func( csBox box[static 1],
+                         csLimit limit,
+                         void const* nothing,
+                         cErrorStack es[static 1] )
+{
+   if ( not has_just_single_child( "fill", box->children, es ) )
+   {
+      return false;
+   }
+   box->rect.x = 0;
+   box->rect.y = 0;
+   box->rect.w = limit_width_cs_( limit );
+   box->rect.h = limit_height_cs_( limit );
+
+   csBox* child = box->children.v;
+   if ( not layout_box_cs_( child, limit, es ) )
+   {
+      return false;
+   }
+
+   child->rect.x = 0;
+   child->rect.y = 0;
+
+   return true;
+}
+
+static csLayout fill_layout( void )
+{
+   return (csLayout){ .i=NULL, .f=fill_func };
+}
+
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
 
 *******************************************************************************/
 
-csBox fill_cs( int16_t fill, csBox box )
+csBox fill_cs( int16_t fill, csStyle const* style, csBox child )
 {
-   box.fill = fill;
-   return box;
+   csBox* newChild = alloc_one_( csBox );
+   if ( newChild == NULL ) return (csBox){0};
+   else *newChild = child;
+
+   return (csBox){
+      .layout=fill_layout(  ),
+      .fill=fill,
+      .style=style,
+      .children=(csVarBoxes){ .s=1, .v=newChild }
+   };
 }
 
 csBox row_cs( int16_t space, csStyle const* style, csBoxes children )

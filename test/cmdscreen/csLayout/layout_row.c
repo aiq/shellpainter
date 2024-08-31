@@ -61,6 +61,7 @@ int main( void )
          ),
          fill_cs(
             1,
+            NULL,
             align_cs( 
                bottom_right_cs_(),
                NULL,
@@ -73,11 +74,12 @@ int main( void )
          ),
          fixed_cs( 
             size_cs( 5, 5 ),
-            &greyStyle,
+            &maroonStyle,
             none_cs_()
          ),
          fill_cs(
-            2,
+            1,
+            NULL,
             align_cs( 
                bottom_right_cs_(),
                NULL,
@@ -90,11 +92,12 @@ int main( void )
          ),
          fixed_cs(
             size_cs( 1, 1 ),
-            &navyStyle,
+            &maroonStyle,
             none_cs_()
          ),
          fill_cs(
-            1,
+            2,
+            NULL,
             fixed_cs(
                size_cs( 1, 1 ),
                &greyStyle,
