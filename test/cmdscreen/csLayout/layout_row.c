@@ -4,7 +4,7 @@
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/fixed.h"
-#include "cmdscreen/layout/flex.h"
+#include "cmdscreen/layout/line.h"
 #include "cmdscreen/layout/none.h"
 #include "cmdscreen/layout/pad.h"
 
