@@ -132,13 +132,13 @@ void as_global_box_cs( csBox box[static 1] )
 /******************************************************************************/
 
 static bool intl_dump_box_layout( cVarRgb24Image image,
+                                  csStyle const* style,
                                   csBox const box[static 1] )
 {
    csPoint a = top_left_corner_cs( box->rect );
    csPoint b = bottom_right_corner_cs( box->rect );
    if ( not has_null_size_cs( box->rect ) )
    {
-      csStyle const* style = &CS_DefaultStyle;
       if ( box->style != NULL )
       {
          style = box->style;
@@ -154,7 +154,7 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
 
    each_c_( csBox const*, child, box->children )
    {
-      if ( not intl_dump_box_layout( image, child ) )
+      if ( not intl_dump_box_layout( image, style, child ) )
       {
          return false;
       }
@@ -170,7 +170,7 @@ bool dump_box_layout_cs( cChars path,
    cVarRgb24Image image = heap_var_rgb24_image_c_( box->rect.w, box->rect.h );
    
    bool res = false;
-   if ( intl_dump_box_layout( image, box ) )
+   if ( intl_dump_box_layout( image, &CS_DefaultStyle, box ) )
    {
       cRgb24Image tmp = image_copy_c_( image );
       res = write_p3_file_c( path, tmp, es );
