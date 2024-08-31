@@ -102,9 +102,6 @@ typedef bool ( *cs_layout )( csBox* box,
                              void const* val,
                              cErrorStack es[static 1] );
 
-#define layout_box_cs_( BoxPtr, Limit, Es )                                    \
-   (BoxPtr)->layout.f( (BoxPtr), (Limit), (BoxPtr)->layout.i, (Es) )
-
 struct csLayout
 {
    void const* i;
@@ -116,12 +113,13 @@ struct csBoxType
    char const* desc;
    cs_layout layout;
 };
-
 typedef struct csBoxType csBoxType;
 
 struct csBox
 {
    csRect rect;
+   void* payload;
+   csBoxType const* type;
    csLayout layout;
    csStyle const* style;
    int16_t fill;
@@ -130,6 +128,18 @@ struct csBox
 
 #define children_cs_( ... )                                                    \
    (csBoxes)slice_c_( csBox, __VA_ARGS__ )
+
+CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
+                                         csLimit limit,
+                                         cErrorStack es[static 1] )
+{
+   if ( box->type != NULL )
+   {
+      return box->type->layout( box, limit, box->payload, es );
+   }
+
+   return box->layout.f( box, limit, box->layout.i, es );
+}
 
 /*******************************************************************************
 

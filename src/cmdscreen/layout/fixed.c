@@ -43,7 +43,7 @@ bool layout_fixed_cs( csBox box[static 1],
    limit.max = size;
 
    csBox* child = box->children.v;
-   if ( not layout_box_cs_( child, limit, es ) )
+   if ( not layout_box_cs( child, limit, es ) )
    {
       return false;
    }

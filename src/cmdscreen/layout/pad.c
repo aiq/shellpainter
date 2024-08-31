@@ -42,7 +42,7 @@ bool layout_pad_cs( csBox box[static 1],
 
    csBox* child = box->children.v;
    csLimit childLimit = pad_limit_cs( limit, pad );
-   if ( not layout_box_cs_( child, childLimit, es ) )
+   if ( not layout_box_cs( child, childLimit, es ) )
    {
       return false;
    }

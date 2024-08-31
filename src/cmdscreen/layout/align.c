@@ -4,6 +4,18 @@
 #include "cmdscreen/layout/_/util.h"
 
 /*******************************************************************************
+********************************************************* Types and Definitions
+********************************************************************************
+ type
+*******************************************************************************/
+
+static LAYOUT_CS_( do_align, csAlignment, layout_align_cs, do_deref_c_ )
+csBoxType const CS_Align = {
+   .desc = "align",
+   .layout = &do_align
+};
+
+/*******************************************************************************
 
 *******************************************************************************/
 
@@ -54,7 +66,7 @@ static bool layout_alignx( csBox box[static 1],
    box->rect.y = 0;
 
    csBox* child = box->children.v;
-   if ( not layout_box_cs_( child, limit, es ) )
+   if ( not layout_box_cs( child, limit, es ) )
    {
       return false;
    }
@@ -87,7 +99,7 @@ static bool layout_aligny( csBox box[static 1],
    box->rect.y = 0;
 
    csBox* child = box->children.v;
-   if ( not layout_box_cs_( child, limit, es ) )
+   if ( not layout_box_cs( child, limit, es ) )
    {
       return false;
    }
@@ -188,6 +200,8 @@ csBox align_cs( csAlignment align,
    else *newChild = child;
 
    return (csBox){
+      .payload=newAlign,
+      .type=&CS_Align,
       .layout=align_layout_cs( newAlign ),
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }
@@ -215,7 +229,7 @@ bool layout_align_cs( csBox box[static 1],
    box->rect.h = limit_height_cs_( limit );
 
    csBox* child = box->children.v;
-   if ( not layout_box_cs_( child, limit, es ) )
+   if ( not layout_box_cs( child, limit, es ) )
    {
       return false;
    }

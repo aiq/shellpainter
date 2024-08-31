@@ -73,7 +73,7 @@ int main( void )
 
    csLimit limit = fix_limit_cs( 20, 15 );
    cErrorStack* es = &error_stack_c_( 256 );
-   layout_box_cs_( &root, limit, es );
+   layout_box_cs( &root, limit, es );
    as_global_box_cs( &root );
 
    csBox exp = layouted_box_cs_(

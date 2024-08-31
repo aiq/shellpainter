@@ -10,18 +10,20 @@
 
 csScreen* cmdscreen_cs( void )
 {
-   csScreen* scr = initscr();
-   raw();
-   noecho();
-   start_color();
+   // csScreen* scr = initscr();
+   // raw();
+   // noecho();
+   // start_color();
+   // init_main_screen();
+   // return scr;
    init_main_screen();
-   return scr;
+   return NULL;
 }
 
 void cleanup_cmdscreen_cs()
 {
    cleanup_main_screen();
-   endwin();
+   // endwin();
 }
 
 /*******************************************************************************

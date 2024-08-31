@@ -114,7 +114,7 @@ int main( void )
 
    csLimit limit = fix_limit_cs( 24, 12 );
    cErrorStack* es = &error_stack_c_( 256 );
-   layout_box_cs_( &root, limit, es );
+   layout_box_cs( &root, limit, es );
    as_global_box_cs( &root );
    dump_box_layout_cs( c_c( "layout_row.ppm" ), &root, es );
 /*

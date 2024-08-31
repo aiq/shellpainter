@@ -110,6 +110,10 @@ bool layout_cs( csRect parent,
 
 *******************************************************************************/
 
+extern inline bool layout_box_cs( csBox box[static 1],
+                                  csLimit limit,
+                                  cErrorStack es[static 1] );
+
 static void intl_as_global_box( csBox box[static 1], csPoint vec )
 {
    if ( has_null_size_cs( box->rect ) )
