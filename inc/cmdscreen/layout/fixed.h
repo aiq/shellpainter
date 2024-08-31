@@ -4,14 +4,12 @@
 #include "cmdscreen/csLayout.h"
 
 /*******************************************************************************
-********************************************************* Types and Definitions
+********************************************************************* Functions
 ********************************************************************************
- type
+
 *******************************************************************************/
 
-CMDSCREEN_API csBox fixed_cs( csSize size,
-                              csStyle const* style,
-                              csBox child );
+CMDSCREEN_API csBox fixed_cs( csSize size, csStyle const* style, csBox child );
 
 #define fixed_layout_cs_( Size )                                               \
    fixed_layout_cs( ref_c_( csSize, (Size) ) )

@@ -111,13 +111,25 @@ struct csLayout
    cs_layout f;
 };
 
+struct csBoxType
+{
+   char const* desc;
+   cs_layout layout;
+};
+
+typedef struct csBoxType csBoxType;
+
 struct csBox
 {
    csRect rect;
    csLayout layout;
    csStyle const* style;
+   int16_t fill;
    csVarBoxes children;
 };
+
+#define children_cs_( ... )                                                    \
+   (csBoxes)slice_c_( csBox, __VA_ARGS__ )
 
 /*******************************************************************************
 

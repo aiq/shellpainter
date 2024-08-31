@@ -4,6 +4,7 @@
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/fixed.h"
+#include "cmdscreen/layout/flex.h"
 #include "cmdscreen/layout/none.h"
 #include "cmdscreen/layout/pad.h"
 
@@ -49,33 +50,71 @@ int main( void )
    csStyle const greyStyle = GREY_STYLE_;
    csStyle const navyStyle = NAVY_STYLE_;
 
-   csBox root = pad_cs(
-      padding_cs( 2, 2, 2, 2 ),
+   csBox root = row_cs(
+      1,
       &tealStyle,
-      align_cs(
-         center_cs_(),
-         &maroonStyle,
-         fixed_cs(
-            size_cs( 5, 5 ),
-            &greyStyle,
-            align_cs(
-               center_cs_(),
-               &greyStyle,
+      children_cs_(
+         fixed_cs( 
+            size_cs( 3, 3 ),
+            &maroonStyle,
+            none_cs_()
+         ),
+         fill_cs(
+            1,
+            align_cs( 
+               bottom_right_cs_(),
+               NULL,
                fixed_cs(
-                  size_cs( 3, 3 ),
-                  &navyStyle,
+                  size_cs( 1, 1 ),
+                  &greyStyle,
                   none_cs_()
                )
             )
+         ),
+         fixed_cs( 
+            size_cs( 5, 5 ),
+            &greyStyle,
+            none_cs_()
+         ),
+         fill_cs(
+            2,
+            align_cs( 
+               bottom_right_cs_(),
+               NULL,
+               fixed_cs(
+                  size_cs( 1, 1 ),
+                  &greyStyle,
+                  none_cs_()
+               )
+            )
+         ),
+         fixed_cs(
+            size_cs( 1, 1 ),
+            &navyStyle,
+            none_cs_()
+         ),
+         fill_cs(
+            1,
+            fixed_cs(
+               size_cs( 1, 1 ),
+               &greyStyle,
+               none_cs_()
+            )
+         ),
+         fixed_cs(
+            size_cs( 4, 2 ),
+            &maroonStyle,
+            none_cs_()
          )
       )
    );
 
-   csLimit limit = fix_limit_cs( 20, 15 );
+   csLimit limit = fix_limit_cs( 24, 12 );
    cErrorStack* es = &error_stack_c_( 256 );
    layout_box_cs_( &root, limit, es );
    as_global_box_cs( &root );
-
+   dump_box_layout_cs( c_c( "layout_row.ppm" ), &root, es );
+/*
    csBox exp = layouted_box_cs_(
       rect_cs( 0, 0, 20, 15 ),   // padding
       layouted_box_cs_(
@@ -93,13 +132,11 @@ int main( void )
       )
    );
 
-   dump_box_layout_cs( c_c( "layout_box.ppm" ), &root, es );
-
    cRecorder* rec = &dyn_recorder_c_( 0 );
    record_box_diff_cs( rec, cs_CheckRect, &exp, &root );
    print_recorded_c( rec );
    free_recorder_mem_c( rec );
-
+*/
    cleanup_cmdscreen_cs();
    return finish_tap_c_();
 }
