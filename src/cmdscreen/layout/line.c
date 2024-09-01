@@ -2,6 +2,7 @@
 
 #include "cmdscreen/_/CS_MainScreen.h"
 #include "cmdscreen/layout/_/util.h"
+#include "cmdscreen/layout/fill.h"
 
 /*******************************************************************************
 
@@ -34,56 +35,11 @@ static csLimit limit_for_fill( csLimit limit, cs_LineType type, int16_t max )
    return limit;
 }
 
-static bool fill_func( csBox box[static 1],
-                         csLimit limit,
-                         void const* nothing,
-                         cErrorStack es[static 1] )
-{
-   if ( not has_just_single_child( "fill", box->children, es ) )
-   {
-      return false;
-   }
-   box->rect.x = 0;
-   box->rect.y = 0;
-   box->rect.w = limit_width_cs_( limit );
-   box->rect.h = limit_height_cs_( limit );
-
-   csBox* child = box->children.v;
-   if ( not layout_box_cs( child, limit, es ) )
-   {
-      return false;
-   }
-
-   child->rect.x = 0;
-   child->rect.y = 0;
-
-   return true;
-}
-
-static csLayout fill_layout( void )
-{
-   return (csLayout){ .i=NULL, .f=fill_func };
-}
-
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
 
 *******************************************************************************/
-
-csBox fill_cs( int16_t fill, csStyle const* style, csBox child )
-{
-   csBox* newChild = alloc_one_( csBox );
-   if ( newChild == NULL ) return (csBox){0};
-   else *newChild = child;
-
-   return (csBox){
-      .layout=fill_layout(  ),
-      .fill=fill,
-      .style=style,
-      .children=(csVarBoxes){ .s=1, .v=newChild }
-   };
-}
 
 csBox row_cs( int16_t space, csStyle const* style, csBoxes children )
 {
@@ -137,9 +93,10 @@ bool layout_line_cs( csBox box[static 1],
    int16_t fillCount = 0;
    each_c_( csBox*, child, box->children )
    {
-      if ( child->fill > 0 )
+      int16_t const fill = get_fill_value_cs( child );
+      if ( fill > 0 )
       {
-         int16_t fillPart = child->fill;
+         int16_t fillPart = fill;
          if ( not iadd16_c( fillCount, fillPart, &fillCount ) )
          {
             return push_iadd16_error_c(es, fillCount, fillPart );
@@ -165,10 +122,11 @@ bool layout_line_cs( csBox box[static 1],
    float diff = 0.0;
    each_c_( csBox*, child, box->children )
    {
-      if ( child->fill == 0 )
+      int16_t const fill = get_fill_value_cs( child );
+      if ( fill == 0 )
          continue;
 
-      float mainVal = float_c_( child->fill ) * part;
+      float mainVal = float_c_( fill ) * part;
       mainVal = trunc_float( mainVal + diff, &diff );
       csLimit lim = limit_for_fill( limit, line.type, int16_c_( mainVal ) );
       if ( not layout_box_cs( child, lim, es ) )

@@ -9,6 +9,8 @@
  type
 *******************************************************************************/
 
+CMDSCREEN_API extern csBoxType const CS_Line;
+
 #define csLineType_                                                            \
    XMAP_C_( cs_Row, 0 )                                                        \
    XMAP_C_( cs_Column, 1 )
@@ -30,10 +32,6 @@ typedef struct csLine csLine;
 ********************************************************************************
 
 *******************************************************************************/
-
-#define fill_cs_( Fill, Child )                                                \
-   fill_cs( (Fill), NULL, (Child))
-CMDSCREEN_API csBox fill_cs( int16_t fill, csStyle const* style, csBox child );
 
 #define row_cs_( Space, Children )                                             \
    row_cs( (Space), NULL, (Children))

@@ -3,6 +3,7 @@
 #include "cmdscreen/csLayout.h"
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
+#include "cmdscreen/layout/fill.h"
 #include "cmdscreen/layout/fixed.h"
 #include "cmdscreen/layout/line.h"
 #include "cmdscreen/layout/none.h"

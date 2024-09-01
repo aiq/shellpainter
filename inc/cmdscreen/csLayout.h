@@ -122,7 +122,6 @@ struct csBox
    csBoxType const* type;
    csLayout layout;
    csStyle const* style;
-   int16_t fill;
    csVarBoxes children;
 };
 
