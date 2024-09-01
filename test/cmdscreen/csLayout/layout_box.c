@@ -64,7 +64,7 @@ int main( void )
                fixed_cs(
                   size_cs( 3, 3 ),
                   &navyStyle,
-                  none_cs_()
+                  none_cs()
                )
             )
          )
@@ -86,7 +86,7 @@ int main( void )
                rect_cs( 8, 5, 5, 5 ), // align
                layouted_box_cs_(
                   rect_cs( 9, 6, 3, 3 ), // fixed
-                  none_cs_()
+                  none_cs()
                )
             )
          )

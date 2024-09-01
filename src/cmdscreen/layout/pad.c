@@ -3,6 +3,24 @@
 #include "cmdscreen/_/CS_MainScreen.h"
 #include "cmdscreen/layout/_/util.h"
 
+/*******************************************************************************
+********************************************************* Types and Definitions
+********************************************************************************
+ type
+*******************************************************************************/
+
+static LAYOUT_CS_( do_pad, csPadding, layout_pad_cs, do_deref_c_ )
+csBoxType const CS_Pad = {
+   .desc = "pad",
+   .layout = &do_pad
+};
+
+/*******************************************************************************
+********************************************************************* Functions
+********************************************************************************
+
+*******************************************************************************/
+
 csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
 {
    csPadding* newPad = alloc_one_( csPadding );
@@ -14,16 +32,11 @@ csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
    else *newChild = child;
 
    return (csBox){
-      .layout=pad_layout_cs( newPad ),
+      .payload=newPad,
+      .type=&CS_Pad,
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }
    };
-}
-
-static LAYOUT_CS_( pad_func, csPadding, layout_pad_cs, do_deref_c_ )
-csLayout pad_layout_cs( csPadding const* pad )
-{
-   return (csLayout){ .i=pad, .f=pad_func };
 }
 
 bool layout_pad_cs( csBox box[static 1],

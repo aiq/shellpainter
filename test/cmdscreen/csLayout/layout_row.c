@@ -57,7 +57,7 @@ int main( void )
          fixed_cs( 
             size_cs( 3, 3 ),
             &maroonStyle,
-            none_cs_()
+            none_cs()
          ),
          fill_cs(
             1,
@@ -68,14 +68,14 @@ int main( void )
                fixed_cs(
                   size_cs( 1, 1 ),
                   &greyStyle,
-                  none_cs_()
+                  none_cs()
                )
             )
          ),
          fixed_cs( 
             size_cs( 5, 5 ),
             &maroonStyle,
-            none_cs_()
+            none_cs()
          ),
          fill_cs(
             1,
@@ -86,14 +86,14 @@ int main( void )
                fixed_cs(
                   size_cs( 1, 1 ),
                   &greyStyle,
-                  none_cs_()
+                  none_cs()
                )
             )
          ),
          fixed_cs(
             size_cs( 1, 1 ),
             &maroonStyle,
-            none_cs_()
+            none_cs()
          ),
          fill_cs(
             2,
@@ -101,13 +101,13 @@ int main( void )
             fixed_cs(
                size_cs( 1, 1 ),
                &greyStyle,
-               none_cs_()
+               none_cs()
             )
          ),
          fixed_cs(
             size_cs( 4, 2 ),
             &maroonStyle,
-            none_cs_()
+            none_cs()
          )
       )
    );

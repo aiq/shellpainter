@@ -164,16 +164,6 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
    .children=slice_c_( csBox, __VA_ARGS__ )                                    \
 }
 
-#define none_cs_()                                                             \
-(csBox){                                                                       \
-   .rect=(csRect){ .x=0, .y=0, .w=0, .h=0 },                                   \
-   .layout=none_layout_cs(),                                                   \
-   .style=NULL,                                                                \
-   .children=(csVarBoxes){ .s=0, .v=NULL }                                     \
-}
-
-
-
 /*******************************************************************************
 
 *******************************************************************************/
