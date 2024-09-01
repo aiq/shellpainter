@@ -94,7 +94,6 @@ bool layout_line_cs( csBox box[static 1],
                      cErrorStack es[static 1] )
 {
    int16_t mainAxis = main_axis_cs_( limit, line.axis );
-   int16_t crossAxis = cross_axis_cs_( limit, line.axis );
    int16_t fillCount = 0;
    each_c_( csBox*, child, box->children )
    {
@@ -140,6 +139,7 @@ bool layout_line_cs( csBox box[static 1],
       }
       int16_t const mainPart = ( line.axis == cs_Horizontal ) ? child->rect.w
                                                               : child->rect.h;
+      mainAxis -= mainPart;
       if ( mainAxis < 0 )
       {
          return push_lit_error_c( es, "not engouh space on the main axis" );
