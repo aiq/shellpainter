@@ -13,60 +13,6 @@
 ********************************************************************************
  type
 *******************************************************************************/
-/*
-struct csRule
-{
-   bool wrap;
-   csBox box;
-   int16_t fill;
-   csPadding padding;
-   int16_t space;
-   csAlignment alignment;
-};
-typedef struct csRule csRule;
-
-struct csLayout;
-typedef struct csLayout csLayout;
-
-SLICES_C_(
-   csLayout,      // Type
-   csLayouts,     // SliceType
-   csVarLayouts   // VarSliceType
-)
-
-#define csLayoutType_                                                          \
-   XMAP_C_( cs_Row, 0 )                                                        \
-   XMAP_C_( cs_Column, 1 )
-
-#define XMAP_C_( N, I ) N = I,
-enum cs_LayoutType { csLayoutType_ };
-#undef XMAP_C_
-typedef enum cs_LayoutType cs_LayoutType;
-
-struct csLayout
-{
-   cs_LayoutType type;
-   csRule rule;
-   csVarLayouts children;
-   csRect rect;
-};
-
-#define fill_cs_( Fill )
-
-#define row_cs_( Rule , ... )                                       \
-(csLayout){                                                         \
-   .axis=cs_Row,                                                    \
-   .rule=(Rule),                                                    \
-   .children=slice_c_( csLayout, __VA_ARGS__ )                      \
-}
-
-#define col_cs_( Rule , ... )                                       \
-(csLayout){                                                         \
-   .axis=cs_Column,                                                 \
-   .rule=(Rule),                                                    \
-   .children=slice_c_( csLayout, __VA_ARGS__ )                      \
-}
-*/
 
 #define LAYOUT_CS_( FuncName, Type, LayoutFunc, DoDeref )                      \
 bool FuncName( csBox box[static 1],                                            \
@@ -120,7 +66,6 @@ struct csBox
    csRect rect;
    void* payload;
    csBoxType const* type;
-   csLayout layout;
    csStyle const* style;
    csVarBoxes children;
 };
@@ -132,12 +77,8 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
                                          csLimit limit,
                                          cErrorStack es[static 1] )
 {
-   if ( box->type != NULL )
-   {
-      return box->type->layout( box, limit, box->payload, es );
-   }
-
-   return box->layout.f( box, limit, box->layout.i, es );
+   must_exist_c_( box->type );
+   return box->type->layout( box, limit, box->payload, es );
 }
 
 /*******************************************************************************
@@ -158,7 +99,6 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
 #define layouted_box_cs_( Rect, ... )                                          \
 (csBox){                                                                       \
    .rect=(Rect),                                                               \
-   .layout=none_layout_cs(),                                                   \
    .style=NULL,                                                                \
    .children=slice_c_( csBox, __VA_ARGS__ )                                    \
 }

@@ -5,6 +5,18 @@
 #include "cmdscreen/layout/fill.h"
 
 /*******************************************************************************
+********************************************************* Types and Definitions
+********************************************************************************
+ type
+*******************************************************************************/
+
+static LAYOUT_CS_( do_line, csLine, layout_line_cs, do_deref_c_ )
+csBoxType const CS_Line = {
+   .desc = "line",
+   .layout = &do_line
+};
+
+/*******************************************************************************
 
 *******************************************************************************/
 
@@ -15,16 +27,16 @@ static float trunc_float( float f, float* diff )
    return res;
 }
 
-static csLimit limit_for_fill( csLimit limit, cs_LineType type, int16_t max )
+static csLimit limit_for_fill( csLimit limit, cs_Axis axis, int16_t max )
 {
-   if ( type == cs_Row )
+   if ( axis == cs_Horizontal )
    {
       limit.max = (csSize){
          .w=imax16_c( limit.min.w, max ),
          .h=limit.max.h
       };
    }
-   else  // cs_Column
+   else  // cs_Vertical
    {
       limit.max = (csSize){
          .w=limit.max.w,
@@ -43,22 +55,22 @@ static csLimit limit_for_fill( csLimit limit, cs_LineType type, int16_t max )
 
 csBox row_cs( int16_t space, csStyle const* style, csBoxes children )
 {
-   return line_cs( cs_Row, space, style, children );
+   return line_cs( cs_Horizontal, space, style, children );
 }
 
 csBox col_cs( int16_t space, csStyle const* style, csBoxes children )
 {
-   return line_cs( cs_Column, space, style, children );
+   return line_cs( cs_Vertical, space, style, children );
 }
 
-csBox line_cs( cs_LineType type,
+csBox line_cs( cs_Axis axis,
                int16_t space,
                csStyle const* style,
                csBoxes children )
 {
    csLine* newLine = alloc_one_( csLine );
    if ( newLine == NULL ) return (csBox){0};
-   else *newLine = (csLine){ .type=type, .space=space };
+   else *newLine = (csLine){ .axis=axis, .space=space };
 
    csBox* newChildren = alloc_array_( children.s, csBox );
    if ( newChildren == NULL ) return (csBox){0};
@@ -69,16 +81,11 @@ csBox line_cs( cs_LineType type,
    }
 
    return (csBox){
-      .layout=line_layout_cs( newLine ),
+      .payload=newLine,
+      .type=&CS_Line,
       .style=style,
       .children=(csVarBoxes){ .s=children.s, .v=newChildren }
    };
-}
-
-static LAYOUT_CS_( line_func, csLine, layout_line_cs, do_deref_c_ )
-csLayout line_layout_cs( csLine const* line )
-{
-   return (csLayout){ .i=line, .f=line_func };
 }
 
 bool layout_line_cs( csBox box[static 1],
@@ -86,10 +93,8 @@ bool layout_line_cs( csBox box[static 1],
                      csLine line,
                      cErrorStack es[static 1] )
 {
-   cs_Axis const axis = ( line.type == cs_Row ) ? cs_Horizontal
-                                                : cs_Vertical;
-   int16_t mainAxis = main_axis_cs_( limit, axis );
-   int16_t crossAxis = cross_axis_cs_( limit, axis );
+   int16_t mainAxis = main_axis_cs_( limit, line.axis );
+   int16_t crossAxis = cross_axis_cs_( limit, line.axis );
    int16_t fillCount = 0;
    each_c_( csBox*, child, box->children )
    {
@@ -108,8 +113,8 @@ bool layout_line_cs( csBox box[static 1],
          {
             return false;
          }
-         int16_t const mainPart = ( line.type == cs_Row ) ? child->rect.w
-                                                          : child->rect.h;
+         int16_t const mainPart = ( line.axis == cs_Horizontal ) ? child->rect.w
+                                                                 : child->rect.h;
          mainAxis -= mainPart;
          if ( mainAxis < 0 )
          {
@@ -128,13 +133,13 @@ bool layout_line_cs( csBox box[static 1],
 
       float mainVal = float_c_( fill ) * part;
       mainVal = trunc_float( mainVal + diff, &diff );
-      csLimit lim = limit_for_fill( limit, line.type, int16_c_( mainVal ) );
+      csLimit lim = limit_for_fill( limit, line.axis, int16_c_( mainVal ) );
       if ( not layout_box_cs( child, lim, es ) )
       {
          return false;
       }
-      int16_t const mainPart = ( line.type == cs_Row ) ? child->rect.w
-                                                       : child->rect.h;
+      int16_t const mainPart = ( line.axis == cs_Horizontal ) ? child->rect.w
+                                                              : child->rect.h;
       if ( mainAxis < 0 )
       {
          return push_lit_error_c( es, "not engouh space on the main axis" );
@@ -145,7 +150,7 @@ bool layout_line_cs( csBox box[static 1],
    box->rect.h = 0;
    each_c_( csBox*, child, box->children )
    {
-      if ( line.type == cs_Row )
+      if ( line.axis == cs_Horizontal )
       {
          child->rect.x = box->rect.w;
          child->rect.y = 0;

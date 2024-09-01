@@ -11,18 +11,9 @@
 
 CMDSCREEN_API extern csBoxType const CS_Line;
 
-#define csLineType_                                                            \
-   XMAP_C_( cs_Row, 0 )                                                        \
-   XMAP_C_( cs_Column, 1 )
-
-#define XMAP_C_( N, I ) N = I,
-enum cs_LineType { csLineType_ };
-#undef XMAP_C_
-typedef enum cs_LineType cs_LineType;
-
 struct csLine
 {
-   cs_LineType type;
+   cs_Axis axis;
    int16_t space;
 };
 typedef struct csLine csLine;
@@ -43,16 +34,10 @@ csBox row_cs( int16_t space, csStyle const* style, csBoxes children );
 CMDSCREEN_API
 csBox col_cs( int16_t space, csStyle const* style, csBoxes children );
 
-CMDSCREEN_API csBox line_cs( cs_LineType type,
+CMDSCREEN_API csBox line_cs( cs_Axis axis,
                              int16_t space,
                              csStyle const* style,
                              csBoxes children );
-
-#define row_layout_cs_( Space )                                                \
-   line_layout_cs( ref_c_( csFlex, ((csFlex){ cs_Row, (Space) }) ) )
-#define col_layout_cs_( Space )                                                \
-   line_layout_cs( ref_c_( csFlex, ((csFlex){ cs_Column, (Space) }) ) )
-CMDSCREEN_API csLayout line_layout_cs( csLine const* line );
 
 CMDSCREEN_API bool layout_line_cs( csBox box[static 1],
                                    csLimit limit,
