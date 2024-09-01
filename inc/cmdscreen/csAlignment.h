@@ -48,31 +48,31 @@ typedef struct csAlignment csAlignment;
    .y=(Y)                                                                      \
 }
 
-#define top_left_cs_()                                                         \
+#define top_left_alignment_cs_()                                               \
    alignment_cs_( cs_Left, cs_Top )
 
-#define top_center_cs_()                                                       \
+#define top_center_alignment_cs_()                                             \
    alignment_cs_( cs_CenterX, cs_Top )
 
-#define top_right_cs_()                                                        \
+#define top_right_alignment_cs_()                                              \
    alignment_cs_( cs_Right, cs_Top )
 
-#define center_left_cs_()                                                      \
+#define center_left_alignment_cs_()                                            \
    alignment_cs_( cs_Left, cs_CenterY )
 
-#define center_cs_()                                                           \
+#define center_alignment_cs_()                                                 \
    alignment_cs_( cs_CenterX, cs_CenterY )
 
-#define center_right_cs_()                                                     \
+#define center_right_alignment_cs_()                                           \
    alignment_cs_( cs_Right, cs_CenterY )
 
-#define bottom_left_cs_()                                                      \
+#define bottom_left_alignment_cs_()                                            \
    alignment_cs_( cs_Left, cs_Bottom )
 
-#define bottom_center_cs_()                                                    \
+#define bottom_center_alignment_cs_()                                          \
    alignment_cs_( cs_CenterX, cs_Bottom )
 
-#define bottom_right_cs_()                                                     \
+#define bottom_right_alignment_cs_()                                           \
    alignment_cs_( cs_Right, cs_Bottom )
 
 /*******************************************************************************

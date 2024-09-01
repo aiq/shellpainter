@@ -21,6 +21,24 @@ csBoxType const CS_Align = {
 
 *******************************************************************************/
 
+extern inline csBox top_left_cs( csStyle const* style, csBox box );
+extern inline csBox top_center_cs( csStyle const* style, csBox box );
+extern inline csBox top_right_cs( csStyle const* style, csBox box );
+
+/******************************************************************************/
+
+extern inline csBox center_left_cs( csStyle const* style, csBox box );
+extern inline csBox center_cs( csStyle const* style, csBox box );
+extern inline csBox center_right_cs( csStyle const* style, csBox box );
+
+/******************************************************************************/
+
+extern inline csBox bottom_left_cs( csStyle const* style, csBox box );
+extern inline csBox bottom_center_cs( csStyle const* style, csBox box );
+extern inline csBox bottom_right_cs( csStyle const* style, csBox box );
+
+/******************************************************************************/
+
 csBox align_cs( csAlignment align,
                 csStyle const* style,
                 csBox child )
