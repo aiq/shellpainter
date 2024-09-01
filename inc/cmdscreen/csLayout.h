@@ -25,15 +25,6 @@ bool FuncName( csBox box[static 1],                                            \
    return LayoutFunc( box, limit, DoDeref( val ), es );                       \
 }
 
-struct csLayout;
-typedef struct csLayout csLayout;
-
-SLICES_C_(
-   csLayout,      // Type
-   csLayouts,     // SliceType
-   csVarLayouts   // VarSliceType
-)
-
 struct csBox;
 typedef struct csBox csBox;
 
@@ -47,12 +38,6 @@ typedef bool ( *cs_layout )( csBox* box,
                              csLimit limit,
                              void const* val,
                              cErrorStack es[static 1] );
-
-struct csLayout
-{
-   void const* i;
-   cs_layout f;
-};
 
 struct csBoxType
 {

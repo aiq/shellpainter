@@ -19,6 +19,4 @@ CMDSCREEN_API extern csBoxType const CS_None;
 
 CMDSCREEN_API csBox none_cs( void );
 
-CMDSCREEN_API csLayout none_layout_cs( void );
-
 #endif
