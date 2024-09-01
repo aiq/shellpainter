@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_FILL_H
 #define CMDSCREEN_LAYOUT_FILL_H
 
-#include "cmdscreen/csLayout.h"
+#include "cmdscreen/csBox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

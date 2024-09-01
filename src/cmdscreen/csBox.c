@@ -1,4 +1,4 @@
-#include "cmdscreen/csLayout.h"
+#include "cmdscreen/csBox.h"
 
 #include "clingo/color/cRgb24.h"
 #include "clingo/io/jot.h"
@@ -31,7 +31,7 @@ static void intl_as_global_box( csBox box[static 1], csPoint vec )
    }
 }
 
-void as_global_box_cs( csBox box[static 1] )
+void globalise_cs( csBox box[static 1] )
 {
    intl_as_global_box( box, point_cs( 0, 0 ) );
 }

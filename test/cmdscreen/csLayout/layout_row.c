@@ -1,6 +1,6 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
-#include "cmdscreen/csLayout.h"
+#include "cmdscreen/csBox.h"
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/aligny.h"
@@ -86,7 +86,7 @@ int main( void )
    csLimit limit = fix_limit_cs( 24, 12 );
    cErrorStack* es = &error_stack_c_( 256 );
    layout_box_cs( &root, limit, es );
-   as_global_box_cs( &root );
+   globalise_cs( &root );
    dump_box_layout_cs( c_c( "layout_row.ppm" ), &root, es );
 /*
    csBox exp = layouted_box_cs_(

@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_NONE_H
 #define CMDSCREEN_LAYOUT_NONE_H
 
-#include "cmdscreen/csLayout.h"
+#include "cmdscreen/csBox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

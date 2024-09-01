@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_INTERN_UTIL_H
 #define CMDSCREEN_LAYOUT_INTERN_UTIL_H
 
-#include "cmdscreen/csLayout.h"
+#include "cmdscreen/csBox.h"
 #include "clingo/lang/error_type.h"
 
 /*******************************************************************************
