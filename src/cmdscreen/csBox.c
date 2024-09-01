@@ -91,18 +91,14 @@ bool dump_box_layout_cs( cChars path,
 
 static bool intl_record_box_diff( cRecorder rec[static 1],
                                   cRecorder route[static 1],
-                                  cs_DiffConfig cfg,
                                   csBox const box[static 1],
                                   csBox const oth[static 1] )
 {
-   if ( has_c_( cfg, cs_CheckRect ) )
+   if ( not eq_rect_cs( box->rect, oth->rect ) )
    {
-      if ( not eq_rect_cs( box->rect, oth->rect ) )
-      {
-         return jotln_c_( rec, "~= ", route, " different rect values: ",
-                               "expected ", rect_tape_cs_( box->rect ),
-                               ", got ", rect_tape_cs_( oth->rect ) );
-      }
+      return jotln_c_( rec, "~= ", route, " different rect values: ",
+                            "expected ", rect_tape_cs_( box->rect ),
+                            ", got ", rect_tape_cs_( oth->rect ) );
    }
 
    if ( box->children.s != oth->children.s )
@@ -120,7 +116,7 @@ static bool intl_record_box_diff( cRecorder rec[static 1],
 
       csBox const* boxChild = ptr_for_c_( box->children, i );
       csBox const* othChild = ptr_for_c_( oth->children, i );
-      if ( not intl_record_box_diff( rec, route, cfg, boxChild, othChild ) )
+      if ( not intl_record_box_diff( rec, route, boxChild, othChild ) )
          return false;
 
       move_recorder_to_c( route, oldPos );
@@ -130,7 +126,6 @@ static bool intl_record_box_diff( cRecorder rec[static 1],
 }
 
 bool record_box_diff_cs( cRecorder rec[static 1],
-                         cs_DiffConfig cfg,
                          csBox const box[static 1],
                          csBox const oth[static 1] )
 {
@@ -138,7 +133,7 @@ bool record_box_diff_cs( cRecorder rec[static 1],
    bool res = false;
    if ( write_c_( route, "{i}", 0 ) )
    {
-      res = intl_record_box_diff( rec, route, cfg, box, oth );
+      res = intl_record_box_diff( rec, route, box, oth );
    }
    free_recorder_mem_c( route );
    return res;

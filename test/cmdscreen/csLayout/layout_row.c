@@ -52,7 +52,7 @@ int main( void )
          ),
          fill_cs_(
             1,
-            bottom_right_cs_( 
+            bottom_center_cs_( 
                fixed_cs(
                   size_cs( 1, 1 ),
                   &greyStyle,
@@ -88,29 +88,71 @@ int main( void )
    layout_box_cs( &root, limit, es );
    globalise_cs( &root );
    dump_box_layout_cs( c_c( "layout_row.ppm" ), &root, es );
-/*
-   csBox exp = layouted_box_cs_(
-      rect_cs( 0, 0, 20, 15 ),   // padding
-      layouted_box_cs_(
-         rect_cs( 2, 2, 16, 11 ),   // align
-         layouted_box_cs_(
-            rect_cs( 8, 5, 5, 5 ),    // fixed
-            layouted_box_cs_(
-               rect_cs( 8, 5, 5, 5 ), // align
-               layouted_box_cs_(
-                  rect_cs( 9, 6, 3, 3 ), // fixed
-                  none_cs_()
-               )
+
+   csBox exp = exp_box_cs_(
+      rect_cs( 0, 0, 24, 12 ),   // row
+      exp_box_cs_(  // top
+         rect_cs( 0, 0, 3, 12 ),
+         exp_box_cs_(   // fixed
+            rect_cs( 0, 0, 3, 3 ),
+            none_cs()
+         )
+      ),
+      exp_box_cs_(  // fill
+         rect_cs( 3, 0, 2, 12 ),
+         exp_box_cs_(   // bottom right
+            rect_cs( 3, 0, 2, 12 ),
+            exp_box_cs_(    // fixed
+                rect_cs( 4, 11, 1, 1 ),
+                none_cs()
             )
          )
+      ),
+      exp_box_cs_(  // center
+         rect_cs( 5, 0, 3, 12 ),
+         exp_box_cs_(   // fixed
+            rect_cs( 5, 4, 5, 5 ),
+            none_cs()
+         )
+      ),
+      exp_box_cs_(  // fill
+         rect_cs( 10, 0, 3, 12 ),
+         exp_box_cs_(   // bottom center
+            rect_cs( 10, 0, 3, 12 ),
+            exp_box_cs_(    // fixed
+                rect_cs( 11, 11, 1, 1 ),
+                none_cs()
+            )
+         )
+      ),
+      exp_box_cs_(  // bottom
+         rect_cs( 13, 0, 1, 12 ),
+         exp_box_cs_(   // fixed
+            rect_cs( 13, 11, 1, 1 ),
+            none_cs()
+         )
+      ),
+      exp_box_cs_(  // fill
+         rect_cs( 14, 0, 6, 12 ),
+         exp_box_cs_(   // top left
+            rect_cs( 14, 0, 6, 12 ),
+            exp_box_cs_(    // fixed
+                rect_cs( 14, 0, 1, 1 ),
+                none_cs()
+            )
+         )
+      ),
+      exp_box_cs_(  // fixed
+         rect_cs( 20, 0, 4, 2 ),
+         none_cs()
       )
    );
 
    cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_cs( rec, cs_CheckRect, &exp, &root );
+   record_box_diff_cs( rec, &exp, &root );
    print_recorded_c( rec );
    free_recorder_mem_c( rec );
-*/
+
    cleanup_cmdscreen_cs();
    return finish_tap_c_();
 }

@@ -44,15 +44,15 @@ int main( void )
    layout_box_cs( &root, limit, es );
    globalise_cs( &root );
 
-   csBox exp = layouted_box_cs_(
+   csBox exp = exp_box_cs_(
       rect_cs( 0, 0, 20, 15 ),   // padding
-      layouted_box_cs_(
-         rect_cs( 2, 2, 16, 11 ),   // align
-         layouted_box_cs_(
+      exp_box_cs_(
+         rect_cs( 2, 2, 16, 11 ),   // center_cs
+         exp_box_cs_(
             rect_cs( 8, 5, 5, 5 ),    // fixed
-            layouted_box_cs_(
-               rect_cs( 8, 5, 5, 5 ), // align
-               layouted_box_cs_(
+            exp_box_cs_(
+               rect_cs( 8, 5, 5, 5 ), // center_cs
+               exp_box_cs_(
                   rect_cs( 9, 6, 3, 3 ), // fixed
                   none_cs()
                )
@@ -64,7 +64,7 @@ int main( void )
    dump_box_layout_cs( c_c( "layout_box.ppm" ), &root, es );
 
    cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_cs( rec, cs_CheckRect, &exp, &root );
+   record_box_diff_cs( rec, &exp, &root );
    print_recorded_c( rec );
    free_recorder_mem_c( rec );
 
