@@ -32,7 +32,7 @@ csBox fixed_cs( csSize size, csStyle const* style, csBox child )
    else *newChild = child;
 
    return (csBox){
-      .payload=newSize,
+      .data=newSize,
       .type=&CS_Fixed,
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }

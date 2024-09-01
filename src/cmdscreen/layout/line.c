@@ -81,7 +81,7 @@ csBox line_cs( cs_Axis axis,
    }
 
    return (csBox){
-      .payload=newLine,
+      .data=newLine,
       .type=&CS_Line,
       .style=style,
       .children=(csVarBoxes){ .s=children.s, .v=newChildren }

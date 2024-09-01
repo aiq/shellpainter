@@ -52,7 +52,7 @@ csBox align_cs( csAlignment align,
    else *newChild = child;
 
    return (csBox){
-      .payload=newAlign,
+      .data=newAlign,
       .type=&CS_Align,
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }

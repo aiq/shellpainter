@@ -51,7 +51,7 @@ csBox fill_cs( int16_t fill, csStyle const* style, csBox child )
    else *newFill = fill;
 
    return (csBox){
-      .payload=newFill,
+      .data=newFill,
       .type=&CS_Fill,
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }

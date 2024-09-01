@@ -49,7 +49,7 @@ typedef struct csBoxType csBoxType;
 struct csBox
 {
    csRect rect;
-   void* payload;
+   void* data;
    csBoxType const* type;
    csStyle const* style;
    csVarBoxes children;
@@ -63,7 +63,7 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
                                          cErrorStack es[static 1] )
 {
    must_exist_c_( box->type );
-   return box->type->layout( box, limit, box->payload, es );
+   return box->type->layout( box, limit, box->data, es );
 }
 
 /*******************************************************************************

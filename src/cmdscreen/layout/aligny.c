@@ -62,7 +62,7 @@ csBox aligny_cs( cs_AlignY align, csStyle const* style, csBox child )
    else *newChild = child;
 
    return (csBox){
-      .payload=newAlign,
+      .data=newAlign,
       .type=&CS_AlignY,
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }

@@ -25,7 +25,7 @@ CMDSCREEN_API inline int16_t get_fill_value_cs( csBox const box[static 1] )
 {
    if ( box->type == &CS_Fill )
    {
-      int16_t const* val = box->payload;
+      int16_t const* val = box->data;
       return *val;
    }
 

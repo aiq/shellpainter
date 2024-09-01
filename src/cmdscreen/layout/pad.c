@@ -32,7 +32,7 @@ csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
    else *newChild = child;
 
    return (csBox){
-      .payload=newPad,
+      .data=newPad,
       .type=&CS_Pad,
       .style=style,
       .children=(csVarBoxes){ .s=1, .v=newChild }

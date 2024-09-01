@@ -31,7 +31,7 @@ csBoxType const CS_None = {
 csBox none_cs( void )
 {
    return (csBox){
-      .payload=NULL,
+      .data=NULL,
       .type=&CS_None,
       .style=NULL,
       .children=(csVarBoxes){ .s=0, .v=NULL }
