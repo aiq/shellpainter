@@ -18,7 +18,7 @@ CMDSCREEN_API extern csBoxType const CS_Fill;
 *******************************************************************************/
 
 #define fill_cs_( Fill, Child )                                                \
-   fill_cs( (Fill), NULL, (Child))
+   fill_cs( (Fill), NULL, (Child) )
 CMDSCREEN_API csBox fill_cs( int16_t fill, csStyle const* style, csBox child );
 
 CMDSCREEN_API inline int16_t get_fill_value_cs( csBox const box[static 1] )

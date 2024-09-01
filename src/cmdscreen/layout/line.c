@@ -40,7 +40,7 @@ static csLimit limit_for_fill( csLimit limit, cs_Axis axis, int16_t max )
    {
       limit.max = (csSize){
          .w=limit.max.w,
-         .h=imax16_c( limit.max.h, max )
+         .h=imax16_c( limit.min.h, max )
       };
    }
 

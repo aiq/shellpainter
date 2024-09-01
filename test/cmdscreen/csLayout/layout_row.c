@@ -23,7 +23,7 @@ int main( void )
    csStyle const navyStyle = NAVY_;
 
    csBox root = row_cs(
-      1,
+      0,
       &tealStyle,
       children_cs_(
          top_cs_(

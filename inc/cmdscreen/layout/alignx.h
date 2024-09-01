@@ -40,7 +40,7 @@ CMDSCREEN_API inline csBox centerx_cs( csStyle const* style, csBox box )
 }
 
 #define right_cs_( Box )                                                       \
-   centerx_cs( NULL, (Box) )
+   right_cs( NULL, (Box) )
 CMDSCREEN_API inline csBox right_cs( csStyle const* style, csBox box )
 {
    return alignx_cs( cs_Right, style, box );
