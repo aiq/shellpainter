@@ -8,7 +8,7 @@
 *******************************************************************************/
 
 static bool layout_aligny( csBox box[static 1],
-                           csLimit limit,
+                           uiLimit limit,
                            csAlignment alignment,
                            cErrorStack es[static 1] )
 {
@@ -25,7 +25,7 @@ static bool layout_aligny( csBox box[static 1],
       return false;
    }
    box->rect.w = child->rect.w;
-   box->rect.h = limit_height_cs_( limit );
+   box->rect.h = limit_height_ui_( limit );
 
    child->rect.x = alignx( alignment.x, box->rect.w, child->rect.w );
    child->rect.y = aligny( alignment.y, box->rect.h, child->rect.h );

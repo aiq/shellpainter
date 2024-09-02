@@ -1,8 +1,7 @@
 #ifndef UIINABOX_UIPADDING_H
 #define UIINABOX_UIPADDING_H
 
-#include "uiinabox/apidecl.h"
-#include "cmdscreen/csLimit.h"
+#include "uiinabox/uiLimit.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -25,7 +24,7 @@ typedef struct uiPadding uiPadding;
 
 *******************************************************************************/
 
-CMDSCREEN_API inline
+UIINABOX_API inline
 uiPadding padding_ui( int16_t left, int16_t top, int16_t right, int16_t bottom )
 {
    return (uiPadding){ .left=left, .top=top, .right=right, .bottom=bottom };
@@ -35,7 +34,7 @@ uiPadding padding_ui( int16_t left, int16_t top, int16_t right, int16_t bottom )
 
 *******************************************************************************/
 
-CMDSCREEN_API inline uiRect pad_rect_ui( uiRect rect, uiPadding pad )
+UIINABOX_API inline uiRect pad_rect_ui( uiRect rect, uiPadding pad )
 {
    return (uiRect){
       .x=rect.x + pad.left,
@@ -45,6 +44,6 @@ CMDSCREEN_API inline uiRect pad_rect_ui( uiRect rect, uiPadding pad )
    };
 }
 
-CMDSCREEN_API csLimit pad_limit_cs( csLimit limit, uiPadding pad );
+UIINABOX_API uiLimit pad_limit_ui( uiLimit limit, uiPadding pad );
 
 #endif

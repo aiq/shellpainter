@@ -23,7 +23,7 @@ CMDSCREEN_API csBox pad_cs( uiPadding pad,
                             csBox child );
 
 CMDSCREEN_API bool layout_pad_cs( csBox box[static 1],
-                                  csLimit limit,
+                                  uiLimit limit,
                                   uiPadding pad,
                                   cErrorStack es[static 1] );
 

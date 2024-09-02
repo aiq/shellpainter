@@ -40,7 +40,7 @@ CMDSCREEN_API csBox line_cs( ui_Axis axis,
                              csBoxes children );
 
 CMDSCREEN_API bool layout_line_cs( csBox box[static 1],
-                                   csLimit limit,
+                                   uiLimit limit,
                                    csLine line,
                                    cErrorStack es[static 1] );
 

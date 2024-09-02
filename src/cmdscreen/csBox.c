@@ -15,7 +15,7 @@
 *******************************************************************************/
 
 extern inline bool layout_box_cs( csBox box[static 1],
-                                  csLimit limit,
+                                  uiLimit limit,
                                   cErrorStack es[static 1] );
 
 static void intl_as_global_box( csBox box[static 1], uiPoint vec )

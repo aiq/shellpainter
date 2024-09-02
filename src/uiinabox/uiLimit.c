@@ -1,4 +1,4 @@
-#include "cmdscreen/csLimit.h"
+#include "uiinabox/uiLimit.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -16,26 +16,26 @@
 
 int16_t const CS_Infinity = INT16_MAX;
 
-extern inline csLimit default_limit_cs( void );
+extern inline uiLimit default_limit_ui( void );
 
-extern inline csLimit fix_limit_cs( int16_t w, int16_t h );
+extern inline uiLimit fix_limit_ui( int16_t w, int16_t h );
 
-
-/*******************************************************************************
-
-*******************************************************************************/
-
-extern inline bool is_fix_limit_cs( csLimit limit );
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline int16_t limit_height_cs( csLimit limit, int16_t h );
+extern inline bool is_fix_limit_ui( uiLimit limit );
 
-extern inline int16_t limit_width_cs( csLimit limit, int16_t w );
+/*******************************************************************************
 
-extern inline uiSize limit_size_ui( csLimit limit, uiSize size );
+*******************************************************************************/
+
+extern inline int16_t limit_height_ui( uiLimit limit, int16_t h );
+
+extern inline int16_t limit_width_ui( uiLimit limit, int16_t w );
+
+extern inline uiSize limit_size_ui( uiLimit limit, uiSize size );
 
 /*******************************************************************************
 
@@ -47,6 +47,6 @@ extern inline uiRect set_rect_size_ui( uiRect rect, uiSize size );
 
 *******************************************************************************/
 
-extern inline int16_t main_axis_cs( csLimit limit, ui_Axis axis, int16_t val );
+extern inline int16_t main_axis_ui( uiLimit limit, ui_Axis axis, int16_t val );
 
-extern inline int16_t cross_axis_cs( csLimit limit, ui_Axis axis, int16_t val );
+extern inline int16_t cross_axis_ui( uiLimit limit, ui_Axis axis, int16_t val );

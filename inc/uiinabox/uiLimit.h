@@ -1,7 +1,6 @@
-#ifndef CMDSCREEN_CSLIMIT_H
-#define CMDSCREEN_CSLIMIT_H
+#ifndef UIINABOX_UILIMIT_H
+#define UIINABOX_UILIMIT_H
 
-#include "cmdscreen/apidecl.h"
 #include "uiinabox/ui_Axis.h"
 #include "uiinabox/uiRect.h"
 
@@ -11,14 +10,14 @@
  type
 *******************************************************************************/
 
-CLINGO_API extern int16_t const CS_Infinity;
+UIINABOX_API extern int16_t const CS_Infinity;
 
-struct csLimit
+struct uiLimit
 {
    uiSize min;
    uiSize max;
 };
-typedef struct csLimit csLimit;
+typedef struct uiLimit uiLimit;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -26,24 +25,24 @@ typedef struct csLimit csLimit;
 
 *******************************************************************************/
 
-CMDSCREEN_API inline csLimit default_limit_cs( void )
+UIINABOX_API inline uiLimit default_limit_ui( void )
 {
-   return (csLimit){
+   return (uiLimit){
       .min=size_ui( 0, 0 ),
       .max=size_ui( CS_Infinity, CS_Infinity )
    };
 }
 
-CMDSCREEN_API inline csLimit fix_limit_cs( int16_t w, int16_t h )
+UIINABOX_API inline uiLimit fix_limit_ui( int16_t w, int16_t h )
 {
-   return (csLimit){ .min=size_ui( 0, 0 ), .max=size_ui( w, h ) };
+   return (uiLimit){ .min=size_ui( 0, 0 ), .max=size_ui( w, h ) };
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-CMDSCREEN_API inline bool is_fix_limit_cs( csLimit limit )
+UIINABOX_API inline bool is_fix_limit_ui( uiLimit limit )
 {
    return limit.min.w == limit.max.w and limit.min.h == limit.max.h;
 }
@@ -52,25 +51,25 @@ CMDSCREEN_API inline bool is_fix_limit_cs( csLimit limit )
 
 *******************************************************************************/
 
-#define limit_height_cs_( Limit )                                              \
-   limit_height_cs( (Limit), CS_Infinity )
-CMDSCREEN_API inline int16_t limit_height_cs( csLimit limit, int16_t h )
+#define limit_height_ui_( Limit )                                              \
+   limit_height_ui( (Limit), CS_Infinity )
+UIINABOX_API inline int16_t limit_height_ui( uiLimit limit, int16_t h )
 {
    return clamp_c_( limit.min.h, h, limit.max.h );
 }
 
-#define limit_width_cs_( Limit )                                               \
-   limit_width_cs( (Limit), CS_Infinity )
-CMDSCREEN_API inline int16_t limit_width_cs( csLimit limit, int16_t w )
+#define limit_width_ui_( Limit )                                               \
+   limit_width_ui( (Limit), CS_Infinity )
+UIINABOX_API inline int16_t limit_width_ui( uiLimit limit, int16_t w )
 {
    return clamp_c_( limit.min.w, w, limit.max.w );
 }
 
-CMDSCREEN_API inline uiSize limit_size_ui( csLimit limit, uiSize size )
+UIINABOX_API inline uiSize limit_size_ui( uiLimit limit, uiSize size )
 {
    return size_ui(
-      limit_width_cs( limit, size.w ),
-      limit_height_cs( limit, size.h )
+      limit_width_ui( limit, size.w ),
+      limit_height_ui( limit, size.h )
    );
 }
 
@@ -78,28 +77,28 @@ CMDSCREEN_API inline uiSize limit_size_ui( csLimit limit, uiSize size )
 
 *******************************************************************************/
 
-#define main_axis_cs_( Limit, Axis )                                           \
-   main_axis_cs( (Limit), (Axis), CS_Infinity )
-CMDSCREEN_API
-inline int16_t main_axis_cs( csLimit limit, ui_Axis axis, int16_t val )
+#define main_axis_ui_( Limit, Axis )                                           \
+   main_axis_ui( (Limit), (Axis), CS_Infinity )
+UIINABOX_API
+inline int16_t main_axis_ui( uiLimit limit, ui_Axis axis, int16_t val )
 {
    if ( axis == ui_Horizontal )
    {
-      return limit_width_cs( limit, val );
+      return limit_width_ui( limit, val );
    }
-   return limit_height_cs( limit, val );
+   return limit_height_ui( limit, val );
 }
 
-#define cross_axis_cs_( Limit, Axis )                                          \
-   cross_axis_cs( (Limit), (Axis), CS_Infinity )
-CMDSCREEN_API
-inline int16_t cross_axis_cs( csLimit limit, ui_Axis axis, int16_t val )
+#define cross_axis_ui_( Limit, Axis )                                          \
+   cross_axis_ui( (Limit), (Axis), CS_Infinity )
+UIINABOX_API
+inline int16_t cross_axis_ui( uiLimit limit, ui_Axis axis, int16_t val )
 {
    if ( axis == ui_Horizontal )
    {
-      return limit_height_cs( limit, val );
+      return limit_height_ui( limit, val );
    }
-   return limit_width_cs( limit, val );
+   return limit_width_ui( limit, val );
 }
 
 /*******************************************************************************

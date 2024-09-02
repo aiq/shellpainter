@@ -31,7 +31,7 @@ csBox fixed_cs( uiSize size, csStyle const* style, csBox child )
 }
 
 bool layout_fixed_cs( csBox box[static 1],
-                      csLimit limit,
+                      uiLimit limit,
                       uiSize size,
                       cErrorStack es[static 1] )
 {
@@ -41,8 +41,8 @@ bool layout_fixed_cs( csBox box[static 1],
    }
    box->rect.x = 0;
    box->rect.y = 0;
-   box->rect.w = limit_width_cs( limit, size.w );
-   box->rect.h = limit_height_cs( limit, size.h );
+   box->rect.w = limit_width_ui( limit, size.w );
+   box->rect.h = limit_height_ui( limit, size.h );
 
    limit.max = size;
 

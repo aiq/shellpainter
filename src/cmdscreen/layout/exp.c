@@ -4,7 +4,7 @@
 #include "cmdscreen/layout/_/util.h"
 
 static bool do_exp( csBox box[static 1],
-                    csLimit limit,
+                    uiLimit limit,
                     void const* nothing,
                     cErrorStack es[static 1] )
 {

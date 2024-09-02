@@ -84,7 +84,7 @@ int main( void )
       )
    );
 
-   csLimit limit = fix_limit_cs( 24, 12 );
+   uiLimit limit = fix_limit_ui( 24, 12 );
    cErrorStack* es = &error_stack_c_( 256 );
    layout_box_cs( &root, limit, es );
    globalise_cs( &root );

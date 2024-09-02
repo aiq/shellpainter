@@ -9,7 +9,7 @@
 *******************************************************************************/
 
 static bool do_none( csBox box[static 1],
-                     csLimit limit,
+                     uiLimit limit,
                      void const* i,
                      cErrorStack es[static 1] )
 {

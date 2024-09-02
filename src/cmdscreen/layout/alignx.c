@@ -8,7 +8,7 @@
 *******************************************************************************/
 
 static bool layout_alignx( csBox box[static 1],
-                           csLimit limit,
+                           uiLimit limit,
                            csAlignment alignment,
                            cErrorStack es[static 1] )
 {
@@ -24,7 +24,7 @@ static bool layout_alignx( csBox box[static 1],
    {
       return false;
    }
-   box->rect.w = limit_width_cs_( limit );
+   box->rect.w = limit_width_ui_( limit );
    box->rect.h = child->rect.h;
 
    child->rect.x = alignx( alignment.x, box->rect.w, child->rect.w );

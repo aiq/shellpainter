@@ -20,7 +20,7 @@ CMDSCREEN_API extern csBoxType const CS_Fixed;
 CMDSCREEN_API csBox fixed_cs( uiSize size, csStyle const* style, csBox child );
 
 CMDSCREEN_API bool layout_fixed_cs( csBox box[static 1],
-                                    csLimit limit,
+                                    uiLimit limit,
                                     uiSize size,
                                     cErrorStack es[static 1] );
 

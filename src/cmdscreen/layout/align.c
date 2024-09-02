@@ -51,7 +51,7 @@ csBox align_cs( csAlignment align,
 }
 
 bool layout_align_cs( csBox box[static 1],
-                      csLimit limit,
+                      uiLimit limit,
                       csAlignment alignment,
                       cErrorStack es[static 1] )
 {
@@ -61,8 +61,8 @@ bool layout_align_cs( csBox box[static 1],
    }
    box->rect.x = 0;
    box->rect.y = 0;
-   box->rect.w = limit_width_cs_( limit );
-   box->rect.h = limit_height_cs_( limit );
+   box->rect.w = limit_width_ui_( limit );
+   box->rect.h = limit_height_ui_( limit );
 
    csBox* child = box->children.v;
    if ( not layout_box_cs( child, limit, es ) )

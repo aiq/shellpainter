@@ -23,7 +23,7 @@ extern inline uiRect pad_rect_ui( uiRect rect, uiPadding pad );
                                : (Value) - (Pad)                               \
 )
 
-csLimit pad_limit_cs( csLimit limit, uiPadding pad )
+uiLimit pad_limit_ui( uiLimit limit, uiPadding pad )
 {
    int16_t const horizontal = pad.left + pad.right;
    int16_t const vertical = pad.top + pad.bottom;
@@ -35,7 +35,7 @@ csLimit pad_limit_cs( csLimit limit, uiPadding pad )
       .w=imax16_c( min.w, limit.max.w - horizontal ),
       .h=imax16_c( min.h, limit.max.h - vertical )
    };
-   return (csLimit){
+   return (uiLimit){
       .min=min,
       .max=max
    };

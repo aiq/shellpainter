@@ -27,7 +27,7 @@ static float trunc_float( float f, float* diff )
    return res;
 }
 
-static csLimit limit_for_fill( csLimit limit, ui_Axis axis, int16_t max )
+static uiLimit limit_for_fill( uiLimit limit, ui_Axis axis, int16_t max )
 {
    if ( axis == ui_Horizontal )
    {
@@ -76,11 +76,11 @@ csBox line_cs( ui_Axis axis,
 }
 
 bool layout_line_cs( csBox box[static 1],
-                     csLimit limit,
+                     uiLimit limit,
                      csLine line,
                      cErrorStack es[static 1] )
 {
-   int16_t mainAxis = main_axis_cs_( limit, line.axis );
+   int16_t mainAxis = main_axis_ui_( limit, line.axis );
    int16_t fillCount = 0;
    each_c_( csBox*, child, box->children )
    {
@@ -119,7 +119,7 @@ bool layout_line_cs( csBox box[static 1],
 
       float mainVal = float_c_( fill ) * part;
       mainVal = trunc_float( mainVal + diff, &diff );
-      csLimit lim = limit_for_fill( limit, line.axis, int16_c_( mainVal ) );
+      uiLimit lim = limit_for_fill( limit, line.axis, int16_c_( mainVal ) );
       if ( not layout_box_cs( child, lim, es ) )
       {
          return false;

@@ -17,7 +17,7 @@ set( TEST_FILES
 
 aux_source_directory( ${TEST_DIR}/cmdscreen TEST_FILES )
 aux_source_directory( ${TEST_DIR}/cmdscreen/csLayout TEST_FILES )
-aux_source_directory( ${TEST_DIR}/cmdscreen/csLimit TEST_FILES )
+aux_source_directory( ${TEST_DIR}/uiinabox/uiLimit TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/uiPadding TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/uiSize TEST_FILES )
 

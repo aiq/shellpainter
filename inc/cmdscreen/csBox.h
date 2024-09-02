@@ -1,9 +1,10 @@
 #ifndef CMDSCREEN_CSBOX_H
 #define CMDSCREEN_CSBOX_H
 
+#include "cmdscreen/apidecl.h"
 #include "clingo/color/cP3Builder.h"
 #include "clingo/lang/algo.h"
-#include "cmdscreen/csLimit.h"
+#include "uiinabox/uiLimit.h"
 #include "cmdscreen/csStyle.h"
 
 /*******************************************************************************
@@ -14,7 +15,7 @@
 
 #define LAYOUT_CS_( FuncName, Type, LayoutFunc, DoDeref )                      \
 bool FuncName( csBox box[static 1],                                            \
-               csLimit limit,                                                  \
+               uiLimit limit,                                                  \
                void const* i,                                                  \
                cErrorStack es[static 1] )                                      \
 {                                                                              \
@@ -33,7 +34,7 @@ SLICES_C_(
 )
 
 typedef bool ( *cs_layout )( csBox* box,
-                             csLimit limit,
+                             uiLimit limit,
                              void const* val,
                              cErrorStack es[static 1] );
 
@@ -57,7 +58,7 @@ struct csBox
    (csBoxes)slice_c_( csBox, __VA_ARGS__ )
 
 CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
-                                         csLimit limit,
+                                         uiLimit limit,
                                          cErrorStack es[static 1] )
 {
    must_exist_c_( box->type );

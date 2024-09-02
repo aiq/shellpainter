@@ -23,7 +23,7 @@ CMDSCREEN_API csBox align_cs( csAlignment align,
                               csBox child );
 
 CMDSCREEN_API bool layout_align_cs( csBox box[static 1],
-                                    csLimit limit,
+                                    uiLimit limit,
                                     csAlignment align,
                                     cErrorStack es[static 1] );
 
