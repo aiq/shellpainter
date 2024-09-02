@@ -1,5 +1,5 @@
-#ifndef CMDSCREEN_LAYOUT_LINE_H
-#define CMDSCREEN_LAYOUT_LINE_H
+#ifndef UIINABOX_BOX_LINE_H
+#define UIINABOX_BOX_LINE_H
 
 #include "uiinabox/uiBox.h"
 
@@ -9,14 +9,14 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern uiBoxType const CS_Line;
+UIINABOX_API extern uiBoxType const UI_Line;
 
-struct csLine
+struct uiLine
 {
    ui_Axis axis;
    int16_t space;
 };
-typedef struct csLine csLine;
+typedef struct uiLine uiLine;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -24,24 +24,24 @@ typedef struct csLine csLine;
 
 *******************************************************************************/
 
-#define row_cs_( Space, Children )                                             \
-   row_cs( (Space), NULL, (Children))
+#define row_ui_( Space, Children )                                             \
+   row_ui( (Space), NULL, (Children))
 UIINABOX_API
-uiBox row_cs( int16_t space, csStyle const* style, uiBoxes children );
+uiBox row_ui( int16_t space, csStyle const* style, uiBoxes children );
 
-#define col_cs_( Space, Children )                                             \
-   col_cs( (Space), NULL, (Children) )
+#define col_ui_( Space, Children )                                             \
+   col_ui( (Space), NULL, (Children) )
 UIINABOX_API
-uiBox col_cs( int16_t space, csStyle const* style, uiBoxes children );
+uiBox col_ui( int16_t space, csStyle const* style, uiBoxes children );
 
-UIINABOX_API uiBox line_cs( ui_Axis axis,
+UIINABOX_API uiBox line_ui( ui_Axis axis,
                             int16_t space,
                             csStyle const* style,
                             uiBoxes children );
 
-UIINABOX_API bool layout_line_cs( uiBox box[static 1],
+UIINABOX_API bool layout_line_ui( uiBox box[static 1],
                                   uiLimit limit,
-                                  csLine line,
+                                  uiLine line,
                                   cErrorStack es[static 1] );
 
 #endif

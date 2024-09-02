@@ -1,7 +1,7 @@
-#include "cmdscreen/layout/fixed.h"
+#include "uiinabox/box/pad.h"
 
 #include "cmdscreen/_/CS_MainScreen.h"
-#include "cmdscreen/layout/_/util.h"
+#include "uiinabox/box/_/util.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -9,10 +9,10 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_fixed, uiSize, layout_fixed_cs, do_deref_c_ )
-uiBoxType const CS_Fixed = {
-   .desc = "fixed",
-   .layout = &do_fixed
+static LAYOUT_CS_( do_pad, uiPadding, layout_pad_ui, do_deref_c_ )
+uiBoxType const UI_Pad = {
+   .desc = "pad",
+   .layout = &do_pad
 };
 
 /*******************************************************************************
@@ -21,37 +21,37 @@ uiBoxType const CS_Fixed = {
 
 *******************************************************************************/
 
-uiBox fixed_cs( uiSize size, csStyle const* style, uiBox child )
+uiBox pad_ui( uiPadding pad, csStyle const* style, uiBox child )
 {
-   uiSize* data = alloc_one_( uiSize );
+   uiPadding* data = alloc_one_( uiPadding );
    if ( data == NULL ) return (uiBox){0};
-   else *data = size;
+   else *data = pad;
 
-   return box_ui( data, &CS_Fixed, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_Pad, style, boxes_cs_( child ) );
 }
 
-bool layout_fixed_cs( uiBox box[static 1],
-                      uiLimit limit,
-                      uiSize size,
-                      cErrorStack es[static 1] )
+bool layout_pad_ui( uiBox box[static 1],
+                    uiLimit limit,
+                    uiPadding pad,
+                    cErrorStack es[static 1] )
 {
-   if ( not has_just_single_child( "fixed", box->children, es ) )
+   if ( not has_just_single_child( "pad", box->children, es ) )
    {
       return false;
    }
    box->rect.x = 0;
    box->rect.y = 0;
-   box->rect.w = limit_width_ui( limit, size.w );
-   box->rect.h = limit_height_ui( limit, size.h );
-
-   limit.max = size;
+   box->rect.w = limit_width_ui_( limit );
+   box->rect.h = limit_height_ui_( limit );
 
    uiBox* child = box->children.v;
-   if ( not layout_box_ui( child, limit, es ) )
+   uiLimit childLimit = pad_limit_ui( limit, pad );
+   if ( not layout_box_ui( child, childLimit, es ) )
    {
       return false;
    }
-   child->rect.x = 0;
-   child->rect.y = 0;
+   child->rect.x = pad.left;
+   child->rect.y = pad.top;
+
    return true;
 }

@@ -1,5 +1,5 @@
-#ifndef CMDSCREEN_LAYOUT_FIXED_H
-#define CMDSCREEN_LAYOUT_FIXED_H
+#ifndef UIINABOX_BOX_NONE_H
+#define UIINABOX_BOX_NONE_H
 
 #include "uiinabox/uiBox.h"
 
@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern uiBoxType const CS_Fixed;
+UIINABOX_API extern uiBoxType const UI_None;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -17,11 +17,6 @@ UIINABOX_API extern uiBoxType const CS_Fixed;
 
 *******************************************************************************/
 
-UIINABOX_API uiBox fixed_cs( uiSize size, csStyle const* style, uiBox child );
-
-UIINABOX_API bool layout_fixed_cs( uiBox box[static 1],
-                                   uiLimit limit,
-                                   uiSize size,
-                                   cErrorStack es[static 1] );
+UIINABOX_API uiBox none_ui( void );
 
 #endif

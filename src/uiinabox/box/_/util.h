@@ -1,5 +1,5 @@
-#ifndef CMDSCREEN_LAYOUT_INTERN_UTIL_H
-#define CMDSCREEN_LAYOUT_INTERN_UTIL_H
+#ifndef UIINABOX_BOX_INTERN_UTIL_H
+#define UIINABOX_BOX_INTERN_UTIL_H
 
 #include "uiinabox/uiBox.h"
 #include "uiinabox/uiAlignment.h"

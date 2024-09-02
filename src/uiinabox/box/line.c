@@ -1,8 +1,8 @@
-#include "cmdscreen/layout/line.h"
+#include "uiinabox/box/line.h"
 
 #include "cmdscreen/_/CS_MainScreen.h"
-#include "cmdscreen/layout/_/util.h"
-#include "cmdscreen/layout/fill.h"
+#include "uiinabox/box/_/util.h"
+#include "uiinabox/box/fill.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -10,8 +10,8 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_line, csLine, layout_line_cs, do_deref_c_ )
-uiBoxType const CS_Line = {
+static LAYOUT_CS_( do_line, uiLine, layout_line_ui, do_deref_c_ )
+uiBoxType const UI_Line = {
    .desc = "line",
    .layout = &do_line
 };
@@ -53,38 +53,38 @@ static uiLimit limit_for_fill( uiLimit limit, ui_Axis axis, int16_t max )
 
 *******************************************************************************/
 
-uiBox row_cs( int16_t space, csStyle const* style, uiBoxes children )
+uiBox row_ui( int16_t space, csStyle const* style, uiBoxes children )
 {
-   return line_cs( ui_Horizontal, space, style, children );
+   return line_ui( ui_Horizontal, space, style, children );
 }
 
-uiBox col_cs( int16_t space, csStyle const* style, uiBoxes children )
+uiBox col_ui( int16_t space, csStyle const* style, uiBoxes children )
 {
-   return line_cs( ui_Vertical, space, style, children );
+   return line_ui( ui_Vertical, space, style, children );
 }
 
-uiBox line_cs( ui_Axis axis,
+uiBox line_ui( ui_Axis axis,
                int16_t space,
                csStyle const* style,
                uiBoxes children )
 {
-   csLine* data = alloc_one_( csLine );
+   uiLine* data = alloc_one_( uiLine );
    if ( data == NULL ) return (uiBox){0};
-   else *data = (csLine){ .axis=axis, .space=space };
+   else *data = (uiLine){ .axis=axis, .space=space };
 
-   return box_ui( data, &CS_Line, style, children );
+   return box_ui( data, &UI_Line, style, children );
 }
 
-bool layout_line_cs( uiBox box[static 1],
+bool layout_line_ui( uiBox box[static 1],
                      uiLimit limit,
-                     csLine line,
+                     uiLine line,
                      cErrorStack es[static 1] )
 {
    int16_t mainAxis = main_axis_ui_( limit, line.axis );
    int16_t fillCount = 0;
    each_c_( uiBox*, child, box->children )
    {
-      int16_t const fill = get_fill_value_cs( child );
+      int16_t const fill = get_fill_value_ui( child );
       if ( fill > 0 )
       {
          int16_t fillPart = fill;
@@ -113,7 +113,7 @@ bool layout_line_cs( uiBox box[static 1],
    float diff = 0.0;
    each_c_( uiBox*, child, box->children )
    {
-      int16_t const fill = get_fill_value_cs( child );
+      int16_t const fill = get_fill_value_ui( child );
       if ( fill == 0 )
          continue;
 

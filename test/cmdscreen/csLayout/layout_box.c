@@ -2,11 +2,7 @@
 #include "clingo/lang/expect.h"
 #include "uiinabox/uiBox.h"
 #include "cmdscreen/csScreen.h"
-#include "cmdscreen/layout/align.h"
-#include "cmdscreen/layout/exp.h"
-#include "cmdscreen/layout/fixed.h"
-#include "cmdscreen/layout/none.h"
-#include "cmdscreen/layout/pad.h"
+#include "uiinabox/box/box.h"
 
 #include "distinct_styles.h"
 
@@ -20,20 +16,20 @@ int main( void )
    csStyle const greyStyle = GREY_;
    csStyle const navyStyle = NAVY_;
 
-   uiBox root = pad_cs(
+   uiBox root = pad_ui(
       padding_ui( 2, 2, 2, 2 ),
       &tealStyle,
-      center_cs(
+      center_ui(
          &maroonStyle,
-         fixed_cs(
+         fixed_ui(
             size_ui( 5, 5 ),
             &greyStyle,
-            center_cs(
+            center_ui(
                &greyStyle,
-               fixed_cs(
+               fixed_ui(
                   size_ui( 3, 3 ),
                   &navyStyle,
-                  none_cs()
+                  none_ui()
                )
             )
          )
@@ -48,14 +44,14 @@ int main( void )
    uiBox exp = exp_cs_(
       rect_ui( 0, 0, 20, 15 ),   // padding
       exp_cs_(
-         rect_ui( 2, 2, 16, 11 ),   // center_cs
+         rect_ui( 2, 2, 16, 11 ),   // center_ui
          exp_cs_(
             rect_ui( 8, 5, 5, 5 ),    // fixed
             exp_cs_(
-               rect_ui( 8, 5, 5, 5 ), // center_cs
+               rect_ui( 8, 5, 5, 5 ), // center_ui
                exp_cs_(
                   rect_ui( 9, 6, 3, 3 ), // fixed
-                  none_cs()
+                  none_ui()
                )
             )
          )

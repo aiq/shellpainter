@@ -1,7 +1,7 @@
-#include "cmdscreen/layout/aligny.h"
+#include "uiinabox/box/aligny.h"
 
 #include "cmdscreen/_/CS_MainScreen.h"
-#include "cmdscreen/layout/_/util.h"
+#include "uiinabox/box/_/util.h"
 
 /*******************************************************************************
  
@@ -40,7 +40,7 @@ static bool layout_aligny( uiBox box[static 1],
 *******************************************************************************/
 
 static LAYOUT_CS_( do_align_y, uiAlignment, layout_aligny, do_deref_c_ )
-uiBoxType const CS_AlignY = {
+uiBoxType const UI_AlignY = {
    .desc = "aligny",
    .layout = &do_align_y
 };
@@ -51,19 +51,19 @@ uiBoxType const CS_AlignY = {
 
 *******************************************************************************/
 
-uiBox aligny_cs( ui_AlignY align, csStyle const* style, uiBox child )
+uiBox aligny_ui( ui_AlignY align, csStyle const* style, uiBox child )
 {
    uiAlignment* data = alloc_one_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
    else *data = alignment_ui_( ui_Left, align );
 
-   return box_ui( data, &CS_AlignY, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_AlignY, style, boxes_cs_( child ) );
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline uiBox top_cs( csStyle const* style, uiBox box );
-extern inline uiBox centery_cs( csStyle const* style, uiBox box );
-extern inline uiBox bottom_cs( csStyle const* style, uiBox box );
+extern inline uiBox top_ui( csStyle const* style, uiBox box );
+extern inline uiBox centery_ui( csStyle const* style, uiBox box );
+extern inline uiBox bottom_ui( csStyle const* style, uiBox box );

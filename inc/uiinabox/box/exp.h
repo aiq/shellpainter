@@ -1,5 +1,5 @@
-#ifndef CMDSCREEN_LAYOUT_NONE_H
-#define CMDSCREEN_LAYOUT_NONE_H
+#ifndef UIINABOX_BOX_EXP_H
+#define UIINABOX_BOX_EXP_H
 
 #include "uiinabox/uiBox.h"
 
@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern uiBoxType const CS_None;
+UIINABOX_API extern uiBoxType const UI_Exp;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -17,6 +17,8 @@ UIINABOX_API extern uiBoxType const CS_None;
 
 *******************************************************************************/
 
-UIINABOX_API uiBox none_cs( void );
+#define exp_cs_( Rect, ... )                                                   \
+    exp_cs( (Rect), boxes_cs_( __VA_ARGS__ ) )
+UIINABOX_API uiBox exp_cs( uiRect rect, uiBoxes children );
 
 #endif

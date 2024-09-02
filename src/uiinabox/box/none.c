@@ -1,7 +1,6 @@
-#ifndef CMDSCREEN_LAYOUT_EXP_H
-#define CMDSCREEN_LAYOUT_EXP_H
+#include "uiinabox/box/none.h"
 
-#include "uiinabox/uiBox.h"
+#include "uiinabox/box/_/util.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -9,7 +8,19 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern uiBoxType const CS_Exp;
+static bool do_none( uiBox box[static 1],
+                     uiLimit limit,
+                     void const* i,
+                     cErrorStack es[static 1] )
+{
+   box->rect.w = 0;
+   box->rect.h = 0;
+   return true;
+}
+uiBoxType const UI_None = {
+   .desc = "none",
+   .layout = &do_none
+};
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -17,8 +28,12 @@ UIINABOX_API extern uiBoxType const CS_Exp;
 
 *******************************************************************************/
 
-#define exp_cs_( Rect, ... )                                                   \
-    exp_cs( (Rect), boxes_cs_( __VA_ARGS__ ) )
-UIINABOX_API uiBox exp_cs( uiRect rect, uiBoxes children );
-
-#endif
+uiBox none_ui( void )
+{
+   return (uiBox){
+      .data=NULL,
+      .type=&UI_None,
+      .style=NULL,
+      .children=(csVarBoxes){ .s=0, .v=NULL }
+   };
+}

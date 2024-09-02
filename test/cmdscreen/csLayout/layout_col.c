@@ -2,14 +2,7 @@
 #include "clingo/lang/expect.h"
 #include "uiinabox/uiBox.h"
 #include "cmdscreen/csScreen.h"
-#include "cmdscreen/layout/align.h"
-#include "cmdscreen/layout/alignx.h"
-#include "cmdscreen/layout/exp.h"
-#include "cmdscreen/layout/fill.h"
-#include "cmdscreen/layout/fixed.h"
-#include "cmdscreen/layout/line.h"
-#include "cmdscreen/layout/none.h"
-#include "cmdscreen/layout/pad.h"
+#include "uiinabox/box/box.h"
 
 #include "distinct_styles.h"
 
@@ -23,38 +16,38 @@ int main( void )
    csStyle const greyStyle = GREY_;
    csStyle const navyStyle = NAVY_;
 
-   uiBox root = col_cs(
+   uiBox root = col_ui(
       0,
       &tealStyle,
       boxes_cs_(
-         fixed_cs(
+         fixed_ui(
             size_ui( 10, 4 ),
             &maroonStyle,
-            none_cs()
+            none_ui()
          ),
-         fill_cs_( 
+         fill_ui_( 
             2,
-            center_cs_(
-               fixed_cs(
+            center_ui_(
+               fixed_ui(
                   size_ui( 4, 2 ),
                   &navyStyle,
-                  none_cs()
+                  none_ui()
                )
             )
          ),
-         right_cs_(
-            fixed_cs(
+         right_ui_(
+            fixed_ui(
                size_ui( 3, 3 ),
                &maroonStyle,
-               none_cs()
+               none_ui()
             )
          ),
-         fill_cs_(
+         fill_ui_(
             5,
-            fixed_cs(
+            fixed_ui(
                size_ui( 1, 1 ),
                &navyStyle,
-               none_cs()
+               none_ui()
             )
          )
       )
@@ -70,7 +63,7 @@ int main( void )
       rect_ui( 0, 0, 12, 24 ),  // col
       exp_cs_(  // fixed
          rect_ui( 0, 0, 10, 4 ),
-         none_cs()
+         none_ui()
       ),
       exp_cs_(  // fill
          rect_ui( 0, 4, 12, 4 ),
@@ -78,7 +71,7 @@ int main( void )
             rect_ui( 0, 4, 12, 4 ),
             exp_cs_(    // fixed
                rect_ui( 4, 5, 4, 2 ),
-               none_cs()
+               none_ui()
             )
          )
       ),
@@ -86,14 +79,14 @@ int main( void )
          rect_ui( 0, 8, 12, 3 ),
          exp_cs_(   // fixed
             rect_ui( 9, 8, 3, 3 ),
-            none_cs()
+            none_ui()
          )
       ),
       exp_cs_(  // fill
          rect_ui( 0, 11, 12, 13 ),
          exp_cs_(   // fixed
             rect_ui( 0, 11, 1, 1 ),
-            none_cs()
+            none_ui()
          )
       )
    );

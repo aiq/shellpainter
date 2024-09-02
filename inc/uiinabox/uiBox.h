@@ -1,5 +1,5 @@
-#ifndef UIINABOX_CSBOX_H
-#define UIINABOX_CSBOX_H
+#ifndef UIINABOX_UIBOX_H
+#define UIINABOX_UIBOX_H
 
 #include "clingo/color/cP3Builder.h"
 #include "clingo/lang/algo.h"

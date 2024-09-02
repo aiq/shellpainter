@@ -2,14 +2,7 @@
 #include "clingo/lang/expect.h"
 #include "uiinabox/uiBox.h"
 #include "cmdscreen/csScreen.h"
-#include "cmdscreen/layout/align.h"
-#include "cmdscreen/layout/aligny.h"
-#include "cmdscreen/layout/exp.h"
-#include "cmdscreen/layout/fill.h"
-#include "cmdscreen/layout/fixed.h"
-#include "cmdscreen/layout/line.h"
-#include "cmdscreen/layout/none.h"
-#include "cmdscreen/layout/pad.h"
+#include "uiinabox/box/box.h"
 
 #include "distinct_styles.h"
 
@@ -23,63 +16,63 @@ int main( void )
    csStyle const greyStyle = GREY_;
    csStyle const navyStyle = NAVY_;
 
-   uiBox root = row_cs(
+   uiBox root = row_ui(
       0,
       &tealStyle,
       boxes_cs_(
-         top_cs_(
-            fixed_cs( 
+         top_ui_(
+            fixed_ui( 
                size_ui( 3, 3 ),
                &maroonStyle,
-               none_cs()
+               none_ui()
             )
          ),
-         fill_cs_(
+         fill_ui_(
             1,
-            bottom_right_cs_( 
-               fixed_cs(
+            bottom_right_ui_( 
+               fixed_ui(
                   size_ui( 1, 1 ),
                   &greyStyle,
-                  none_cs()
+                  none_ui()
                )
             )
          ),
-         centery_cs_(
-            fixed_cs( 
+         centery_ui_(
+            fixed_ui( 
                size_ui( 5, 5 ),
                &maroonStyle,
-               none_cs()
+               none_ui()
             )
          ),
-         fill_cs_(
+         fill_ui_(
             1,
-            bottom_center_cs_( 
-               fixed_cs(
+            bottom_center_ui_( 
+               fixed_ui(
                   size_ui( 1, 1 ),
                   &greyStyle,
-                  none_cs()
+                  none_ui()
                )
             )
          ),
-         bottom_cs_(
-            fixed_cs(
+         bottom_ui_(
+            fixed_ui(
                size_ui( 1, 1 ),
                &maroonStyle,
-               none_cs()
+               none_ui()
             )
          ),
-         fill_cs_(
+         fill_ui_(
             2,
-            fixed_cs(
+            fixed_ui(
                size_ui( 1, 1 ),
                &greyStyle,
-               none_cs()
+               none_ui()
             )
          ),
-         fixed_cs(
+         fixed_ui(
             size_ui( 4, 2 ),
             &maroonStyle,
-            none_cs()
+            none_ui()
          )
       )
    );
@@ -96,7 +89,7 @@ int main( void )
          rect_ui( 0, 0, 3, 12 ),
          exp_cs_(   // fixed
             rect_ui( 0, 0, 3, 3 ),
-            none_cs()
+            none_ui()
          )
       ),
       exp_cs_(  // fill
@@ -105,7 +98,7 @@ int main( void )
             rect_ui( 3, 0, 2, 12 ),
             exp_cs_(    // fixed
                 rect_ui( 4, 11, 1, 1 ),
-                none_cs()
+                none_ui()
             )
          )
       ),
@@ -113,7 +106,7 @@ int main( void )
          rect_ui( 5, 0, 3, 12 ),
          exp_cs_(   // fixed
             rect_ui( 5, 4, 5, 5 ),
-            none_cs()
+            none_ui()
          )
       ),
       exp_cs_(  // fill
@@ -122,7 +115,7 @@ int main( void )
             rect_ui( 10, 0, 3, 12 ),
             exp_cs_(    // fixed
                 rect_ui( 11, 11, 1, 1 ),
-                none_cs()
+                none_ui()
             )
          )
       ),
@@ -130,7 +123,7 @@ int main( void )
          rect_ui( 13, 0, 1, 12 ),
          exp_cs_(   // fixed
             rect_ui( 13, 11, 1, 1 ),
-            none_cs()
+            none_ui()
          )
       ),
       exp_cs_(  // fill
@@ -139,13 +132,13 @@ int main( void )
             rect_ui( 14, 0, 6, 12 ),
             exp_cs_(    // fixed
                 rect_ui( 14, 0, 1, 1 ),
-                none_cs()
+                none_ui()
             )
          )
       ),
       exp_cs_(  // fixed
          rect_ui( 20, 0, 4, 2 ),
-         none_cs()
+         none_ui()
       )
    );
 
