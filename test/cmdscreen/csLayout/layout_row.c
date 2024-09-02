@@ -1,6 +1,6 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
-#include "cmdscreen/csBox.h"
+#include "uiinabox/csBox.h"
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/aligny.h"

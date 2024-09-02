@@ -1,4 +1,4 @@
-#include "cmdscreen/csBox.h"
+#include "uiinabox/csBox.h"
 
 #include "clingo/color/cRgb24.h"
 #include "clingo/io/jot.h"

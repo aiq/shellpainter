@@ -1,7 +1,6 @@
-#ifndef CMDSCREEN_CSBOX_H
-#define CMDSCREEN_CSBOX_H
+#ifndef UIINABOX_CSBOX_H
+#define UIINABOX_CSBOX_H
 
-#include "cmdscreen/apidecl.h"
 #include "clingo/color/cP3Builder.h"
 #include "clingo/lang/algo.h"
 #include "uiinabox/uiLimit.h"
@@ -57,7 +56,7 @@ struct csBox
 #define boxes_cs_( ... )                                                       \
    (csBoxes)slice_c_( csBox, __VA_ARGS__ )
 
-CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
+UIINABOX_API inline bool layout_box_cs( csBox box[static 1],
                                          uiLimit limit,
                                          cErrorStack es[static 1] )
 {
@@ -69,18 +68,18 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
 
 *******************************************************************************/
 
-CMDSCREEN_API csBox box_cs( void* data,
+UIINABOX_API csBox box_cs( void* data,
                             csBoxType const type[static 1],
                             csStyle const* style,
                             csBoxes children );
 
-CMDSCREEN_API void globalise_cs( csBox box[static 1] );
+UIINABOX_API void globalise_cs( csBox box[static 1] );
 
-CMDSCREEN_API bool dump_box_layout_cs( cChars path,
+UIINABOX_API bool dump_box_layout_cs( cChars path,
                                        csBox box[static 1],
                                        cErrorStack es[static 1] );
 
-CMDSCREEN_API bool record_box_diff_cs( cRecorder rec[static 1],
+UIINABOX_API bool record_box_diff_cs( cRecorder rec[static 1],
                                        csBox const box[static 1],
                                        csBox const oth[static 1] );
 

@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_NONE_H
 #define CMDSCREEN_LAYOUT_NONE_H
 
-#include "cmdscreen/csBox.h"
+#include "uiinabox/csBox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-CMDSCREEN_API extern csBoxType const CS_None;
+UIINABOX_API extern csBoxType const CS_None;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -17,6 +17,6 @@ CMDSCREEN_API extern csBoxType const CS_None;
 
 *******************************************************************************/
 
-CMDSCREEN_API csBox none_cs( void );
+UIINABOX_API csBox none_cs( void );
 
 #endif
