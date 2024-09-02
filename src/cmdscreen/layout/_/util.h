@@ -2,6 +2,7 @@
 #define CMDSCREEN_LAYOUT_INTERN_UTIL_H
 
 #include "cmdscreen/csBox.h"
+#include "cmdscreen/csAlignment.h"
 #include "clingo/lang/error_type.h"
 
 /*******************************************************************************

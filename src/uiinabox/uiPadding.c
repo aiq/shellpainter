@@ -1,4 +1,4 @@
-#include "cmdscreen/csPadding.h"
+#include "uiinabox/uiPadding.h"
 
 #include "clingo/io/write.h"
 
@@ -9,13 +9,13 @@
 *******************************************************************************/
 
 extern inline
-csPadding padding_cs( int16_t left, int16_t top, int16_t right, int16_t bottom );
+uiPadding padding_ui( int16_t left, int16_t top, int16_t right, int16_t bottom );
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline uiRect pad_rect_ui( uiRect rect, csPadding pad );
+extern inline uiRect pad_rect_ui( uiRect rect, uiPadding pad );
 
 #define pad_value_( Value, Pad )                                               \
 (                                                                              \
@@ -23,7 +23,7 @@ extern inline uiRect pad_rect_ui( uiRect rect, csPadding pad );
                                : (Value) - (Pad)                               \
 )
 
-csLimit pad_limit_cs( csLimit limit, csPadding pad )
+csLimit pad_limit_cs( csLimit limit, uiPadding pad )
 {
    int16_t const horizontal = pad.left + pad.right;
    int16_t const vertical = pad.top + pad.bottom;

@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_pad, csPadding, layout_pad_cs, do_deref_c_ )
+static LAYOUT_CS_( do_pad, uiPadding, layout_pad_cs, do_deref_c_ )
 csBoxType const CS_Pad = {
    .desc = "pad",
    .layout = &do_pad
@@ -21,9 +21,9 @@ csBoxType const CS_Pad = {
 
 *******************************************************************************/
 
-csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
+csBox pad_cs( uiPadding pad, csStyle const* style, csBox child )
 {
-   csPadding* data = alloc_one_( csPadding );
+   uiPadding* data = alloc_one_( uiPadding );
    if ( data == NULL ) return (csBox){0};
    else *data = pad;
 
@@ -32,7 +32,7 @@ csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
 
 bool layout_pad_cs( csBox box[static 1],
                     csLimit limit,
-                    csPadding pad,
+                    uiPadding pad,
                     cErrorStack es[static 1] )
 {
    if ( not has_just_single_child( "pad", box->children, es ) )

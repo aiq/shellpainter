@@ -1,12 +1,12 @@
 #include "clingo/lang/expect.h"
 #include "clingo/lang/slice.h"
-#include "cmdscreen/csPadding.h"
+#include "uiinabox/uiPadding.h"
 
 TEMP_SLICE_C_(
    test,
    {
       uiRect rect;
-      csPadding pad;
+      uiPadding pad;
       uiRect exp;
    }
 )
@@ -17,8 +17,8 @@ int main( void )
    init_tap_c_();
 
    testSlice tests = slice_c_( test,
-      t_( rect_ui( 0, 0, 20, 20 ), padding_cs( 1, 1, 1, 1 ), rect_ui( 1, 1, 19, 19 ) ),
-      t_( rect_ui( 0, 0, 300, 85 ), padding_cs( 5, 5, 5, 5 ), rect_ui( 5, 5, 295, 80 ) )
+      t_( rect_ui( 0, 0, 20, 20 ), padding_ui( 1, 1, 1, 1 ), rect_ui( 1, 1, 19, 19 ) ),
+      t_( rect_ui( 0, 0, 300, 85 ), padding_ui( 5, 5, 5, 5 ), rect_ui( 5, 5, 295, 80 ) )
    );
 
    for_each_c_( i, test const*, t, tests )

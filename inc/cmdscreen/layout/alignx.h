@@ -2,6 +2,7 @@
 #define CMDSCREEN_LAYOUT_ALIGNX_H
 
 #include "cmdscreen/csBox.h"
+#include "cmdscreen/csAlignment.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

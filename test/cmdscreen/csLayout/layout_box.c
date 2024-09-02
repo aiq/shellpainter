@@ -21,7 +21,7 @@ int main( void )
    csStyle const navyStyle = NAVY_;
 
    csBox root = pad_cs(
-      padding_cs( 2, 2, 2, 2 ),
+      padding_ui( 2, 2, 2, 2 ),
       &tealStyle,
       center_cs(
          &maroonStyle,

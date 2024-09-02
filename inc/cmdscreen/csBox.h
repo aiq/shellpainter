@@ -3,8 +3,6 @@
 
 #include "clingo/color/cP3Builder.h"
 #include "clingo/lang/algo.h"
-#include "cmdscreen/csAlignment.h"
-#include "cmdscreen/csPadding.h"
 #include "cmdscreen/csLimit.h"
 #include "cmdscreen/csStyle.h"
 
