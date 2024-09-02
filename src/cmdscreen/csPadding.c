@@ -25,23 +25,18 @@ extern inline csRect pad_rect_cs( csRect rect, csPadding pad );
 
 csLimit pad_limit_cs( csLimit limit, csPadding pad )
 {
+   int16_t const horizontal = pad.left + pad.right;
+   int16_t const vertical = pad.top + pad.bottom;
    csSize const min = (csSize){
-      .w=imax16_c( 0, limit.min.w - hpadding_cs( pad ) ),
-      .h=imax16_c( 0, limit.min.h - vpadding_cs( pad ) )
+      .w=imax16_c( 0, limit.min.w - horizontal ),
+      .h=imax16_c( 0, limit.min.h - vertical )
    };
    csSize const max = (csSize){
-      .w=imax16_c( min.w, limit.max.w - hpadding_cs( pad ) ),
-      .h=imax16_c( min.h, limit.max.h - vpadding_cs( pad ) )
+      .w=imax16_c( min.w, limit.max.w - horizontal ),
+      .h=imax16_c( min.h, limit.max.h - vertical )
    };
    return (csLimit){
       .min=min,
       .max=max
    };
 }
-
-/*******************************************************************************
-
-*******************************************************************************/
-
-extern inline int16_t hpadding_cs( csPadding pad );
-extern inline int16_t vpadding_cs( csPadding pad );

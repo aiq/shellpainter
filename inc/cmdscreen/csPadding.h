@@ -46,18 +46,4 @@ CMDSCREEN_API inline csRect pad_rect_cs( csRect rect, csPadding pad )
 
 CMDSCREEN_API csLimit pad_limit_cs( csLimit limit, csPadding pad );
 
-/*******************************************************************************
-
-*******************************************************************************/
-
-CMDSCREEN_API inline int16_t hpadding_cs( csPadding pad )
-{
-   return pad.left + pad.right;
-}
-
-CMDSCREEN_API inline int16_t vpadding_cs( csPadding pad )
-{
-   return pad.top + pad.bottom;
-}
-
 #endif
