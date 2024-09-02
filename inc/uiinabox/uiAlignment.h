@@ -48,33 +48,6 @@ typedef struct uiAlignment uiAlignment;
    .y=(Y)                                                                      \
 }
 
-#define top_left_alignment_ui_()                                               \
-   alignment_ui_( ui_Left, ui_Top )
-
-#define top_center_alignment_ui_()                                             \
-   alignment_ui_( ui_CenterX, ui_Top )
-
-#define top_right_alignment_ui_()                                              \
-   alignment_ui_( ui_Right, ui_Top )
-
-#define center_left_alignment_ui_()                                            \
-   alignment_ui_( ui_Left, ui_CenterY )
-
-#define center_alignment_ui_()                                                 \
-   alignment_ui_( ui_CenterX, ui_CenterY )
-
-#define center_right_alignment_ui_()                                           \
-   alignment_ui_( ui_Right, ui_CenterY )
-
-#define bottom_left_alignment_ui_()                                            \
-   alignment_ui_( ui_Left, ui_Bottom )
-
-#define bottom_center_alignment_ui_()                                          \
-   alignment_ui_( ui_CenterX, ui_Bottom )
-
-#define bottom_right_alignment_ui_()                                           \
-   alignment_ui_( ui_Right, ui_Bottom )
-
 /*******************************************************************************
 
 *******************************************************************************/
