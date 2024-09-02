@@ -1,6 +1,7 @@
 #ifndef CMDSCREEN_CSSCREEN_H
 #define CMDSCREEN_CSSCREEN_H
 
+#include <curses.h>
 #include "cmdscreen/csRect.h"
 
 /*******************************************************************************

@@ -6,7 +6,7 @@ TEMP_SLICE_C_(
    test,
    {
       csLimit limit;
-      cs_Axis axis;
+      ui_Axis axis;
       int16_t val;
       int16_t exp;
    }
@@ -18,8 +18,8 @@ int main( void )
    init_tap_c_();
 
    testSlice tests = slice_c_( test,
-      t_( fix_limit_cs( 1280, 720 ), cs_Horizontal, CS_Infinity, 720 ),
-      t_( fix_limit_cs( 1280, 720 ), cs_Vertical, CS_Infinity, 1280 )
+      t_( fix_limit_cs( 1280, 720 ), ui_Horizontal, CS_Infinity, 720 ),
+      t_( fix_limit_cs( 1280, 720 ), ui_Vertical, CS_Infinity, 1280 )
    );
 
    for_each_c_( i, test const*, t, tests )

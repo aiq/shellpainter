@@ -2,7 +2,7 @@
 #define CMDSCREEN_CSLIMIT_H
 
 #include "cmdscreen/apidecl.h"
-#include "cmdscreen/cs_Axis.h"
+#include "uiinabox/ui_Axis.h"
 #include "cmdscreen/csRect.h"
 
 /*******************************************************************************
@@ -81,9 +81,9 @@ CMDSCREEN_API inline csSize limit_size_cs( csLimit limit, csSize size )
 #define main_axis_cs_( Limit, Axis )                                           \
    main_axis_cs( (Limit), (Axis), CS_Infinity )
 CMDSCREEN_API
-inline int16_t main_axis_cs( csLimit limit, cs_Axis axis, int16_t val )
+inline int16_t main_axis_cs( csLimit limit, ui_Axis axis, int16_t val )
 {
-   if ( axis == cs_Horizontal )
+   if ( axis == ui_Horizontal )
    {
       return limit_width_cs( limit, val );
    }
@@ -93,9 +93,9 @@ inline int16_t main_axis_cs( csLimit limit, cs_Axis axis, int16_t val )
 #define cross_axis_cs_( Limit, Axis )                                          \
    cross_axis_cs( (Limit), (Axis), CS_Infinity )
 CMDSCREEN_API
-inline int16_t cross_axis_cs( csLimit limit, cs_Axis axis, int16_t val )
+inline int16_t cross_axis_cs( csLimit limit, ui_Axis axis, int16_t val )
 {
-   if ( axis == cs_Horizontal )
+   if ( axis == ui_Horizontal )
    {
       return limit_height_cs( limit, val );
    }

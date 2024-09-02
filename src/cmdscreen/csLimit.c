@@ -47,6 +47,6 @@ extern inline csRect set_rect_size_cs( csRect rect, csSize size );
 
 *******************************************************************************/
 
-extern inline int16_t main_axis_cs( csLimit limit, cs_Axis axis, int16_t val );
+extern inline int16_t main_axis_cs( csLimit limit, ui_Axis axis, int16_t val );
 
-extern inline int16_t cross_axis_cs( csLimit limit, cs_Axis axis, int16_t val );
+extern inline int16_t cross_axis_cs( csLimit limit, ui_Axis axis, int16_t val );

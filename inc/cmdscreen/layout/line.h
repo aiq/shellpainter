@@ -13,7 +13,7 @@ CMDSCREEN_API extern csBoxType const CS_Line;
 
 struct csLine
 {
-   cs_Axis axis;
+   ui_Axis axis;
    int16_t space;
 };
 typedef struct csLine csLine;
@@ -34,7 +34,7 @@ csBox row_cs( int16_t space, csStyle const* style, csBoxes children );
 CMDSCREEN_API
 csBox col_cs( int16_t space, csStyle const* style, csBoxes children );
 
-CMDSCREEN_API csBox line_cs( cs_Axis axis,
+CMDSCREEN_API csBox line_cs( ui_Axis axis,
                              int16_t space,
                              csStyle const* style,
                              csBoxes children );

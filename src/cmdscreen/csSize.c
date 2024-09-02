@@ -11,7 +11,7 @@
 
 extern inline csSize size_cs( int16_t w, int16_t h );
 
-extern inline csSize axis_size_cs( cs_Axis axis, int16_t main, int16_t cross );
+extern inline csSize axis_size_cs( ui_Axis axis, int16_t main, int16_t cross );
 
 /*******************************************************************************
 

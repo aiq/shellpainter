@@ -1,7 +1,7 @@
-#ifndef CMDSCREEN_CSAXIS_H
-#define CMDSCREEN_CSAXIS_H
+#ifndef UIINABOX_UIAXIS_H
+#define UIINABOX_UIAXIS_H
 
-#include "cmdscreen/apidecl.h"
+#include "uiinabox/apidecl.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -9,14 +9,14 @@
  type
 *******************************************************************************/
 
-#define csAxis_                                                                \
-   XMAP_C_( cs_Horizontal, 0 )                                                 \
-   XMAP_C_( cs_Vertical, 1 )
+#define uiAxis_                                                                \
+   XMAP_C_( ui_Horizontal, 0 )                                                 \
+   XMAP_C_( ui_Vertical, 1 )
 
 #define XMAP_C_( N, I ) N = I,
-enum cs_Axis { csAxis_ };
+enum ui_Axis { uiAxis_ };
 #undef XMAP_C_
-typedef enum cs_Axis cs_Axis;
+typedef enum ui_Axis ui_Axis;
 
 /*******************************************************************************
 ********************************************************************* Functions

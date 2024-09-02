@@ -27,16 +27,16 @@ static float trunc_float( float f, float* diff )
    return res;
 }
 
-static csLimit limit_for_fill( csLimit limit, cs_Axis axis, int16_t max )
+static csLimit limit_for_fill( csLimit limit, ui_Axis axis, int16_t max )
 {
-   if ( axis == cs_Horizontal )
+   if ( axis == ui_Horizontal )
    {
       limit.max = (csSize){
          .w=imax16_c( limit.min.w, max ),
          .h=limit.max.h
       };
    }
-   else  // cs_Vertical
+   else  // ui_Vertical
    {
       limit.max = (csSize){
          .w=limit.max.w,
@@ -55,15 +55,15 @@ static csLimit limit_for_fill( csLimit limit, cs_Axis axis, int16_t max )
 
 csBox row_cs( int16_t space, csStyle const* style, csBoxes children )
 {
-   return line_cs( cs_Horizontal, space, style, children );
+   return line_cs( ui_Horizontal, space, style, children );
 }
 
 csBox col_cs( int16_t space, csStyle const* style, csBoxes children )
 {
-   return line_cs( cs_Vertical, space, style, children );
+   return line_cs( ui_Vertical, space, style, children );
 }
 
-csBox line_cs( cs_Axis axis,
+csBox line_cs( ui_Axis axis,
                int16_t space,
                csStyle const* style,
                csBoxes children )
@@ -99,7 +99,7 @@ bool layout_line_cs( csBox box[static 1],
          {
             return false;
          }
-         int16_t const mainPart = ( line.axis == cs_Horizontal ) ? child->rect.w
+         int16_t const mainPart = ( line.axis == ui_Horizontal ) ? child->rect.w
                                                                  : child->rect.h;
          mainAxis -= mainPart;
          if ( mainAxis < 0 )
@@ -124,7 +124,7 @@ bool layout_line_cs( csBox box[static 1],
       {
          return false;
       }
-      int16_t const mainPart = ( line.axis == cs_Horizontal ) ? child->rect.w
+      int16_t const mainPart = ( line.axis == ui_Horizontal ) ? child->rect.w
                                                               : child->rect.h;
       mainAxis -= mainPart;
       if ( mainAxis < 0 )
@@ -137,7 +137,7 @@ bool layout_line_cs( csBox box[static 1],
    box->rect.h = 0;
    each_c_( csBox*, child, box->children )
    {
-      if ( line.axis == cs_Horizontal )
+      if ( line.axis == ui_Horizontal )
       {
          child->rect.x = box->rect.w;
          child->rect.y = 0;

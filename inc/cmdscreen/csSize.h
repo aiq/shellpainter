@@ -1,8 +1,7 @@
 #ifndef CMDSCREEN_CSSIZE_H
 #define CMDSCREEN_CSSIZE_H
 
-#include <curses.h>
-#include "cmdscreen/cs_Axis.h"
+#include "uiinabox/ui_Axis.h"
 #include "cmdscreen/csPoint.h"
 
 /*******************************************************************************
@@ -30,9 +29,9 @@ CMDSCREEN_API inline csSize size_cs( int16_t w, int16_t h )
 }
 
 CMDSCREEN_API
-inline csSize axis_size_cs( cs_Axis axis, int16_t main, int16_t cross )
+inline csSize axis_size_cs( ui_Axis axis, int16_t main, int16_t cross )
 {
-   return ( axis == cs_Horizontal ) ? size_cs( main, cross )
+   return ( axis == ui_Horizontal ) ? size_cs( main, cross )
                                     : size_cs( cross, main );
 }
 
