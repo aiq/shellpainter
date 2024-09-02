@@ -2,7 +2,7 @@
 #define CMDSCREEN_LAYOUT_INTERN_UTIL_H
 
 #include "cmdscreen/csBox.h"
-#include "cmdscreen/csAlignment.h"
+#include "uiinabox/uiAlignment.h"
 #include "clingo/lang/error_type.h"
 
 /*******************************************************************************
@@ -23,33 +23,33 @@ static inline bool has_just_single_child( char const name[static 1],
    return true;
 }
 
-static inline int16_t alignx( cs_AlignX x, int16_t boxw, int16_t childw )
+static inline int16_t alignx( ui_AlignX x, int16_t boxw, int16_t childw )
 {
-   if ( x == cs_CenterX )
+   if ( x == ui_CenterX )
    {
       return ( boxw / 2 ) - ( childw / 2 );
    }
-   else if ( x == cs_Right )
+   else if ( x == ui_Right )
    {
       return boxw - childw;
    }
-   else  // cs_Left
+   else  // ui_Left
    {
       return 0;
    }
 }
 
-static inline int16_t aligny( cs_AlignY y, int16_t boxh, int16_t childh )
+static inline int16_t aligny( ui_AlignY y, int16_t boxh, int16_t childh )
 {
-   if ( y == cs_CenterY )
+   if ( y == ui_CenterY )
    {
       return ( boxh / 2 ) - ( childh / 2 );
    }
-   else if ( y == cs_Bottom )
+   else if ( y == ui_Bottom )
    {
       return boxh - childh;
    }
-   else  // cs_Top
+   else  // ui_Top
    {
       return 0;
    }

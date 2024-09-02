@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_align, csAlignment, layout_align_cs, do_deref_c_ )
+static LAYOUT_CS_( do_align, uiAlignment, layout_align_cs, do_deref_c_ )
 csBoxType const CS_Align = {
    .desc = "align",
    .layout = &do_align
@@ -39,11 +39,11 @@ extern inline csBox bottom_right_cs( csStyle const* style, csBox box );
 
 /******************************************************************************/
 
-csBox align_cs( csAlignment align,
+csBox align_cs( uiAlignment align,
                 csStyle const* style,
                 csBox child )
 {
-   csAlignment* data = alloc_one_( csAlignment );
+   uiAlignment* data = alloc_one_( uiAlignment );
    if ( data == NULL ) return (csBox){0};
    else *data = align;
 
@@ -52,7 +52,7 @@ csBox align_cs( csAlignment align,
 
 bool layout_align_cs( csBox box[static 1],
                       uiLimit limit,
-                      csAlignment alignment,
+                      uiAlignment alignment,
                       cErrorStack es[static 1] )
 {
    if ( not has_just_single_child( "align", box->children, es ) )

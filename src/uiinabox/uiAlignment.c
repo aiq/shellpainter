@@ -1,4 +1,4 @@
-#include "cmdscreen/csAlignment.h"
+#include "uiinabox/uiAlignment.h"
 
 #include <iso646.h>
 
@@ -14,23 +14,23 @@
 
 *******************************************************************************/
 
-char const* stringify_alignment_cs( csAlignment alignment )
+char const* stringify_alignment_ui( uiAlignment alignment )
 {
-   if ( alignment.x == cs_Left and alignment.y == cs_Top )
+   if ( alignment.x == ui_Left and alignment.y == ui_Top )
       return "top-left";
-   else if ( alignment.x == cs_CenterX and alignment.y == cs_Top )
+   else if ( alignment.x == ui_CenterX and alignment.y == ui_Top )
       return "top-center";
-   else if ( alignment.x == cs_Right and alignment.y == cs_Top )
+   else if ( alignment.x == ui_Right and alignment.y == ui_Top )
       return "top-right";
-   else if ( alignment.x == cs_Left and alignment.y == cs_CenterY )
+   else if ( alignment.x == ui_Left and alignment.y == ui_CenterY )
       return "center-left";
-   else if ( alignment.x == cs_CenterX and alignment.y == cs_CenterY )
+   else if ( alignment.x == ui_CenterX and alignment.y == ui_CenterY )
       return "center";
-   else if ( alignment.x == cs_Right and alignment.y == cs_CenterY )
+   else if ( alignment.x == ui_Right and alignment.y == ui_CenterY )
       return "center-right";
-   else if ( alignment.x == cs_Left and alignment.y == cs_Bottom )
+   else if ( alignment.x == ui_Left and alignment.y == ui_Bottom )
       return "bottom-left";
-   else if ( alignment.x == cs_CenterX and alignment.y == cs_Bottom )
+   else if ( alignment.x == ui_CenterX and alignment.y == ui_Bottom )
       return "bottom-center";
    else
       return "bottom-right";

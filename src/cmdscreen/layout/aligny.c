@@ -9,7 +9,7 @@
 
 static bool layout_aligny( csBox box[static 1],
                            uiLimit limit,
-                           csAlignment alignment,
+                           uiAlignment alignment,
                            cErrorStack es[static 1] )
 {
    if ( not has_just_single_child( "aligny", box->children, es ) )
@@ -39,7 +39,7 @@ static bool layout_aligny( csBox box[static 1],
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_align_y, csAlignment, layout_aligny, do_deref_c_ )
+static LAYOUT_CS_( do_align_y, uiAlignment, layout_aligny, do_deref_c_ )
 csBoxType const CS_AlignY = {
    .desc = "aligny",
    .layout = &do_align_y
@@ -51,11 +51,11 @@ csBoxType const CS_AlignY = {
 
 *******************************************************************************/
 
-csBox aligny_cs( cs_AlignY align, csStyle const* style, csBox child )
+csBox aligny_cs( ui_AlignY align, csStyle const* style, csBox child )
 {
-   csAlignment* data = alloc_one_( csAlignment );
+   uiAlignment* data = alloc_one_( uiAlignment );
    if ( data == NULL ) return (csBox){0};
-   else *data = alignment_cs_( cs_Left, align );
+   else *data = alignment_ui_( ui_Left, align );
 
    return box_cs( data, &CS_AlignY, style, boxes_cs_( child ) );
 }
