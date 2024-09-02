@@ -1,7 +1,7 @@
 #include "uiinabox/align.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -69,7 +69,7 @@ uiBox align_ui( uiAlignment align,
                 uiStyle const* style,
                 uiBox child )
 {
-   uiAlignment* data = alloc_one_( uiAlignment );
+   uiAlignment* data = alloc_ui_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
    else *data = align;
 

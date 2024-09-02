@@ -7,6 +7,7 @@
 #include "uiinabox/exp.h"
 #include "uiinabox/fill.h"
 #include "uiinabox/fixed.h"
+#include "uiinabox/global.h"
 #include "uiinabox/line.h"
 #include "uiinabox/none.h"
 #include "uiinabox/pad.h"

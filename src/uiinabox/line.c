@@ -1,8 +1,8 @@
 #include "uiinabox/line.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
 #include "uiinabox/fill.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -68,7 +68,7 @@ uiBox line_ui( ui_Axis axis,
                uiStyle const* style,
                uiBoxes children )
 {
-   uiLine* data = alloc_one_( uiLine );
+   uiLine* data = alloc_ui_( uiLine );
    if ( data == NULL ) return (uiBox){0};
    else *data = (uiLine){ .axis=axis, .space=space };
 

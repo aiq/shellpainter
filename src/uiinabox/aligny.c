@@ -1,7 +1,7 @@
 #include "uiinabox/aligny.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
  
@@ -53,7 +53,7 @@ uiBoxType const UI_AlignY = {
 
 uiBox aligny_ui( ui_AlignY align, uiStyle const* style, uiBox child )
 {
-   uiAlignment* data = alloc_one_( uiAlignment );
+   uiAlignment* data = alloc_ui_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
    else *data = alignment_ui_( ui_Left, align );
 

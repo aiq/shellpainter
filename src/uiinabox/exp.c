@@ -1,7 +1,7 @@
 #include "uiinabox/exp.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
+#include "uiinabox/global.h"
 
 static bool do_exp( uiBox box[static 1],
                     uiLimit limit,

@@ -1,8 +1,8 @@
 #include "uiinabox/alignx.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
 #include "uiinabox/align.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
  
@@ -54,7 +54,7 @@ uiBoxType const UI_AlignX = {
 
 uiBox alignx_ui( ui_AlignX align, uiStyle const* style, uiBox child )
 {
-   uiAlignment* data = alloc_one_( uiAlignment );
+   uiAlignment* data = alloc_ui_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
    else *data = alignment_ui_( align, ui_Top );
 

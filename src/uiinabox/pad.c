@@ -1,7 +1,7 @@
 #include "uiinabox/pad.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -56,7 +56,7 @@ uiLimit pad_limit_ui( uiLimit limit, uiPadding pad )
 
 uiBox pad_ui( uiPadding pad, uiStyle const* style, uiBox child )
 {
-   uiPadding* data = alloc_one_( uiPadding );
+   uiPadding* data = alloc_ui_( uiPadding );
    if ( data == NULL ) return (uiBox){0};
    else *data = pad;
 

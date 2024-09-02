@@ -1,7 +1,7 @@
 #include "uiinabox/fill.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
+#include "uiinabox/global.h"
 
 static bool do_fill( uiBox box[static 1],
                      uiLimit limit,
@@ -42,7 +42,7 @@ uiBoxType const UI_Fill = {
 
 uiBox fill_ui( int16_t fill, uiStyle const* style, uiBox child )
 {
-   int16_t* data = alloc_one_( int16_t );
+   int16_t* data = alloc_ui_( int16_t );
    if ( data == NULL ) return (uiBox){0};
    else *data = fill;
 

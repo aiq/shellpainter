@@ -1,6 +1,5 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
-#include "cmdscreen/csScreen.h"
 #include "uiinabox/uiinabox.h"
 
 #include "distinct_styles.h"
@@ -8,7 +7,7 @@
 int main( void )
 {
    init_tap_c_();
-   cmdscreen_cs();
+   init_ui();
 
    cRgb24 const tealStyle = DISTINCT_TEAL_;
    cRgb24 const maroonStyle = DISTINCT_MAROON_;
@@ -64,6 +63,6 @@ int main( void )
    print_recorded_c( rec );
    free_recorder_mem_c( rec );
 
-   cleanup_cmdscreen_cs();
+   cleanup_ui();
    return finish_tap_c_();
 }

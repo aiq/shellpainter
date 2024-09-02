@@ -6,7 +6,7 @@
 #include "clingo/lang/error_type.h"
 #include "clingo/lang/func.h"
 #include "clingo/type/float.h"
-#include "cmdscreen/_/CS_MainScreen.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -37,7 +37,7 @@ uiBox box_ui( void* data,
               uiStyle const* style,
               uiBoxes children )
 {
-   uiBox* newChildren = alloc_array_( children.s, uiBox );
+   uiBox* newChildren = alloc_array_ui_( children.s, uiBox );
    if ( newChildren == NULL ) return (uiBox){0};
 
    for_each_c_( i, uiBox const*, child, children )

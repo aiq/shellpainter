@@ -1,7 +1,7 @@
 #include "uiinabox/fixed.h"
 
-#include "cmdscreen/_/CS_MainScreen.h"
 #include "uiinabox/_/util.h"
+#include "uiinabox/global.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -23,7 +23,7 @@ uiBoxType const UI_Fixed = {
 
 uiBox fixed_ui( uiSize size, uiStyle const* style, uiBox child )
 {
-   uiSize* data = alloc_one_( uiSize );
+   uiSize* data = alloc_ui_( uiSize );
    if ( data == NULL ) return (uiBox){0};
    else *data = size;
 
