@@ -1,6 +1,6 @@
 #include "clingo/lang/expect.h"
 #include "clingo/lang/slice.h"
-#include "uiinabox/uiPadding.h"
+#include "uiinabox/box/pad.h"
 
 TEMP_SLICE_C_(
    test,
