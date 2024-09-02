@@ -26,7 +26,7 @@ int main( void )
    csBox root = row_cs(
       0,
       &tealStyle,
-      children_cs_(
+      boxes_cs_(
          top_cs_(
             fixed_cs( 
                size_cs( 3, 3 ),

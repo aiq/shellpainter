@@ -27,7 +27,7 @@ csBox fixed_cs( csSize size, csStyle const* style, csBox child )
    if ( data == NULL ) return (csBox){0};
    else *data = size;
 
-   return box_cs( data, &CS_Fixed, style, children_cs_( child ) );
+   return box_cs( data, &CS_Fixed, style, boxes_cs_( child ) );
 }
 
 bool layout_fixed_cs( csBox box[static 1],

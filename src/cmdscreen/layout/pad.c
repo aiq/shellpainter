@@ -27,7 +27,7 @@ csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
    if ( data == NULL ) return (csBox){0};
    else *data = pad;
 
-   return box_cs( data, &CS_Pad, style, children_cs_( child ) );
+   return box_cs( data, &CS_Pad, style, boxes_cs_( child ) );
 }
 
 bool layout_pad_cs( csBox box[static 1],

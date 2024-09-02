@@ -46,7 +46,7 @@ csBox fill_cs( int16_t fill, csStyle const* style, csBox child )
    if ( data == NULL ) return (csBox){0};
    else *data = fill;
 
-   return box_cs( data, &CS_Fill, style, children_cs_( child ) );
+   return box_cs( data, &CS_Fill, style, boxes_cs_( child ) );
 }
 
 extern inline int16_t get_fill_value_cs( csBox const box[static 1] );

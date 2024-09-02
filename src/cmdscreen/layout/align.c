@@ -47,7 +47,7 @@ csBox align_cs( csAlignment align,
    if ( data == NULL ) return (csBox){0};
    else *data = align;
 
-   return box_cs( data, &CS_Align, style, children_cs_( child ) );
+   return box_cs( data, &CS_Align, style, boxes_cs_( child ) );
 }
 
 bool layout_align_cs( csBox box[static 1],

@@ -26,7 +26,7 @@ int main( void )
    csBox root = col_cs(
       0,
       &tealStyle,
-      children_cs_(
+      boxes_cs_(
          fixed_cs(
             size_cs( 10, 4 ),
             &maroonStyle,

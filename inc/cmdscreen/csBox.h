@@ -55,7 +55,7 @@ struct csBox
    csVarBoxes children;
 };
 
-#define children_cs_( ... )                                                    \
+#define boxes_cs_( ... )                                                       \
    (csBoxes)slice_c_( csBox, __VA_ARGS__ )
 
 CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],

@@ -57,7 +57,7 @@ csBox aligny_cs( cs_AlignY align, csStyle const* style, csBox child )
    if ( data == NULL ) return (csBox){0};
    else *data = alignment_cs_( cs_Left, align );
 
-   return box_cs( data, &CS_AlignY, style, children_cs_( child ) );
+   return box_cs( data, &CS_AlignY, style, boxes_cs_( child ) );
 }
 
 /*******************************************************************************
