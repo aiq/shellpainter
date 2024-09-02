@@ -3,7 +3,7 @@
 #include "cmdscreen/_/CS_MainScreen.h"
 #include "cmdscreen/layout/_/util.h"
 
-static bool do_fill( csBox box[static 1],
+static bool do_fill( uiBox box[static 1],
                      uiLimit limit,
                      void const* nothing,
                      cErrorStack es[static 1] )
@@ -17,8 +17,8 @@ static bool do_fill( csBox box[static 1],
    box->rect.w = limit_width_ui_( limit );
    box->rect.h = limit_height_ui_( limit );
 
-   csBox* child = box->children.v;
-   if ( not layout_box_cs( child, limit, es ) )
+   uiBox* child = box->children.v;
+   if ( not layout_box_ui( child, limit, es ) )
    {
       return false;
    }
@@ -29,7 +29,7 @@ static bool do_fill( csBox box[static 1],
    return true;
 }
 
-csBoxType const CS_Fill = {
+uiBoxType const CS_Fill = {
    .desc = "fill",
    .layout = &do_fill
 };
@@ -40,13 +40,13 @@ csBoxType const CS_Fill = {
 
 *******************************************************************************/
 
-csBox fill_cs( int16_t fill, csStyle const* style, csBox child )
+uiBox fill_cs( int16_t fill, csStyle const* style, uiBox child )
 {
    int16_t* data = alloc_one_( int16_t );
-   if ( data == NULL ) return (csBox){0};
+   if ( data == NULL ) return (uiBox){0};
    else *data = fill;
 
-   return box_cs( data, &CS_Fill, style, boxes_cs_( child ) );
+   return box_ui( data, &CS_Fill, style, boxes_cs_( child ) );
 }
 
-extern inline int16_t get_fill_value_cs( csBox const box[static 1] );
+extern inline int16_t get_fill_value_cs( uiBox const box[static 1] );

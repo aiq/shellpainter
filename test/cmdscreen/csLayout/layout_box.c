@@ -1,6 +1,6 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
-#include "uiinabox/csBox.h"
+#include "uiinabox/uiBox.h"
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/exp.h"
@@ -20,7 +20,7 @@ int main( void )
    csStyle const greyStyle = GREY_;
    csStyle const navyStyle = NAVY_;
 
-   csBox root = pad_cs(
+   uiBox root = pad_cs(
       padding_ui( 2, 2, 2, 2 ),
       &tealStyle,
       center_cs(
@@ -42,10 +42,10 @@ int main( void )
 
    uiLimit limit = fix_limit_ui( 20, 15 );
    cErrorStack* es = &error_stack_c_( 256 );
-   layout_box_cs( &root, limit, es );
-   globalise_cs( &root );
+   layout_box_ui( &root, limit, es );
+   globalise_ui( &root );
 
-   csBox exp = exp_cs_(
+   uiBox exp = exp_cs_(
       rect_ui( 0, 0, 20, 15 ),   // padding
       exp_cs_(
          rect_ui( 2, 2, 16, 11 ),   // center_cs
@@ -62,10 +62,10 @@ int main( void )
       )
    );
 
-   dump_box_layout_cs( c_c( "layout_box.ppm" ), &root, es );
+   dump_box_layout_ui( c_c( "layout_box.ppm" ), &root, es );
 
    cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_cs( rec, &exp, &root );
+   record_box_diff_ui( rec, &exp, &root );
    print_recorded_c( rec );
    free_recorder_mem_c( rec );
 

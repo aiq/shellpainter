@@ -13,7 +13,7 @@
 *******************************************************************************/
 
 #define LAYOUT_CS_( FuncName, Type, LayoutFunc, DoDeref )                      \
-bool FuncName( csBox box[static 1],                                            \
+bool FuncName( uiBox box[static 1],                                            \
                uiLimit limit,                                                  \
                void const* i,                                                  \
                cErrorStack es[static 1] )                                      \
@@ -23,40 +23,40 @@ bool FuncName( csBox box[static 1],                                            \
    return LayoutFunc( box, limit, DoDeref( val ), es );                       \
 }
 
-struct csBox;
-typedef struct csBox csBox;
+struct uiBox;
+typedef struct uiBox uiBox;
 
 SLICES_C_(
-   csBox,       // Type
-   csBoxes,     // SliceType
+   uiBox,       // Type
+   uiBoxes,     // SliceType
    csVarBoxes   // VarSliceType
 )
 
-typedef bool ( *cs_layout )( csBox* box,
+typedef bool ( *ui_layout )( uiBox* box,
                              uiLimit limit,
                              void const* val,
                              cErrorStack es[static 1] );
 
-struct csBoxType
+struct uiBoxType
 {
    char const* desc;
-   cs_layout layout;
+   ui_layout layout;
 };
-typedef struct csBoxType csBoxType;
+typedef struct uiBoxType uiBoxType;
 
-struct csBox
+struct uiBox
 {
    uiRect rect;
    void* data;
-   csBoxType const* type;
+   uiBoxType const* type;
    csStyle const* style;
    csVarBoxes children;
 };
 
 #define boxes_cs_( ... )                                                       \
-   (csBoxes)slice_c_( csBox, __VA_ARGS__ )
+   (uiBoxes)slice_c_( uiBox, __VA_ARGS__ )
 
-UIINABOX_API inline bool layout_box_cs( csBox box[static 1],
+UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
                                          uiLimit limit,
                                          cErrorStack es[static 1] )
 {
@@ -68,19 +68,19 @@ UIINABOX_API inline bool layout_box_cs( csBox box[static 1],
 
 *******************************************************************************/
 
-UIINABOX_API csBox box_cs( void* data,
-                            csBoxType const type[static 1],
+UIINABOX_API uiBox box_ui( void* data,
+                            uiBoxType const type[static 1],
                             csStyle const* style,
-                            csBoxes children );
+                            uiBoxes children );
 
-UIINABOX_API void globalise_cs( csBox box[static 1] );
+UIINABOX_API void globalise_ui( uiBox box[static 1] );
 
-UIINABOX_API bool dump_box_layout_cs( cChars path,
-                                       csBox box[static 1],
-                                       cErrorStack es[static 1] );
+UIINABOX_API bool dump_box_layout_ui( cChars path,
+                                      uiBox box[static 1],
+                                      cErrorStack es[static 1] );
 
-UIINABOX_API bool record_box_diff_cs( cRecorder rec[static 1],
-                                       csBox const box[static 1],
-                                       csBox const oth[static 1] );
+UIINABOX_API bool record_box_diff_ui( cRecorder rec[static 1],
+                                      uiBox const box[static 1],
+                                      uiBox const oth[static 1] );
 
 #endif

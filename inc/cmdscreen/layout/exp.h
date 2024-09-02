@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_EXP_H
 #define CMDSCREEN_LAYOUT_EXP_H
 
-#include "uiinabox/csBox.h"
+#include "uiinabox/uiBox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern csBoxType const CS_Exp;
+UIINABOX_API extern uiBoxType const CS_Exp;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -19,6 +19,6 @@ UIINABOX_API extern csBoxType const CS_Exp;
 
 #define exp_cs_( Rect, ... )                                                   \
     exp_cs( (Rect), boxes_cs_( __VA_ARGS__ ) )
-UIINABOX_API csBox exp_cs( uiRect rect, csBoxes children );
+UIINABOX_API uiBox exp_cs( uiRect rect, uiBoxes children );
 
 #endif

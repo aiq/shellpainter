@@ -7,7 +7,7 @@
  
 *******************************************************************************/
 
-static bool layout_alignx( csBox box[static 1],
+static bool layout_alignx( uiBox box[static 1],
                            uiLimit limit,
                            uiAlignment alignment,
                            cErrorStack es[static 1] )
@@ -19,8 +19,8 @@ static bool layout_alignx( csBox box[static 1],
    box->rect.x = 0;
    box->rect.y = 0;
 
-   csBox* child = box->children.v;
-   if ( not layout_box_cs( child, limit, es ) )
+   uiBox* child = box->children.v;
+   if ( not layout_box_ui( child, limit, es ) )
    {
       return false;
    }
@@ -40,7 +40,7 @@ static bool layout_alignx( csBox box[static 1],
 *******************************************************************************/
 
 static LAYOUT_CS_( do_align_x, uiAlignment, layout_alignx, do_deref_c_ )
-csBoxType const CS_AlignX = {
+uiBoxType const CS_AlignX = {
    .desc = "alignx",
    .layout = &do_align_x
 };
@@ -51,19 +51,19 @@ csBoxType const CS_AlignX = {
 
 *******************************************************************************/
 
-csBox alignx_cs( ui_AlignX align, csStyle const* style, csBox child )
+uiBox alignx_cs( ui_AlignX align, csStyle const* style, uiBox child )
 {
    uiAlignment* data = alloc_one_( uiAlignment );
-   if ( data == NULL ) return (csBox){0};
+   if ( data == NULL ) return (uiBox){0};
    else *data = alignment_ui_( align, ui_Top );
 
-   return box_cs( data, &CS_AlignX, style, boxes_cs_( child ) );
+   return box_ui( data, &CS_AlignX, style, boxes_cs_( child ) );
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline csBox left_cs( csStyle const* style, csBox box );
-extern inline csBox centerx_cs( csStyle const* style, csBox box );
-extern inline csBox right_cs( csStyle const* style, csBox box );
+extern inline uiBox left_cs( csStyle const* style, uiBox box );
+extern inline uiBox centerx_cs( csStyle const* style, uiBox box );
+extern inline uiBox right_cs( csStyle const* style, uiBox box );

@@ -8,7 +8,7 @@
  type
 *******************************************************************************/
 
-static bool do_none( csBox box[static 1],
+static bool do_none( uiBox box[static 1],
                      uiLimit limit,
                      void const* i,
                      cErrorStack es[static 1] )
@@ -17,7 +17,7 @@ static bool do_none( csBox box[static 1],
    box->rect.h = 0;
    return true;
 }
-csBoxType const CS_None = {
+uiBoxType const CS_None = {
    .desc = "none",
    .layout = &do_none
 };
@@ -28,9 +28,9 @@ csBoxType const CS_None = {
 
 *******************************************************************************/
 
-csBox none_cs( void )
+uiBox none_cs( void )
 {
-   return (csBox){
+   return (uiBox){
       .data=NULL,
       .type=&CS_None,
       .style=NULL,

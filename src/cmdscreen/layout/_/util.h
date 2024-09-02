@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_INTERN_UTIL_H
 #define CMDSCREEN_LAYOUT_INTERN_UTIL_H
 
-#include "uiinabox/csBox.h"
+#include "uiinabox/uiBox.h"
 #include "uiinabox/uiAlignment.h"
 #include "clingo/lang/error_type.h"
 

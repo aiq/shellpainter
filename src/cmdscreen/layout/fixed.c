@@ -10,7 +10,7 @@
 *******************************************************************************/
 
 static LAYOUT_CS_( do_fixed, uiSize, layout_fixed_cs, do_deref_c_ )
-csBoxType const CS_Fixed = {
+uiBoxType const CS_Fixed = {
    .desc = "fixed",
    .layout = &do_fixed
 };
@@ -21,16 +21,16 @@ csBoxType const CS_Fixed = {
 
 *******************************************************************************/
 
-csBox fixed_cs( uiSize size, csStyle const* style, csBox child )
+uiBox fixed_cs( uiSize size, csStyle const* style, uiBox child )
 {
    uiSize* data = alloc_one_( uiSize );
-   if ( data == NULL ) return (csBox){0};
+   if ( data == NULL ) return (uiBox){0};
    else *data = size;
 
-   return box_cs( data, &CS_Fixed, style, boxes_cs_( child ) );
+   return box_ui( data, &CS_Fixed, style, boxes_cs_( child ) );
 }
 
-bool layout_fixed_cs( csBox box[static 1],
+bool layout_fixed_cs( uiBox box[static 1],
                       uiLimit limit,
                       uiSize size,
                       cErrorStack es[static 1] )
@@ -46,8 +46,8 @@ bool layout_fixed_cs( csBox box[static 1],
 
    limit.max = size;
 
-   csBox* child = box->children.v;
-   if ( not layout_box_cs( child, limit, es ) )
+   uiBox* child = box->children.v;
+   if ( not layout_box_ui( child, limit, es ) )
    {
       return false;
    }

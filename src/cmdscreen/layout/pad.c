@@ -10,7 +10,7 @@
 *******************************************************************************/
 
 static LAYOUT_CS_( do_pad, uiPadding, layout_pad_cs, do_deref_c_ )
-csBoxType const CS_Pad = {
+uiBoxType const CS_Pad = {
    .desc = "pad",
    .layout = &do_pad
 };
@@ -21,16 +21,16 @@ csBoxType const CS_Pad = {
 
 *******************************************************************************/
 
-csBox pad_cs( uiPadding pad, csStyle const* style, csBox child )
+uiBox pad_cs( uiPadding pad, csStyle const* style, uiBox child )
 {
    uiPadding* data = alloc_one_( uiPadding );
-   if ( data == NULL ) return (csBox){0};
+   if ( data == NULL ) return (uiBox){0};
    else *data = pad;
 
-   return box_cs( data, &CS_Pad, style, boxes_cs_( child ) );
+   return box_ui( data, &CS_Pad, style, boxes_cs_( child ) );
 }
 
-bool layout_pad_cs( csBox box[static 1],
+bool layout_pad_cs( uiBox box[static 1],
                     uiLimit limit,
                     uiPadding pad,
                     cErrorStack es[static 1] )
@@ -44,9 +44,9 @@ bool layout_pad_cs( csBox box[static 1],
    box->rect.w = limit_width_ui_( limit );
    box->rect.h = limit_height_ui_( limit );
 
-   csBox* child = box->children.v;
+   uiBox* child = box->children.v;
    uiLimit childLimit = pad_limit_ui( limit, pad );
-   if ( not layout_box_cs( child, childLimit, es ) )
+   if ( not layout_box_ui( child, childLimit, es ) )
    {
       return false;
    }

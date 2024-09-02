@@ -1,4 +1,4 @@
-#include "uiinabox/csBox.h"
+#include "uiinabox/uiBox.h"
 
 #include "clingo/color/cRgb24.h"
 #include "clingo/io/jot.h"
@@ -14,11 +14,11 @@
 
 *******************************************************************************/
 
-extern inline bool layout_box_cs( csBox box[static 1],
+extern inline bool layout_box_ui( uiBox box[static 1],
                                   uiLimit limit,
                                   cErrorStack es[static 1] );
 
-static void intl_as_global_box( csBox box[static 1], uiPoint vec )
+static void intl_as_global_box( uiBox box[static 1], uiPoint vec )
 {
    if ( has_null_size_ui( box->rect ) )
    {
@@ -26,26 +26,26 @@ static void intl_as_global_box( csBox box[static 1], uiPoint vec )
    }
    box->rect.x += vec.x;
    box->rect.y += vec.y;
-   each_c_( csBox*, child, box->children )
+   each_c_( uiBox*, child, box->children )
    {
       intl_as_global_box( child, point_ui( box->rect.x, box->rect.y ) );
    }
 }
 
-csBox box_cs( void* data,
-              csBoxType const type[static 1],
+uiBox box_ui( void* data,
+              uiBoxType const type[static 1],
               csStyle const* style,
-              csBoxes children )
+              uiBoxes children )
 {
-   csBox* newChildren = alloc_array_( children.s, csBox );
-   if ( newChildren == NULL ) return (csBox){0};
+   uiBox* newChildren = alloc_array_( children.s, uiBox );
+   if ( newChildren == NULL ) return (uiBox){0};
 
-   for_each_c_( i, csBox const*, child, children )
+   for_each_c_( i, uiBox const*, child, children )
    {
       newChildren[i] = *child;
    }
 
-   return (csBox){
+   return (uiBox){
       .data=data,
       .type=type,
       .style=style,
@@ -53,7 +53,7 @@ csBox box_cs( void* data,
    };
 }
 
-void globalise_cs( csBox box[static 1] )
+void globalise_ui( uiBox box[static 1] )
 {
    intl_as_global_box( box, point_ui( 0, 0 ) );
 }
@@ -62,7 +62,7 @@ void globalise_cs( csBox box[static 1] )
 
 static bool intl_dump_box_layout( cVarRgb24Image image,
                                   csStyle const* style,
-                                  csBox const box[static 1] )
+                                  uiBox const box[static 1] )
 {
    uiPoint a = top_left_corner_ui( box->rect );
    uiPoint b = bottom_right_corner_ui( box->rect );
@@ -81,7 +81,7 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
       }
    }
 
-   each_c_( csBox const*, child, box->children )
+   each_c_( uiBox const*, child, box->children )
    {
       if ( not intl_dump_box_layout( image, style, child ) )
       {
@@ -92,8 +92,8 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
    return true;
 }
 
-bool dump_box_layout_cs( cChars path,
-                         csBox box[static 1],
+bool dump_box_layout_ui( cChars path,
+                         uiBox box[static 1],
                          cErrorStack es[static 1] )
 {
    cVarRgb24Image image = heap_var_rgb24_image_c_( box->rect.w, box->rect.h );
@@ -113,8 +113,8 @@ bool dump_box_layout_cs( cChars path,
 
 static bool intl_record_box_diff( cRecorder rec[static 1],
                                   cRecorder route[static 1],
-                                  csBox const box[static 1],
-                                  csBox const oth[static 1] )
+                                  uiBox const box[static 1],
+                                  uiBox const oth[static 1] )
 {
    if ( not eq_rect_ui( box->rect, oth->rect ) )
    {
@@ -136,8 +136,8 @@ static bool intl_record_box_diff( cRecorder rec[static 1],
       if ( not write_c_( route, ":{i}", i ) )
          return false;
 
-      csBox const* boxChild = ptr_for_c_( box->children, i );
-      csBox const* othChild = ptr_for_c_( oth->children, i );
+      uiBox const* boxChild = ptr_for_c_( box->children, i );
+      uiBox const* othChild = ptr_for_c_( oth->children, i );
       if ( not intl_record_box_diff( rec, route, boxChild, othChild ) )
          return false;
 
@@ -147,9 +147,9 @@ static bool intl_record_box_diff( cRecorder rec[static 1],
    return true;
 }
 
-bool record_box_diff_cs( cRecorder rec[static 1],
-                         csBox const box[static 1],
-                         csBox const oth[static 1] )
+bool record_box_diff_ui( cRecorder rec[static 1],
+                         uiBox const box[static 1],
+                         uiBox const oth[static 1] )
 {
    cRecorder* route = &dyn_recorder_c_( 0 );
    bool res = false;

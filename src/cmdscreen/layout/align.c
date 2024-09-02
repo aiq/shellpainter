@@ -10,7 +10,7 @@
 *******************************************************************************/
 
 static LAYOUT_CS_( do_align, uiAlignment, layout_align_cs, do_deref_c_ )
-csBoxType const CS_Align = {
+uiBoxType const CS_Align = {
    .desc = "align",
    .layout = &do_align
 };
@@ -21,36 +21,36 @@ csBoxType const CS_Align = {
 
 *******************************************************************************/
 
-extern inline csBox top_left_cs( csStyle const* style, csBox box );
-extern inline csBox top_center_cs( csStyle const* style, csBox box );
-extern inline csBox top_right_cs( csStyle const* style, csBox box );
+extern inline uiBox top_left_cs( csStyle const* style, uiBox box );
+extern inline uiBox top_center_cs( csStyle const* style, uiBox box );
+extern inline uiBox top_right_cs( csStyle const* style, uiBox box );
 
 /******************************************************************************/
 
-extern inline csBox center_left_cs( csStyle const* style, csBox box );
-extern inline csBox center_cs( csStyle const* style, csBox box );
-extern inline csBox center_right_cs( csStyle const* style, csBox box );
+extern inline uiBox center_left_cs( csStyle const* style, uiBox box );
+extern inline uiBox center_cs( csStyle const* style, uiBox box );
+extern inline uiBox center_right_cs( csStyle const* style, uiBox box );
 
 /******************************************************************************/
 
-extern inline csBox bottom_left_cs( csStyle const* style, csBox box );
-extern inline csBox bottom_center_cs( csStyle const* style, csBox box );
-extern inline csBox bottom_right_cs( csStyle const* style, csBox box );
+extern inline uiBox bottom_left_cs( csStyle const* style, uiBox box );
+extern inline uiBox bottom_center_cs( csStyle const* style, uiBox box );
+extern inline uiBox bottom_right_cs( csStyle const* style, uiBox box );
 
 /******************************************************************************/
 
-csBox align_cs( uiAlignment align,
+uiBox align_cs( uiAlignment align,
                 csStyle const* style,
-                csBox child )
+                uiBox child )
 {
    uiAlignment* data = alloc_one_( uiAlignment );
-   if ( data == NULL ) return (csBox){0};
+   if ( data == NULL ) return (uiBox){0};
    else *data = align;
 
-   return box_cs( data, &CS_Align, style, boxes_cs_( child ) );
+   return box_ui( data, &CS_Align, style, boxes_cs_( child ) );
 }
 
-bool layout_align_cs( csBox box[static 1],
+bool layout_align_cs( uiBox box[static 1],
                       uiLimit limit,
                       uiAlignment alignment,
                       cErrorStack es[static 1] )
@@ -64,8 +64,8 @@ bool layout_align_cs( csBox box[static 1],
    box->rect.w = limit_width_ui_( limit );
    box->rect.h = limit_height_ui_( limit );
 
-   csBox* child = box->children.v;
-   if ( not layout_box_cs( child, limit, es ) )
+   uiBox* child = box->children.v;
+   if ( not layout_box_ui( child, limit, es ) )
    {
       return false;
    }

@@ -1,7 +1,7 @@
 #ifndef CMDSCREEN_LAYOUT_FILL_H
 #define CMDSCREEN_LAYOUT_FILL_H
 
-#include "uiinabox/csBox.h"
+#include "uiinabox/uiBox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern csBoxType const CS_Fill;
+UIINABOX_API extern uiBoxType const CS_Fill;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -19,9 +19,9 @@ UIINABOX_API extern csBoxType const CS_Fill;
 
 #define fill_cs_( Fill, Child )                                                \
    fill_cs( (Fill), NULL, (Child) )
-UIINABOX_API csBox fill_cs( int16_t fill, csStyle const* style, csBox child );
+UIINABOX_API uiBox fill_cs( int16_t fill, csStyle const* style, uiBox child );
 
-UIINABOX_API inline int16_t get_fill_value_cs( csBox const box[static 1] )
+UIINABOX_API inline int16_t get_fill_value_cs( uiBox const box[static 1] )
 {
    if ( box->type == &CS_Fill )
    {
