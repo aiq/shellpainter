@@ -3,6 +3,7 @@
 #include "cmdscreen/csBox.h"
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
+#include "cmdscreen/layout/exp.h"
 #include "cmdscreen/layout/fixed.h"
 #include "cmdscreen/layout/none.h"
 #include "cmdscreen/layout/pad.h"
@@ -44,15 +45,15 @@ int main( void )
    layout_box_cs( &root, limit, es );
    globalise_cs( &root );
 
-   csBox exp = exp_box_cs_(
+   csBox exp = exp_cs_(
       rect_cs( 0, 0, 20, 15 ),   // padding
-      exp_box_cs_(
+      exp_cs_(
          rect_cs( 2, 2, 16, 11 ),   // center_cs
-         exp_box_cs_(
+         exp_cs_(
             rect_cs( 8, 5, 5, 5 ),    // fixed
-            exp_box_cs_(
+            exp_cs_(
                rect_cs( 8, 5, 5, 5 ), // center_cs
-               exp_box_cs_(
+               exp_cs_(
                   rect_cs( 9, 6, 3, 3 ), // fixed
                   none_cs()
                )

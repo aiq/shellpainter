@@ -4,6 +4,7 @@
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/layout/align.h"
 #include "cmdscreen/layout/aligny.h"
+#include "cmdscreen/layout/exp.h"
 #include "cmdscreen/layout/fill.h"
 #include "cmdscreen/layout/fixed.h"
 #include "cmdscreen/layout/line.h"
@@ -89,60 +90,60 @@ int main( void )
    globalise_cs( &root );
    dump_box_layout_cs( c_c( "layout_row.ppm" ), &root, es );
 
-   csBox exp = exp_box_cs_(
+   csBox exp = exp_cs_(
       rect_cs( 0, 0, 24, 12 ),   // row
-      exp_box_cs_(  // top
+      exp_cs_(  // top
          rect_cs( 0, 0, 3, 12 ),
-         exp_box_cs_(   // fixed
+         exp_cs_(   // fixed
             rect_cs( 0, 0, 3, 3 ),
             none_cs()
          )
       ),
-      exp_box_cs_(  // fill
+      exp_cs_(  // fill
          rect_cs( 3, 0, 2, 12 ),
-         exp_box_cs_(   // bottom right
+         exp_cs_(   // bottom right
             rect_cs( 3, 0, 2, 12 ),
-            exp_box_cs_(    // fixed
+            exp_cs_(    // fixed
                 rect_cs( 4, 11, 1, 1 ),
                 none_cs()
             )
          )
       ),
-      exp_box_cs_(  // center
+      exp_cs_(  // center
          rect_cs( 5, 0, 3, 12 ),
-         exp_box_cs_(   // fixed
+         exp_cs_(   // fixed
             rect_cs( 5, 4, 5, 5 ),
             none_cs()
          )
       ),
-      exp_box_cs_(  // fill
+      exp_cs_(  // fill
          rect_cs( 10, 0, 3, 12 ),
-         exp_box_cs_(   // bottom center
+         exp_cs_(   // bottom center
             rect_cs( 10, 0, 3, 12 ),
-            exp_box_cs_(    // fixed
+            exp_cs_(    // fixed
                 rect_cs( 11, 11, 1, 1 ),
                 none_cs()
             )
          )
       ),
-      exp_box_cs_(  // bottom
+      exp_cs_(  // bottom
          rect_cs( 13, 0, 1, 12 ),
-         exp_box_cs_(   // fixed
+         exp_cs_(   // fixed
             rect_cs( 13, 11, 1, 1 ),
             none_cs()
          )
       ),
-      exp_box_cs_(  // fill
+      exp_cs_(  // fill
          rect_cs( 14, 0, 6, 12 ),
-         exp_box_cs_(   // top left
+         exp_cs_(   // top left
             rect_cs( 14, 0, 6, 12 ),
-            exp_box_cs_(    // fixed
+            exp_cs_(    // fixed
                 rect_cs( 14, 0, 1, 1 ),
                 none_cs()
             )
          )
       ),
-      exp_box_cs_(  // fixed
+      exp_cs_(  // fixed
          rect_cs( 20, 0, 4, 2 ),
          none_cs()
       )

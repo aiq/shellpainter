@@ -70,28 +70,6 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
 
 *******************************************************************************/
 
-#define box_cs_( Layout, Style, Child )                                        \
-(csBox){                                                                       \
-   .rect=(csRect){0},                                                          \
-   .layout=(Layout),                                                           \
-   .style=(Style),                                                             \
-   .children=(csVarBoxes){                                                     \
-      .s=1,                                                                    \
-      .v=(csBox[]){ Child }                                                    \
-   }                                                                           \
-}
-
-#define exp_box_cs_( Rect, ... )                                               \
-(csBox){                                                                       \
-   .rect=(Rect),                                                               \
-   .style=NULL,                                                                \
-   .children=slice_c_( csBox, __VA_ARGS__ )                                    \
-}
-
-/*******************************************************************************
-
-*******************************************************************************/
-
 CMDSCREEN_API void globalise_cs( csBox box[static 1] );
 
 CMDSCREEN_API bool dump_box_layout_cs( cChars path,
