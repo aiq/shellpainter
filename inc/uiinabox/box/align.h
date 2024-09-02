@@ -2,7 +2,8 @@
 #define UIINABOX_BOX_ALIGN_H
 
 #include "uiinabox/uiBox.h"
-#include "uiinabox/uiAlignment.h"
+#include "uiinabox/box/alignx.h"
+#include "uiinabox/box/aligny.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -12,9 +13,28 @@
 
 UIINABOX_API extern uiBoxType const UI_Align;
 
+struct uiAlignment
+{
+   ui_AlignX x;
+   ui_AlignY y;
+};
+typedef struct uiAlignment uiAlignment;
+
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
+
+*******************************************************************************/
+
+#define alignment_ui_( X, Y )                                                  \
+(uiAlignment){                                                                 \
+   .x=(X),                                                                     \
+   .y=(Y)                                                                      \
+}
+
+UIINABOX_API char const* stringify_alignment_ui( uiAlignment alignment );
+
+/*******************************************************************************
 
 *******************************************************************************/
 

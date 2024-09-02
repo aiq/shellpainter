@@ -2,7 +2,6 @@
 #define UIINABOX_BOX_ALIGNX_H
 
 #include "uiinabox/uiBox.h"
-#include "uiinabox/uiAlignment.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -11,6 +10,16 @@
 *******************************************************************************/
 
 UIINABOX_API extern uiBoxType const UI_AlignX;
+
+#define uiAlignX_                                                              \
+   XMAP_C_( ui_Left, 0 )                                                       \
+   XMAP_C_( ui_CenterX, 1 )                                                    \
+   XMAP_C_( ui_Right, 2 )
+
+#define XMAP_C_( N, I ) N = I,
+enum ui_AlignX { uiAlignX_ };
+#undef XMAP_C_
+typedef enum ui_AlignX ui_AlignX;
 
 /*******************************************************************************
 ********************************************************************* Functions

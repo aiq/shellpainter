@@ -21,6 +21,32 @@ uiBoxType const UI_Align = {
 
 *******************************************************************************/
 
+char const* stringify_alignment_ui( uiAlignment alignment )
+{
+   if ( alignment.x == ui_Left and alignment.y == ui_Top )
+      return "top-left";
+   else if ( alignment.x == ui_CenterX and alignment.y == ui_Top )
+      return "top-center";
+   else if ( alignment.x == ui_Right and alignment.y == ui_Top )
+      return "top-right";
+   else if ( alignment.x == ui_Left and alignment.y == ui_CenterY )
+      return "center-left";
+   else if ( alignment.x == ui_CenterX and alignment.y == ui_CenterY )
+      return "center";
+   else if ( alignment.x == ui_Right and alignment.y == ui_CenterY )
+      return "center-right";
+   else if ( alignment.x == ui_Left and alignment.y == ui_Bottom )
+      return "bottom-left";
+   else if ( alignment.x == ui_CenterX and alignment.y == ui_Bottom )
+      return "bottom-center";
+   else
+      return "bottom-right";
+}
+
+/*******************************************************************************
+
+*******************************************************************************/
+
 extern inline uiBox top_left_ui( csStyle const* style, uiBox box );
 extern inline uiBox top_center_ui( csStyle const* style, uiBox box );
 extern inline uiBox top_right_ui( csStyle const* style, uiBox box );

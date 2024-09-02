@@ -2,7 +2,7 @@
 #define UIINABOX_BOX_INTERN_UTIL_H
 
 #include "uiinabox/uiBox.h"
-#include "uiinabox/uiAlignment.h"
+#include "uiinabox/box/align.h"
 #include "clingo/lang/error_type.h"
 
 /*******************************************************************************
