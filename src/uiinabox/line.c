@@ -82,8 +82,12 @@ bool layout_line_ui( uiBox box[static 1],
 {
    int16_t mainAxis = main_axis_ui_( limit, line.axis );
    int16_t fillCount = 0;
-   each_c_( uiBox*, child, box->children )
+   for_each_c_( i, uiBox*, child, box->children )
    {
+      if ( line.space > 0 and i != 0 )
+      {
+         mainAxis -= line.space;
+      }
       int16_t const fill = get_fill_value_ui( child );
       if ( fill > 0 )
       {
@@ -135,10 +139,14 @@ bool layout_line_ui( uiBox box[static 1],
 
    box->rect.w = 0;
    box->rect.h = 0;
-   each_c_( uiBox*, child, box->children )
+   for_each_c_( i, uiBox*, child, box->children )
    {
       if ( line.axis == ui_Horizontal )
       {
+         if ( line.space > 0 and i != 0 )
+         {
+            box->rect.w += line.space;
+         }
          child->rect.x = box->rect.w;
          child->rect.y = 0;
          box->rect.w += child->rect.w;
@@ -146,6 +154,10 @@ bool layout_line_ui( uiBox box[static 1],
       }
       else
       {
+         if ( line.space > 0 and i != 0 )
+         {
+            box->rect.h += line.space;
+         }
          child->rect.x = 0;
          child->rect.y = box->rect.h;
          box->rect.w = imax16_c( box->rect.w, child->rect.w );
