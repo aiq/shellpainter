@@ -1,8 +1,7 @@
 #include "clingo/io/write.h"
 #include "clingo/lang/expect.h"
-#include "uiinabox/uiBox.h"
 #include "cmdscreen/csScreen.h"
-#include "uiinabox/box/box.h"
+#include "uiinabox/uiinabox.h"
 
 #include "distinct_styles.h"
 
