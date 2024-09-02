@@ -23,20 +23,11 @@ csBoxType const CS_Pad = {
 
 csBox pad_cs( csPadding pad, csStyle const* style, csBox child )
 {
-   csPadding* newPad = alloc_one_( csPadding );
-   if ( newPad == NULL ) return (csBox){0};
-   else *newPad = pad;
+   csPadding* data = alloc_one_( csPadding );
+   if ( data == NULL ) return (csBox){0};
+   else *data = pad;
 
-   csBox* newChild = alloc_one_( csBox );
-   if ( newChild == NULL ) return (csBox){0};
-   else *newChild = child;
-
-   return (csBox){
-      .data=newPad,
-      .type=&CS_Pad,
-      .style=style,
-      .children=(csVarBoxes){ .s=1, .v=newChild }
-   };
+   return box_cs( data, &CS_Pad, style, children_cs_( child ) );
 }
 
 bool layout_pad_cs( csBox box[static 1],

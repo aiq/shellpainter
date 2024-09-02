@@ -68,24 +68,11 @@ csBox line_cs( cs_Axis axis,
                csStyle const* style,
                csBoxes children )
 {
-   csLine* newLine = alloc_one_( csLine );
-   if ( newLine == NULL ) return (csBox){0};
-   else *newLine = (csLine){ .axis=axis, .space=space };
+   csLine* data = alloc_one_( csLine );
+   if ( data == NULL ) return (csBox){0};
+   else *data = (csLine){ .axis=axis, .space=space };
 
-   csBox* newChildren = alloc_array_( children.s, csBox );
-   if ( newChildren == NULL ) return (csBox){0};
-
-   for_each_c_( i, csBox const*, child, children )
-   {
-      newChildren[i] = *child;
-   }
-
-   return (csBox){
-      .data=newLine,
-      .type=&CS_Line,
-      .style=style,
-      .children=(csVarBoxes){ .s=children.s, .v=newChildren }
-   };
+   return box_cs( data, &CS_Line, style, children );
 }
 
 bool layout_line_cs( csBox box[static 1],

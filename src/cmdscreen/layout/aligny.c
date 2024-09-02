@@ -53,20 +53,11 @@ csBoxType const CS_AlignY = {
 
 csBox aligny_cs( cs_AlignY align, csStyle const* style, csBox child )
 {
-   csAlignment* newAlign = alloc_one_( csAlignment );
-   if ( newAlign == NULL ) return (csBox){0};
-   else *newAlign = alignment_cs_( cs_Left, align );
+   csAlignment* data = alloc_one_( csAlignment );
+   if ( data == NULL ) return (csBox){0};
+   else *data = alignment_cs_( cs_Left, align );
 
-   csBox* newChild = alloc_one_( csBox );
-   if ( newChild == NULL ) return (csBox){0};
-   else *newChild = child;
-
-   return (csBox){
-      .data=newAlign,
-      .type=&CS_AlignY,
-      .style=style,
-      .children=(csVarBoxes){ .s=1, .v=newChild }
-   };
+   return box_cs( data, &CS_AlignY, style, children_cs_( child ) );
 }
 
 /*******************************************************************************

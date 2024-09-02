@@ -23,20 +23,11 @@ csBoxType const CS_Fixed = {
 
 csBox fixed_cs( csSize size, csStyle const* style, csBox child )
 {
-   csSize* newSize = alloc_one_( csSize );
-   if ( newSize == NULL ) return (csBox){0};
-   else *newSize = size;
+   csSize* data = alloc_one_( csSize );
+   if ( data == NULL ) return (csBox){0};
+   else *data = size;
 
-   csBox* newChild = alloc_one_( csBox );
-   if ( newChild == NULL ) return (csBox){0};
-   else *newChild = child;
-
-   return (csBox){
-      .data=newSize,
-      .type=&CS_Fixed,
-      .style=style,
-      .children=(csVarBoxes){ .s=1, .v=newChild }
-   };
+   return box_cs( data, &CS_Fixed, style, children_cs_( child ) );
 }
 
 bool layout_fixed_cs( csBox box[static 1],

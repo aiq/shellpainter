@@ -70,6 +70,11 @@ CMDSCREEN_API inline bool layout_box_cs( csBox box[static 1],
 
 *******************************************************************************/
 
+CMDSCREEN_API csBox box_cs( void* data,
+                            csBoxType const type[static 1],
+                            csStyle const* style,
+                            csBoxes children );
+
 CMDSCREEN_API void globalise_cs( csBox box[static 1] );
 
 CMDSCREEN_API bool dump_box_layout_cs( cChars path,

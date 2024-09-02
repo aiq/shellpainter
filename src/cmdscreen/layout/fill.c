@@ -42,20 +42,11 @@ csBoxType const CS_Fill = {
 
 csBox fill_cs( int16_t fill, csStyle const* style, csBox child )
 {
-   csBox* newChild = alloc_one_( csBox );
-   if ( newChild == NULL ) return (csBox){0};
-   else *newChild = child;
+   int16_t* data = alloc_one_( int16_t );
+   if ( data == NULL ) return (csBox){0};
+   else *data = fill;
 
-   int16_t* newFill = alloc_one_( csBox );
-   if ( newFill == NULL ) return (csBox){0};
-   else *newFill = fill;
-
-   return (csBox){
-      .data=newFill,
-      .type=&CS_Fill,
-      .style=style,
-      .children=(csVarBoxes){ .s=1, .v=newChild }
-   };
+   return box_cs( data, &CS_Fill, style, children_cs_( child ) );
 }
 
 extern inline int16_t get_fill_value_cs( csBox const box[static 1] );

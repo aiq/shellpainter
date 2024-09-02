@@ -43,20 +43,11 @@ csBox align_cs( csAlignment align,
                 csStyle const* style,
                 csBox child )
 {
-   csAlignment* newAlign = alloc_one_( csAlignment );
-   if ( newAlign == NULL ) return (csBox){0};
-   else *newAlign = align;
+   csAlignment* data = alloc_one_( csAlignment );
+   if ( data == NULL ) return (csBox){0};
+   else *data = align;
 
-   csBox* newChild = alloc_one_( csBox );
-   if ( newChild == NULL ) return (csBox){0};
-   else *newChild = child;
-
-   return (csBox){
-      .data=newAlign,
-      .type=&CS_Align,
-      .style=style,
-      .children=(csVarBoxes){ .s=1, .v=newChild }
-   };
+   return box_cs( data, &CS_Align, style, children_cs_( child ) );
 }
 
 bool layout_align_cs( csBox box[static 1],

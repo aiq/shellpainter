@@ -6,6 +6,7 @@
 #include "clingo/lang/error_type.h"
 #include "clingo/lang/func.h"
 #include "clingo/type/float.h"
+#include "cmdscreen/_/CS_MainScreen.h"
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -29,6 +30,27 @@ static void intl_as_global_box( csBox box[static 1], csPoint vec )
    {
       intl_as_global_box( child, point_cs( box->rect.x, box->rect.y ) );
    }
+}
+
+csBox box_cs( void* data,
+              csBoxType const type[static 1],
+              csStyle const* style,
+              csBoxes children )
+{
+   csBox* newChildren = alloc_array_( children.s, csBox );
+   if ( newChildren == NULL ) return (csBox){0};
+
+   for_each_c_( i, csBox const*, child, children )
+   {
+      newChildren[i] = *child;
+   }
+
+   return (csBox){
+      .data=data,
+      .type=type,
+      .style=style,
+      .children=(csVarBoxes){ .s=children.s, .v=newChildren }
+   };
 }
 
 void globalise_cs( csBox box[static 1] )
