@@ -6,7 +6,6 @@ set( SRC_FILES
 )
 aux_source_directory( ${SRC_DIR}/cmdscreen SRC_FILES )
 aux_source_directory( ${SRC_DIR}/cmdscreen/_ SRC_FILES )
-aux_source_directory( ${SRC_DIR}/uiinabox/box SRC_FILES )
 aux_source_directory( ${SRC_DIR}/uiinabox SRC_FILES )
 
 ################################################################################

@@ -1,6 +1,7 @@
-#include "uiinabox/box/none.h"
+#ifndef UIINABOX_FIXED_H
+#define UIINABOX_FIXED_H
 
-#include "uiinabox/box/_/util.h"
+#include "uiinabox/uiBox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -8,19 +9,7 @@
  type
 *******************************************************************************/
 
-static bool do_none( uiBox box[static 1],
-                     uiLimit limit,
-                     void const* i,
-                     cErrorStack es[static 1] )
-{
-   box->rect.w = 0;
-   box->rect.h = 0;
-   return true;
-}
-uiBoxType const UI_None = {
-   .desc = "none",
-   .layout = &do_none
-};
+UIINABOX_API extern uiBoxType const UI_Fixed;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -28,12 +17,11 @@ uiBoxType const UI_None = {
 
 *******************************************************************************/
 
-uiBox none_ui( void )
-{
-   return (uiBox){
-      .data=NULL,
-      .type=&UI_None,
-      .style=NULL,
-      .children=(csVarBoxes){ .s=0, .v=NULL }
-   };
-}
+UIINABOX_API uiBox fixed_ui( uiSize size, csStyle const* style, uiBox child );
+
+UIINABOX_API bool layout_fixed_ui( uiBox box[static 1],
+                                   uiLimit limit,
+                                   uiSize size,
+                                   cErrorStack es[static 1] );
+
+#endif

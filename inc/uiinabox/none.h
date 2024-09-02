@@ -1,5 +1,5 @@
-#ifndef UIINABOX_BOX_FIXED_H
-#define UIINABOX_BOX_FIXED_H
+#ifndef UIINABOX_NONE_H
+#define UIINABOX_NONE_H
 
 #include "uiinabox/uiBox.h"
 
@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern uiBoxType const UI_Fixed;
+UIINABOX_API extern uiBoxType const UI_None;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -17,11 +17,6 @@ UIINABOX_API extern uiBoxType const UI_Fixed;
 
 *******************************************************************************/
 
-UIINABOX_API uiBox fixed_ui( uiSize size, csStyle const* style, uiBox child );
-
-UIINABOX_API bool layout_fixed_ui( uiBox box[static 1],
-                                   uiLimit limit,
-                                   uiSize size,
-                                   cErrorStack es[static 1] );
+UIINABOX_API uiBox none_ui( void );
 
 #endif

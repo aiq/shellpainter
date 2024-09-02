@@ -1,9 +1,8 @@
-#ifndef UIINABOX_BOX_ALIGN_H
-#define UIINABOX_BOX_ALIGN_H
+#ifndef UIINABOX_ALIGN_H
+#define UIINABOX_ALIGN_H
 
-#include "uiinabox/uiBox.h"
-#include "uiinabox/box/alignx.h"
-#include "uiinabox/box/aligny.h"
+#include "uiinabox/alignx.h"
+#include "uiinabox/aligny.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

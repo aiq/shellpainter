@@ -1,19 +1,18 @@
-#include "uiinabox/box/alignx.h"
+#include "uiinabox/aligny.h"
 
 #include "cmdscreen/_/CS_MainScreen.h"
-#include "uiinabox/box/_/util.h"
-#include "uiinabox/box/align.h"
+#include "uiinabox/_/util.h"
 
 /*******************************************************************************
  
 *******************************************************************************/
 
-static bool layout_alignx( uiBox box[static 1],
+static bool layout_aligny( uiBox box[static 1],
                            uiLimit limit,
                            uiAlignment alignment,
                            cErrorStack es[static 1] )
 {
-   if ( not has_just_single_child( "alignx", box->children, es ) )
+   if ( not has_just_single_child( "aligny", box->children, es ) )
    {
       return false;
    }
@@ -25,8 +24,8 @@ static bool layout_alignx( uiBox box[static 1],
    {
       return false;
    }
-   box->rect.w = limit_width_ui_( limit );
-   box->rect.h = child->rect.h;
+   box->rect.w = child->rect.w;
+   box->rect.h = limit_height_ui_( limit );
 
    child->rect.x = alignx( alignment.x, box->rect.w, child->rect.w );
    child->rect.y = aligny( alignment.y, box->rect.h, child->rect.h );
@@ -40,10 +39,10 @@ static bool layout_alignx( uiBox box[static 1],
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_align_x, uiAlignment, layout_alignx, do_deref_c_ )
-uiBoxType const UI_AlignX = {
-   .desc = "alignx",
-   .layout = &do_align_x
+static LAYOUT_CS_( do_align_y, uiAlignment, layout_aligny, do_deref_c_ )
+uiBoxType const UI_AlignY = {
+   .desc = "aligny",
+   .layout = &do_align_y
 };
 
 /*******************************************************************************
@@ -52,19 +51,19 @@ uiBoxType const UI_AlignX = {
 
 *******************************************************************************/
 
-uiBox alignx_ui( ui_AlignX align, csStyle const* style, uiBox child )
+uiBox aligny_ui( ui_AlignY align, csStyle const* style, uiBox child )
 {
    uiAlignment* data = alloc_one_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
-   else *data = alignment_ui_( align, ui_Top );
+   else *data = alignment_ui_( ui_Left, align );
 
-   return box_ui( data, &UI_AlignX, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_AlignY, style, boxes_cs_( child ) );
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline uiBox left_ui( csStyle const* style, uiBox box );
-extern inline uiBox centerx_ui( csStyle const* style, uiBox box );
-extern inline uiBox right_ui( csStyle const* style, uiBox box );
+extern inline uiBox top_ui( csStyle const* style, uiBox box );
+extern inline uiBox centery_ui( csStyle const* style, uiBox box );
+extern inline uiBox bottom_ui( csStyle const* style, uiBox box );

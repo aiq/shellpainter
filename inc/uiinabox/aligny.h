@@ -1,5 +1,5 @@
-#ifndef UIINABOX_BOX_ALIGNY_H
-#define UIINABOX_BOX_ALIGNY_H
+#ifndef UIINABOX_ALIGNY_H
+#define UIINABOX_ALIGNY_H
 
 #include "uiinabox/uiBox.h"
 

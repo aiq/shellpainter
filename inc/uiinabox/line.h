@@ -1,5 +1,5 @@
-#ifndef UIINABOX_BOX_LINE_H
-#define UIINABOX_BOX_LINE_H
+#ifndef UIINABOX_LINE_H
+#define UIINABOX_LINE_H
 
 #include "uiinabox/uiBox.h"
 

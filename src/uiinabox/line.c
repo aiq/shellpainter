@@ -1,8 +1,8 @@
-#include "uiinabox/box/line.h"
+#include "uiinabox/line.h"
 
 #include "cmdscreen/_/CS_MainScreen.h"
-#include "uiinabox/box/_/util.h"
-#include "uiinabox/box/fill.h"
+#include "uiinabox/_/util.h"
+#include "uiinabox/fill.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
