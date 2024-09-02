@@ -1,4 +1,4 @@
-#include "cmdscreen/csPoint.h"
+#include "uiinabox/uiPoint.h"
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -6,4 +6,4 @@
 
 *******************************************************************************/
 
-extern inline csPoint point_cs( int16_t x, int16_t y );
+extern inline uiPoint point_ui( int16_t x, int16_t y );

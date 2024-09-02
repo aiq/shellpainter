@@ -1,8 +1,9 @@
 #ifndef CMDSCREEN_CSSIZE_H
 #define CMDSCREEN_CSSIZE_H
 
+#include "cmdscreen/apidecl.h"
 #include "uiinabox/ui_Axis.h"
-#include "cmdscreen/csPoint.h"
+#include "uiinabox/uiPoint.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

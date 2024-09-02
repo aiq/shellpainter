@@ -35,7 +35,7 @@ CMDSCREEN_API inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h 
    return (csRect){ .x=x, .y=y, .w=w, .h=h };
 }
 
-CMDSCREEN_API inline csRect make_rect_cs( csPoint topLeft, csSize size )
+CMDSCREEN_API inline csRect make_rect_cs( uiPoint topLeft, csSize size )
 {
    return (csRect){ .x=topLeft.x, .y=topLeft.y, .w=size.w, .h=size.h };
 }
@@ -49,24 +49,24 @@ CMDSCREEN_API inline csRect null_rect_cs( void )
 
 *******************************************************************************/
 
-CMDSCREEN_API inline csPoint top_left_corner_cs( csRect rect )
+CMDSCREEN_API inline uiPoint top_left_corner_cs( csRect rect )
 {
-   return point_cs( rect.x, rect.y );
+   return point_ui( rect.x, rect.y );
 }
 
-CMDSCREEN_API inline csPoint top_right_corner_cs( csRect rect )
+CMDSCREEN_API inline uiPoint top_right_corner_cs( csRect rect )
 {
-   return point_cs( rect.x + ( rect.w - 1 ), rect.y );
+   return point_ui( rect.x + ( rect.w - 1 ), rect.y );
 }
 
-CMDSCREEN_API inline csPoint bottom_left_corner_cs( csRect rect )
+CMDSCREEN_API inline uiPoint bottom_left_corner_cs( csRect rect )
 {
-   return point_cs( rect.x, rect.y + ( rect.h - 1 ) );
+   return point_ui( rect.x, rect.y + ( rect.h - 1 ) );
 }
 
-CMDSCREEN_API inline csPoint bottom_right_corner_cs( csRect rect )
+CMDSCREEN_API inline uiPoint bottom_right_corner_cs( csRect rect )
 {
-   return point_cs( rect.x + ( rect.w - 1 ), rect.y + ( rect.h - 1 ) );
+   return point_ui( rect.x + ( rect.w - 1 ), rect.y + ( rect.h - 1 ) );
 }
 
 CMDSCREEN_API inline csSize rect_size_cs( csRect rect )

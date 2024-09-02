@@ -1,7 +1,7 @@
-#ifndef CMDSCREEN_CSPOINT_H
-#define CMDSCREEN_CSPOINT_H
+#ifndef UIINABOX_UIPOINT_H
+#define UIINABOX_UIPOINT_H
 
-#include "cmdscreen/apidecl.h"
+#include "uiinabox/apidecl.h"
 #include "clingo/type/int16.h"
 #include "clingo/io/cRecorder.h"
 #include "clingo/io/cTape.h"
@@ -12,12 +12,12 @@
  type
 *******************************************************************************/
 
-struct csPoint
+struct uiPoint
 {
    int16_t x;
    int16_t y;
 };
-typedef struct csPoint csPoint;
+typedef struct uiPoint uiPoint;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -25,9 +25,9 @@ typedef struct csPoint csPoint;
 
 *******************************************************************************/
 
-CMDSCREEN_API inline csPoint point_cs( int16_t x, int16_t y )
+UIINABOX_API inline uiPoint point_ui( int16_t x, int16_t y )
 {
-   return (csPoint){ .x=x, .y=y };
+   return (uiPoint){ .x=x, .y=y };
 }
 
 #endif

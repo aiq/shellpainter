@@ -18,7 +18,7 @@ extern inline bool layout_box_cs( csBox box[static 1],
                                   csLimit limit,
                                   cErrorStack es[static 1] );
 
-static void intl_as_global_box( csBox box[static 1], csPoint vec )
+static void intl_as_global_box( csBox box[static 1], uiPoint vec )
 {
    if ( has_null_size_cs( box->rect ) )
    {
@@ -28,7 +28,7 @@ static void intl_as_global_box( csBox box[static 1], csPoint vec )
    box->rect.y += vec.y;
    each_c_( csBox*, child, box->children )
    {
-      intl_as_global_box( child, point_cs( box->rect.x, box->rect.y ) );
+      intl_as_global_box( child, point_ui( box->rect.x, box->rect.y ) );
    }
 }
 
@@ -55,7 +55,7 @@ csBox box_cs( void* data,
 
 void globalise_cs( csBox box[static 1] )
 {
-   intl_as_global_box( box, point_cs( 0, 0 ) );
+   intl_as_global_box( box, point_ui( 0, 0 ) );
 }
 
 /******************************************************************************/
@@ -64,8 +64,8 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
                                   csStyle const* style,
                                   csBox const box[static 1] )
 {
-   csPoint a = top_left_corner_cs( box->rect );
-   csPoint b = bottom_right_corner_cs( box->rect );
+   uiPoint a = top_left_corner_cs( box->rect );
+   uiPoint b = bottom_right_corner_cs( box->rect );
    if ( not has_null_size_cs( box->rect ) )
    {
       if ( box->style != NULL )

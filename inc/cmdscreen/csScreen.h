@@ -40,9 +40,9 @@ CMDSCREEN_API inline void remove_screen_cs( csScreen* scr )
 
 CMDSCREEN_API inline csSize screen_size_cs( csScreen* scr )
 {
-   csPoint tole;
+   uiPoint tole;
    getbegyx( scr, tole.y, tole.x );
-   csPoint bori;
+   uiPoint bori;
    getmaxyx( scr, bori.y, bori.x );
    return size_cs( bori.x - tole.x, bori.y - tole.y );
 }

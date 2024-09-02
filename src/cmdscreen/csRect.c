@@ -11,7 +11,7 @@
 
 extern inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h );
 
-extern inline csRect make_rect_cs( csPoint topLeft, csSize size );
+extern inline csRect make_rect_cs( uiPoint topLeft, csSize size );
 
 extern inline csRect null_rect_cs( void );
 
@@ -19,13 +19,13 @@ extern inline csRect null_rect_cs( void );
 
 *******************************************************************************/
 
-extern inline csPoint top_left_corner_cs( csRect rect );
+extern inline uiPoint top_left_corner_cs( csRect rect );
 
-extern inline csPoint top_right_corner_cs( csRect rect );
+extern inline uiPoint top_right_corner_cs( csRect rect );
 
-extern inline csPoint bottom_left_corner_cs( csRect rect );
+extern inline uiPoint bottom_left_corner_cs( csRect rect );
 
-extern inline csPoint bottom_right_corner_cs( csRect rect );
+extern inline uiPoint bottom_right_corner_cs( csRect rect );
 
 extern inline csSize rect_size_cs( csRect rect );
 
