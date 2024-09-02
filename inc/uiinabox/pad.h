@@ -49,7 +49,7 @@ UIINABOX_API uiLimit pad_limit_ui( uiLimit limit, uiPadding pad );
 *******************************************************************************/
 
 UIINABOX_API uiBox pad_ui( uiPadding pad,
-                           csStyle const* style,
+                           uiStyle const* style,
                            uiBox child );
 
 UIINABOX_API bool layout_pad_ui( uiBox box[static 1],

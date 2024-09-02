@@ -4,7 +4,6 @@
 #include "clingo/color/cP3Builder.h"
 #include "clingo/lang/algo.h"
 #include "uiinabox/uiLimit.h"
-#include "cmdscreen/csStyle.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -44,12 +43,14 @@ struct uiBoxType
 };
 typedef struct uiBoxType uiBoxType;
 
+typedef void uiStyle;
+
 struct uiBox
 {
    uiRect rect;
    void* data;
    uiBoxType const* type;
-   csStyle const* style;
+   uiStyle const* style;
    csVarBoxes children;
 };
 
@@ -57,8 +58,8 @@ struct uiBox
    (uiBoxes)slice_c_( uiBox, __VA_ARGS__ )
 
 UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
-                                         uiLimit limit,
-                                         cErrorStack es[static 1] )
+                                        uiLimit limit,
+                                        cErrorStack es[static 1] )
 {
    must_exist_c_( box->type );
    return box->type->layout( box, limit, box->data, es );
@@ -70,7 +71,7 @@ UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
 
 UIINABOX_API uiBox box_ui( void* data,
                             uiBoxType const type[static 1],
-                            csStyle const* style,
+                            uiStyle const* style,
                             uiBoxes children );
 
 UIINABOX_API void globalise_ui( uiBox box[static 1] );

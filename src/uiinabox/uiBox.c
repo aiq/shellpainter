@@ -34,7 +34,7 @@ static void intl_as_global_box( uiBox box[static 1], uiPoint vec )
 
 uiBox box_ui( void* data,
               uiBoxType const type[static 1],
-              csStyle const* style,
+              uiStyle const* style,
               uiBoxes children )
 {
    uiBox* newChildren = alloc_array_( children.s, uiBox );
@@ -61,21 +61,22 @@ void globalise_ui( uiBox box[static 1] )
 /******************************************************************************/
 
 static bool intl_dump_box_layout( cVarRgb24Image image,
-                                  csStyle const* style,
+                                  uiStyle const* style,
                                   uiBox const box[static 1] )
 {
+   cRgb24 const* color = style;
    uiPoint a = top_left_corner_ui( box->rect );
    uiPoint b = bottom_right_corner_ui( box->rect );
    if ( not has_null_size_ui( box->rect ) )
    {
       if ( box->style != NULL )
       {
-         style = box->style;
+         color = box->style;
       }
       if ( not fill_rgb24_rect_c( image,
                                   pixel_c_( a.x, a.y ),
                                   pixel_c_( b.x, b.y ),
-                                  style->back ) )
+                                  *color ) )
       {
          return false;
       }
@@ -83,7 +84,7 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
 
    each_c_( uiBox const*, child, box->children )
    {
-      if ( not intl_dump_box_layout( image, style, child ) )
+      if ( not intl_dump_box_layout( image, color, child ) )
       {
          return false;
       }
@@ -98,8 +99,9 @@ bool dump_box_layout_ui( cChars path,
 {
    cVarRgb24Image image = heap_var_rgb24_image_c_( box->rect.w, box->rect.h );
    
+   cRgb24 defaultColor = rgb24_c_( 0, 0, 0 );
    bool res = false;
-   if ( intl_dump_box_layout( image, &CS_DefaultStyle, box ) )
+   if ( intl_dump_box_layout( image, &defaultColor, box ) )
    {
       cRgb24Image tmp = image_copy_c_( image );
       res = write_p3_file_c( path, tmp, es );

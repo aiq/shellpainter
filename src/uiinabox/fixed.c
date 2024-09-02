@@ -21,7 +21,7 @@ uiBoxType const UI_Fixed = {
 
 *******************************************************************************/
 
-uiBox fixed_ui( uiSize size, csStyle const* style, uiBox child )
+uiBox fixed_ui( uiSize size, uiStyle const* style, uiBox child )
 {
    uiSize* data = alloc_one_( uiSize );
    if ( data == NULL ) return (uiBox){0};

@@ -51,7 +51,7 @@ uiBoxType const UI_AlignY = {
 
 *******************************************************************************/
 
-uiBox aligny_ui( ui_AlignY align, csStyle const* style, uiBox child )
+uiBox aligny_ui( ui_AlignY align, uiStyle const* style, uiBox child )
 {
    uiAlignment* data = alloc_one_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
@@ -64,6 +64,6 @@ uiBox aligny_ui( ui_AlignY align, csStyle const* style, uiBox child )
 
 *******************************************************************************/
 
-extern inline uiBox top_ui( csStyle const* style, uiBox box );
-extern inline uiBox centery_ui( csStyle const* style, uiBox box );
-extern inline uiBox bottom_ui( csStyle const* style, uiBox box );
+extern inline uiBox top_ui( uiStyle const* style, uiBox box );
+extern inline uiBox centery_ui( uiStyle const* style, uiBox box );
+extern inline uiBox bottom_ui( uiStyle const* style, uiBox box );

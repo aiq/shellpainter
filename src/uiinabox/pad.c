@@ -54,7 +54,7 @@ uiLimit pad_limit_ui( uiLimit limit, uiPadding pad )
 
 *******************************************************************************/
 
-uiBox pad_ui( uiPadding pad, csStyle const* style, uiBox child )
+uiBox pad_ui( uiPadding pad, uiStyle const* style, uiBox child )
 {
    uiPadding* data = alloc_one_( uiPadding );
    if ( data == NULL ) return (uiBox){0};

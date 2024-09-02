@@ -17,7 +17,7 @@ UIINABOX_API extern uiBoxType const UI_Fixed;
 
 *******************************************************************************/
 
-UIINABOX_API uiBox fixed_ui( uiSize size, csStyle const* style, uiBox child );
+UIINABOX_API uiBox fixed_ui( uiSize size, uiStyle const* style, uiBox child );
 
 UIINABOX_API bool layout_fixed_ui( uiBox box[static 1],
                                    uiLimit limit,

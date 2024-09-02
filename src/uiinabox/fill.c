@@ -40,7 +40,7 @@ uiBoxType const UI_Fill = {
 
 *******************************************************************************/
 
-uiBox fill_ui( int16_t fill, csStyle const* style, uiBox child )
+uiBox fill_ui( int16_t fill, uiStyle const* style, uiBox child )
 {
    int16_t* data = alloc_one_( int16_t );
    if ( data == NULL ) return (uiBox){0};

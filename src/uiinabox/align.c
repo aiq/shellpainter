@@ -47,26 +47,26 @@ char const* stringify_alignment_ui( uiAlignment alignment )
 
 *******************************************************************************/
 
-extern inline uiBox top_left_ui( csStyle const* style, uiBox box );
-extern inline uiBox top_center_ui( csStyle const* style, uiBox box );
-extern inline uiBox top_right_ui( csStyle const* style, uiBox box );
+extern inline uiBox top_left_ui( uiStyle const* style, uiBox box );
+extern inline uiBox top_center_ui( uiStyle const* style, uiBox box );
+extern inline uiBox top_right_ui( uiStyle const* style, uiBox box );
 
 /******************************************************************************/
 
-extern inline uiBox center_left_ui( csStyle const* style, uiBox box );
-extern inline uiBox center_ui( csStyle const* style, uiBox box );
-extern inline uiBox center_right_ui( csStyle const* style, uiBox box );
+extern inline uiBox center_left_ui( uiStyle const* style, uiBox box );
+extern inline uiBox center_ui( uiStyle const* style, uiBox box );
+extern inline uiBox center_right_ui( uiStyle const* style, uiBox box );
 
 /******************************************************************************/
 
-extern inline uiBox bottom_left_ui( csStyle const* style, uiBox box );
-extern inline uiBox bottom_center_ui( csStyle const* style, uiBox box );
-extern inline uiBox bottom_right_ui( csStyle const* style, uiBox box );
+extern inline uiBox bottom_left_ui( uiStyle const* style, uiBox box );
+extern inline uiBox bottom_center_ui( uiStyle const* style, uiBox box );
+extern inline uiBox bottom_right_ui( uiStyle const* style, uiBox box );
 
 /******************************************************************************/
 
 uiBox align_ui( uiAlignment align,
-                csStyle const* style,
+                uiStyle const* style,
                 uiBox child )
 {
    uiAlignment* data = alloc_one_( uiAlignment );

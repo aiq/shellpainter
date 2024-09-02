@@ -10,10 +10,10 @@ int main( void )
    init_tap_c_();
    cmdscreen_cs();
 
-   csStyle const tealStyle = TEAL_;
-   csStyle const maroonStyle = MAROON_;
-   csStyle const greyStyle = GREY_;
-   csStyle const navyStyle = NAVY_;
+   cRgb24 const tealStyle = DISTINCT_TEAL_;
+   cRgb24 const maroonStyle = DISTINCT_MAROON_;
+   cRgb24 const greyStyle = DISTINCT_GREY_;
+   cRgb24 const navyStyle = DISTINCT_NAVY_;
 
    uiBox root = col_ui(
       0,
