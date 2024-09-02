@@ -27,11 +27,11 @@ csLimit pad_limit_cs( csLimit limit, csPadding pad )
 {
    int16_t const horizontal = pad.left + pad.right;
    int16_t const vertical = pad.top + pad.bottom;
-   csSize const min = (csSize){
+   uiSize const min = (uiSize){
       .w=imax16_c( 0, limit.min.w - horizontal ),
       .h=imax16_c( 0, limit.min.h - vertical )
    };
-   csSize const max = (csSize){
+   uiSize const max = (uiSize){
       .w=imax16_c( min.w, limit.max.w - horizontal ),
       .h=imax16_c( min.h, limit.max.h - vertical )
    };

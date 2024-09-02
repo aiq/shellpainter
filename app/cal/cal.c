@@ -11,9 +11,9 @@ int main( int argc, char* argv[] )
    box( dlg1, 0, 0 );
    mvwaddstr( dlg1, 1, 1, "test with to much text" );
 
-   csSize dlg1Size = screen_size_cs( dlg1 );
+   uiSize dlg1Size = screen_size_ui( dlg1 );
    cRecorder* rec = &recorder_c_( 256 );
-   write_size_cs( rec, dlg1Size, "" );
+   write_size_ui( rec, dlg1Size, "" );
    mvwaddstr( main, 1, 1, turn_into_cstr_c( rec ) );
 
    mvwprintw( main, 2, 1, "has colors: %d, COLORS: %d COLOR_PAIRS %d", has_colors(), COLORS, COLOR_PAIRS );

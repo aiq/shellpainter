@@ -35,13 +35,13 @@ extern inline int16_t limit_height_cs( csLimit limit, int16_t h );
 
 extern inline int16_t limit_width_cs( csLimit limit, int16_t w );
 
-extern inline csSize limit_size_cs( csLimit limit, csSize size );
+extern inline uiSize limit_size_ui( csLimit limit, uiSize size );
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline csRect set_rect_size_cs( csRect rect, csSize size );
+extern inline csRect set_rect_size_ui( csRect rect, uiSize size );
 
 /*******************************************************************************
 

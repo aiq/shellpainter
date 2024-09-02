@@ -31,14 +31,14 @@ static csLimit limit_for_fill( csLimit limit, ui_Axis axis, int16_t max )
 {
    if ( axis == ui_Horizontal )
    {
-      limit.max = (csSize){
+      limit.max = (uiSize){
          .w=imax16_c( limit.min.w, max ),
          .h=limit.max.h
       };
    }
    else  // ui_Vertical
    {
-      limit.max = (csSize){
+      limit.max = (uiSize){
          .w=limit.max.w,
          .h=imax16_c( limit.min.h, max )
       };

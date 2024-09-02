@@ -28,7 +28,7 @@ int main( void )
       &tealStyle,
       boxes_cs_(
          fixed_cs(
-            size_cs( 10, 4 ),
+            size_ui( 10, 4 ),
             &maroonStyle,
             none_cs()
          ),
@@ -36,7 +36,7 @@ int main( void )
             2,
             center_cs_(
                fixed_cs(
-                  size_cs( 4, 2 ),
+                  size_ui( 4, 2 ),
                   &navyStyle,
                   none_cs()
                )
@@ -44,7 +44,7 @@ int main( void )
          ),
          right_cs_(
             fixed_cs(
-               size_cs( 3, 3 ),
+               size_ui( 3, 3 ),
                &maroonStyle,
                none_cs()
             )
@@ -52,7 +52,7 @@ int main( void )
          fill_cs_(
             5,
             fixed_cs(
-               size_cs( 1, 1 ),
+               size_ui( 1, 1 ),
                &navyStyle,
                none_cs()
             )

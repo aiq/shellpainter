@@ -29,7 +29,7 @@ int main( void )
       boxes_cs_(
          top_cs_(
             fixed_cs( 
-               size_cs( 3, 3 ),
+               size_ui( 3, 3 ),
                &maroonStyle,
                none_cs()
             )
@@ -38,7 +38,7 @@ int main( void )
             1,
             bottom_right_cs_( 
                fixed_cs(
-                  size_cs( 1, 1 ),
+                  size_ui( 1, 1 ),
                   &greyStyle,
                   none_cs()
                )
@@ -46,7 +46,7 @@ int main( void )
          ),
          centery_cs_(
             fixed_cs( 
-               size_cs( 5, 5 ),
+               size_ui( 5, 5 ),
                &maroonStyle,
                none_cs()
             )
@@ -55,7 +55,7 @@ int main( void )
             1,
             bottom_center_cs_( 
                fixed_cs(
-                  size_cs( 1, 1 ),
+                  size_ui( 1, 1 ),
                   &greyStyle,
                   none_cs()
                )
@@ -63,7 +63,7 @@ int main( void )
          ),
          bottom_cs_(
             fixed_cs(
-               size_cs( 1, 1 ),
+               size_ui( 1, 1 ),
                &maroonStyle,
                none_cs()
             )
@@ -71,13 +71,13 @@ int main( void )
          fill_cs_(
             2,
             fixed_cs(
-               size_cs( 1, 1 ),
+               size_ui( 1, 1 ),
                &greyStyle,
                none_cs()
             )
          ),
          fixed_cs(
-            size_cs( 4, 2 ),
+            size_ui( 4, 2 ),
             &maroonStyle,
             none_cs()
          )

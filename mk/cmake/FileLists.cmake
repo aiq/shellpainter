@@ -19,7 +19,7 @@ aux_source_directory( ${TEST_DIR}/cmdscreen TEST_FILES )
 aux_source_directory( ${TEST_DIR}/cmdscreen/csLayout TEST_FILES )
 aux_source_directory( ${TEST_DIR}/cmdscreen/csLimit TEST_FILES )
 aux_source_directory( ${TEST_DIR}/cmdscreen/csPadding TEST_FILES )
-aux_source_directory( ${TEST_DIR}/cmdscreen/csSize TEST_FILES )
+aux_source_directory( ${TEST_DIR}/uiinabox/uiSize TEST_FILES )
 
 ################################################################################
 # APP_FILES

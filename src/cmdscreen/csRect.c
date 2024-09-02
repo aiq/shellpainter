@@ -11,7 +11,7 @@
 
 extern inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h );
 
-extern inline csRect make_rect_cs( uiPoint topLeft, csSize size );
+extern inline csRect make_rect_cs( uiPoint topLeft, uiSize size );
 
 extern inline csRect null_rect_cs( void );
 
@@ -27,7 +27,7 @@ extern inline uiPoint bottom_left_corner_cs( csRect rect );
 
 extern inline uiPoint bottom_right_corner_cs( csRect rect );
 
-extern inline csSize rect_size_cs( csRect rect );
+extern inline uiSize rect_size_ui( csRect rect );
 
 /*******************************************************************************
 
@@ -37,7 +37,7 @@ extern inline bool eq_rect_cs( csRect rect, csRect oth );
 
 extern inline bool is_null_rect_cs( csRect rect );
 
-extern inline bool has_null_size_cs( csRect rect );
+extern inline bool has_null_size_ui( csRect rect );
 
 bool write_rect_cs( cRecorder rec[static 1],
                                   csRect rect,

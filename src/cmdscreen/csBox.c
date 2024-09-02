@@ -20,7 +20,7 @@ extern inline bool layout_box_cs( csBox box[static 1],
 
 static void intl_as_global_box( csBox box[static 1], uiPoint vec )
 {
-   if ( has_null_size_cs( box->rect ) )
+   if ( has_null_size_ui( box->rect ) )
    {
       return;
    }
@@ -66,7 +66,7 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
 {
    uiPoint a = top_left_corner_cs( box->rect );
    uiPoint b = bottom_right_corner_cs( box->rect );
-   if ( not has_null_size_cs( box->rect ) )
+   if ( not has_null_size_ui( box->rect ) )
    {
       if ( box->style != NULL )
       {

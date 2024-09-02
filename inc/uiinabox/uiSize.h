@@ -1,7 +1,6 @@
-#ifndef CMDSCREEN_CSSIZE_H
-#define CMDSCREEN_CSSIZE_H
+#ifndef UIINABOX_UISIZE_H
+#define UIINABOX_UISIZE_H
 
-#include "cmdscreen/apidecl.h"
 #include "uiinabox/ui_Axis.h"
 #include "uiinabox/uiPoint.h"
 
@@ -11,12 +10,12 @@
  type
 *******************************************************************************/
 
-struct csSize
+struct uiSize
 {
    int16_t w;
    int16_t h;
 };
-typedef struct csSize csSize;
+typedef struct uiSize uiSize;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -24,38 +23,38 @@ typedef struct csSize csSize;
 
 *******************************************************************************/
 
-CMDSCREEN_API inline csSize size_cs( int16_t w, int16_t h )
+UIINABOX_API inline uiSize size_ui( int16_t w, int16_t h )
 {
-   return (csSize){ .w=w, .h=h };
+   return (uiSize){ .w=w, .h=h };
 }
 
-CMDSCREEN_API
-inline csSize axis_size_cs( ui_Axis axis, int16_t main, int16_t cross )
+UIINABOX_API
+inline uiSize axis_size_ui( ui_Axis axis, int16_t main, int16_t cross )
 {
-   return ( axis == ui_Horizontal ) ? size_cs( main, cross )
-                                    : size_cs( cross, main );
+   return ( axis == ui_Horizontal ) ? size_ui( main, cross )
+                                    : size_ui( cross, main );
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-CMDSCREEN_API inline bool eq_size_cs( csSize size, csSize oth )
+UIINABOX_API inline bool eq_size_ui( uiSize size, uiSize oth )
 {
    return size.w == oth.w and size.h == oth.h;
 }
 
-CMDSCREEN_API inline bool is_null_size_cs( csSize size )
+UIINABOX_API inline bool is_null_size_ui( uiSize size )
 {
    return size.w == 0 and size.h == 0;
 }
 
-CMDSCREEN_API bool write_size_cs( cRecorder rec[static 1],
-                                  csSize size,
-                                  char const fmt[static 1] );
+UIINABOX_API bool write_size_ui( cRecorder rec[static 1],
+                                 uiSize size,
+                                 char const fmt[static 1] );
 
 #define size_tape_cs_( Size )                                                  \
-   size_tape_cs( ref_c_( csSize, (Size) ) )
-CMDSCREEN_API cTape size_tape_cs( csSize const* size );
+   size_tape_cs( ref_c_( uiSize, (Size) ) )
+UIINABOX_API cTape size_tape_cs( uiSize const* size );
 
 #endif

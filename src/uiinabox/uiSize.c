@@ -1,4 +1,4 @@
-#include "cmdscreen/csSize.h"
+#include "uiinabox/uiSize.h"
 
 #include "clingo/lang/algo.h"
 #include "clingo/io/write.h"
@@ -9,20 +9,20 @@
 
 *******************************************************************************/
 
-extern inline csSize size_cs( int16_t w, int16_t h );
+extern inline uiSize size_ui( int16_t w, int16_t h );
 
-extern inline csSize axis_size_cs( ui_Axis axis, int16_t main, int16_t cross );
+extern inline uiSize axis_size_ui( ui_Axis axis, int16_t main, int16_t cross );
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline bool eq_size_cs( csSize size, csSize oth );
+extern inline bool eq_size_ui( uiSize size, uiSize oth );
 
-extern inline bool is_null_size_cs( csSize size );
+extern inline bool is_null_size_ui( uiSize size );
 
-bool write_size_cs( cRecorder rec[static 1],
-                    csSize size,
+bool write_size_ui( cRecorder rec[static 1],
+                    uiSize size,
                     char const fmt[static 1] )
 {
    cChars format = c_c( fmt );
@@ -42,8 +42,8 @@ bool write_size_cs( cRecorder rec[static 1],
    return set_recorder_error_c( rec, c_InvalidWriteFormat );
 }
 
-static TAPE_C_( tape_func, csSize, write_size_cs, do_deref_c_ )
-cTape size_tape_cs( csSize const* size )
+static TAPE_C_( tape_func, uiSize, write_size_ui, do_deref_c_ )
+cTape size_tape_cs( uiSize const* size )
 {
    return (cTape){ .i=size, .f=tape_func };
 }

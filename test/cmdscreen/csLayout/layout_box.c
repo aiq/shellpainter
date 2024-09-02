@@ -26,12 +26,12 @@ int main( void )
       center_cs(
          &maroonStyle,
          fixed_cs(
-            size_cs( 5, 5 ),
+            size_ui( 5, 5 ),
             &greyStyle,
             center_cs(
                &greyStyle,
                fixed_cs(
-                  size_cs( 3, 3 ),
+                  size_ui( 3, 3 ),
                   &navyStyle,
                   none_cs()
                )

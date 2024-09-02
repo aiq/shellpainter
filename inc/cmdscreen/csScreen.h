@@ -38,13 +38,13 @@ CMDSCREEN_API inline void remove_screen_cs( csScreen* scr )
    delwin( scr );
 }
 
-CMDSCREEN_API inline csSize screen_size_cs( csScreen* scr )
+CMDSCREEN_API inline uiSize screen_size_ui( csScreen* scr )
 {
    uiPoint tole;
    getbegyx( scr, tole.y, tole.x );
    uiPoint bori;
    getmaxyx( scr, bori.y, bori.x );
-   return size_cs( bori.x - tole.x, bori.y - tole.y );
+   return size_ui( bori.x - tole.x, bori.y - tole.y );
 }
 
 #endif

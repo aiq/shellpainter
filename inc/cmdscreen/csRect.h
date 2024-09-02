@@ -1,7 +1,8 @@
 #ifndef CMDSCREEN_CSRECT_H
 #define CMDSCREEN_CSRECT_H
 
-#include "cmdscreen/csSize.h"
+#include "cmdscreen/apidecl.h"
+#include "uiinabox/uiSize.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -35,7 +36,7 @@ CMDSCREEN_API inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h 
    return (csRect){ .x=x, .y=y, .w=w, .h=h };
 }
 
-CMDSCREEN_API inline csRect make_rect_cs( uiPoint topLeft, csSize size )
+CMDSCREEN_API inline csRect make_rect_cs( uiPoint topLeft, uiSize size )
 {
    return (csRect){ .x=topLeft.x, .y=topLeft.y, .w=size.w, .h=size.h };
 }
@@ -69,9 +70,9 @@ CMDSCREEN_API inline uiPoint bottom_right_corner_cs( csRect rect )
    return point_ui( rect.x + ( rect.w - 1 ), rect.y + ( rect.h - 1 ) );
 }
 
-CMDSCREEN_API inline csSize rect_size_cs( csRect rect )
+CMDSCREEN_API inline uiSize rect_size_ui( csRect rect )
 {
-   return size_cs( rect.w, rect.h );
+   return size_ui( rect.w, rect.h );
 }
 
 /*******************************************************************************
@@ -91,9 +92,9 @@ CMDSCREEN_API inline bool is_null_rect_cs( csRect rect )
    return eq_rect_cs( rect, null_rect_cs() );
 }
 
-CMDSCREEN_API inline bool has_null_size_cs( csRect rect )
+CMDSCREEN_API inline bool has_null_size_ui( csRect rect )
 {
-   return is_null_size_cs( rect_size_cs( rect ) );
+   return is_null_size_ui( rect_size_ui( rect ) );
 }
 
 CMDSCREEN_API bool write_rect_cs( cRecorder rec[static 1],
