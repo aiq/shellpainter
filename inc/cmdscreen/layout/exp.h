@@ -19,6 +19,6 @@ CMDSCREEN_API extern csBoxType const CS_Exp;
 
 #define exp_cs_( Rect, ... )                                                   \
     exp_cs( (Rect), boxes_cs_( __VA_ARGS__ ) )
-CMDSCREEN_API csBox exp_cs( csRect rect, csBoxes children );
+CMDSCREEN_API csBox exp_cs( uiRect rect, csBoxes children );
 
 #endif

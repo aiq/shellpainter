@@ -64,8 +64,8 @@ static bool intl_dump_box_layout( cVarRgb24Image image,
                                   csStyle const* style,
                                   csBox const box[static 1] )
 {
-   uiPoint a = top_left_corner_cs( box->rect );
-   uiPoint b = bottom_right_corner_cs( box->rect );
+   uiPoint a = top_left_corner_ui( box->rect );
+   uiPoint b = bottom_right_corner_ui( box->rect );
    if ( not has_null_size_ui( box->rect ) )
    {
       if ( box->style != NULL )
@@ -116,11 +116,11 @@ static bool intl_record_box_diff( cRecorder rec[static 1],
                                   csBox const box[static 1],
                                   csBox const oth[static 1] )
 {
-   if ( not eq_rect_cs( box->rect, oth->rect ) )
+   if ( not eq_rect_ui( box->rect, oth->rect ) )
    {
       return jotln_c_( rec, "~= ", route, " different rect values: ",
-                            "expected ", rect_tape_cs_( box->rect ),
-                            ", got ", rect_tape_cs_( oth->rect ) );
+                            "expected ", rect_tape_ui_( box->rect ),
+                            ", got ", rect_tape_ui_( oth->rect ) );
    }
 
    if ( box->children.s != oth->children.s )

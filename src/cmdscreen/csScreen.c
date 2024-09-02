@@ -30,7 +30,7 @@ void cleanup_cmdscreen_cs()
 
 *******************************************************************************/
 
-extern inline csScreen* new_screen_cs( csRect rect );
+extern inline csScreen* new_screen_cs( uiRect rect );
 
 extern inline uiSize screen_size_ui( csScreen* scr );
 

@@ -28,8 +28,8 @@ int main( void )
 
       expect_block_c_( i, eq_size_ui( res, t->exp ) )
       {
-         tap_exp_line_c_( "{t}", size_tape_cs_( t->exp ) );
-         tap_got_line_c_( "{t}", size_tape_cs_( res ) );
+         tap_exp_line_c_( "{t}", size_tape_ui_( t->exp ) );
+         tap_got_line_c_( "{t}", size_tape_ui_( res ) );
       }
    }
 

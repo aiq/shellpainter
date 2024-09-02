@@ -1,7 +1,6 @@
-#ifndef CMDSCREEN_CSRECT_H
-#define CMDSCREEN_CSRECT_H
+#ifndef UIINABOX_UIRECT_H
+#define UIINABOX_UIRECT_H
 
-#include "cmdscreen/apidecl.h"
 #include "uiinabox/uiSize.h"
 
 /*******************************************************************************
@@ -10,20 +9,14 @@
  type
 *******************************************************************************/
 
-struct csRect
+struct uiRect
 {
    int16_t x;
    int16_t y;
    int16_t w;
    int16_t h;
 };
-typedef struct csRect csRect;
-
-SLICES_C_(
-   csRect,        // Type
-   csRectSlice,   // SliceType
-   csVarRectSlice // VarSliceType
-)
+typedef struct uiRect uiRect;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -31,46 +24,46 @@ SLICES_C_(
 
 *******************************************************************************/
 
-CMDSCREEN_API inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h )
+UIINABOX_API inline uiRect rect_ui( int16_t x, int16_t y, int16_t w, int16_t h )
 {
-   return (csRect){ .x=x, .y=y, .w=w, .h=h };
+   return (uiRect){ .x=x, .y=y, .w=w, .h=h };
 }
 
-CMDSCREEN_API inline csRect make_rect_cs( uiPoint topLeft, uiSize size )
+UIINABOX_API inline uiRect make_rect_ui( uiPoint topLeft, uiSize size )
 {
-   return (csRect){ .x=topLeft.x, .y=topLeft.y, .w=size.w, .h=size.h };
+   return (uiRect){ .x=topLeft.x, .y=topLeft.y, .w=size.w, .h=size.h };
 }
 
-CMDSCREEN_API inline csRect null_rect_cs( void )
+UIINABOX_API inline uiRect null_rect_ui( void )
 {
-   return (csRect){ .x=0, .y=0, .w=0, .h=0 };
+   return (uiRect){ .x=0, .y=0, .w=0, .h=0 };
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-CMDSCREEN_API inline uiPoint top_left_corner_cs( csRect rect )
+UIINABOX_API inline uiPoint top_left_corner_ui( uiRect rect )
 {
    return point_ui( rect.x, rect.y );
 }
 
-CMDSCREEN_API inline uiPoint top_right_corner_cs( csRect rect )
+UIINABOX_API inline uiPoint top_right_corner_ui( uiRect rect )
 {
    return point_ui( rect.x + ( rect.w - 1 ), rect.y );
 }
 
-CMDSCREEN_API inline uiPoint bottom_left_corner_cs( csRect rect )
+UIINABOX_API inline uiPoint bottom_left_corner_ui( uiRect rect )
 {
    return point_ui( rect.x, rect.y + ( rect.h - 1 ) );
 }
 
-CMDSCREEN_API inline uiPoint bottom_right_corner_cs( csRect rect )
+UIINABOX_API inline uiPoint bottom_right_corner_ui( uiRect rect )
 {
    return point_ui( rect.x + ( rect.w - 1 ), rect.y + ( rect.h - 1 ) );
 }
 
-CMDSCREEN_API inline uiSize rect_size_ui( csRect rect )
+UIINABOX_API inline uiSize rect_size_ui( uiRect rect )
 {
    return size_ui( rect.w, rect.h );
 }
@@ -79,7 +72,7 @@ CMDSCREEN_API inline uiSize rect_size_ui( csRect rect )
 
 *******************************************************************************/
 
-CMDSCREEN_API inline bool eq_rect_cs( csRect rect, csRect oth )
+UIINABOX_API inline bool eq_rect_ui( uiRect rect, uiRect oth )
 {
    return rect.x == oth.x and
           rect.y == oth.y and
@@ -87,22 +80,22 @@ CMDSCREEN_API inline bool eq_rect_cs( csRect rect, csRect oth )
           rect.h == oth.h;
 }
 
-CMDSCREEN_API inline bool is_null_rect_cs( csRect rect )
+UIINABOX_API inline bool is_null_rect_ui( uiRect rect )
 {
-   return eq_rect_cs( rect, null_rect_cs() );
+   return eq_rect_ui( rect, null_rect_ui() );
 }
 
-CMDSCREEN_API inline bool has_null_size_ui( csRect rect )
+UIINABOX_API inline bool has_null_size_ui( uiRect rect )
 {
    return is_null_size_ui( rect_size_ui( rect ) );
 }
 
-CMDSCREEN_API bool write_rect_cs( cRecorder rec[static 1],
-                                  csRect rect,
-                                  char const fmt[static 1] );
+UIINABOX_API bool write_rect_ui( cRecorder rec[static 1],
+                                 uiRect rect,
+                                 char const fmt[static 1] );
 
-#define rect_tape_cs_( Rect )                                                  \
-   rect_tape_cs( ref_c_( csRect, (Rect) ) )
-CMDSCREEN_API cTape rect_tape_cs( csRect const* rect );
+#define rect_tape_ui_( Rect )                                                  \
+   rect_tape_ui( ref_c_( uiRect, (Rect) ) )
+UIINABOX_API cTape rect_tape_ui( uiRect const* rect );
 
 #endif

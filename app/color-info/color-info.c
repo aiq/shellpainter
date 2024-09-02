@@ -12,7 +12,7 @@ int main( int argc, char* argv[] )
    mvwprintw( main, 1, 1, "select a number from 0 to %d or write exit", COLORS );
    refresh();
 
-   csScreen* out = new_screen_cs( rect_cs( 4, 4, 80, 4 ) );
+   csScreen* out = new_screen_cs( rect_ui( 4, 4, 80, 4 ) );
 
    while ( true )
    {

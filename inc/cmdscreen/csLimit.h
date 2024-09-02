@@ -3,7 +3,7 @@
 
 #include "cmdscreen/apidecl.h"
 #include "uiinabox/ui_Axis.h"
-#include "cmdscreen/csRect.h"
+#include "uiinabox/uiRect.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

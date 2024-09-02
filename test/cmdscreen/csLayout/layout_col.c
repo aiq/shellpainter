@@ -67,32 +67,32 @@ int main( void )
    dump_box_layout_cs( c_c( "layout_col.ppm" ), &root, es );
 
    csBox exp = exp_cs_(
-      rect_cs( 0, 0, 12, 24 ),  // col
+      rect_ui( 0, 0, 12, 24 ),  // col
       exp_cs_(  // fixed
-         rect_cs( 0, 0, 10, 4 ),
+         rect_ui( 0, 0, 10, 4 ),
          none_cs()
       ),
       exp_cs_(  // fill
-         rect_cs( 0, 4, 12, 4 ),
+         rect_ui( 0, 4, 12, 4 ),
          exp_cs_(   // center
-            rect_cs( 0, 4, 12, 4 ),
+            rect_ui( 0, 4, 12, 4 ),
             exp_cs_(    // fixed
-               rect_cs( 4, 5, 4, 2 ),
+               rect_ui( 4, 5, 4, 2 ),
                none_cs()
             )
          )
       ),
       exp_cs_(  // right
-         rect_cs( 0, 8, 12, 3 ),
+         rect_ui( 0, 8, 12, 3 ),
          exp_cs_(   // fixed
-            rect_cs( 9, 8, 3, 3 ),
+            rect_ui( 9, 8, 3, 3 ),
             none_cs()
          )
       ),
       exp_cs_(  // fill
-         rect_cs( 0, 11, 12, 13 ),
+         rect_ui( 0, 11, 12, 13 ),
          exp_cs_(   // fixed
-            rect_cs( 0, 11, 1, 1 ),
+            rect_ui( 0, 11, 1, 1 ),
             none_cs()
          )
       )

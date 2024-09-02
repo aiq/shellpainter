@@ -53,8 +53,8 @@ UIINABOX_API bool write_size_ui( cRecorder rec[static 1],
                                  uiSize size,
                                  char const fmt[static 1] );
 
-#define size_tape_cs_( Size )                                                  \
-   size_tape_cs( ref_c_( uiSize, (Size) ) )
-UIINABOX_API cTape size_tape_cs( uiSize const* size );
+#define size_tape_ui_( Size )                                                  \
+   size_tape_ui( ref_c_( uiSize, (Size) ) )
+UIINABOX_API cTape size_tape_ui( uiSize const* size );
 
 #endif

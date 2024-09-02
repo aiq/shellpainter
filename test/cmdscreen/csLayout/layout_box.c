@@ -46,15 +46,15 @@ int main( void )
    globalise_cs( &root );
 
    csBox exp = exp_cs_(
-      rect_cs( 0, 0, 20, 15 ),   // padding
+      rect_ui( 0, 0, 20, 15 ),   // padding
       exp_cs_(
-         rect_cs( 2, 2, 16, 11 ),   // center_cs
+         rect_ui( 2, 2, 16, 11 ),   // center_cs
          exp_cs_(
-            rect_cs( 8, 5, 5, 5 ),    // fixed
+            rect_ui( 8, 5, 5, 5 ),    // fixed
             exp_cs_(
-               rect_cs( 8, 5, 5, 5 ), // center_cs
+               rect_ui( 8, 5, 5, 5 ), // center_cs
                exp_cs_(
-                  rect_cs( 9, 6, 3, 3 ), // fixed
+                  rect_ui( 9, 6, 3, 3 ), // fixed
                   none_cs()
                )
             )

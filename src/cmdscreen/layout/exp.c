@@ -22,7 +22,7 @@ csBoxType const CS_Exp = {
 
 *******************************************************************************/
 
-csBox exp_cs( csRect rect, csBoxes children )
+csBox exp_cs( uiRect rect, csBoxes children )
 {
    csBox box = box_cs( NULL, &CS_Exp, NULL, children );
    box.rect = rect;

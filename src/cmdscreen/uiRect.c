@@ -1,4 +1,4 @@
-#include "cmdscreen/csRect.h"
+#include "uiinabox/uiRect.h"
 
 #include "clingo/lang/algo.h"
 #include "clingo/io/write.h"
@@ -9,38 +9,38 @@
 
 *******************************************************************************/
 
-extern inline csRect rect_cs( int16_t x, int16_t y, int16_t w, int16_t h );
+extern inline uiRect rect_ui( int16_t x, int16_t y, int16_t w, int16_t h );
 
-extern inline csRect make_rect_cs( uiPoint topLeft, uiSize size );
+extern inline uiRect make_rect_ui( uiPoint topLeft, uiSize size );
 
-extern inline csRect null_rect_cs( void );
-
-/*******************************************************************************
-
-*******************************************************************************/
-
-extern inline uiPoint top_left_corner_cs( csRect rect );
-
-extern inline uiPoint top_right_corner_cs( csRect rect );
-
-extern inline uiPoint bottom_left_corner_cs( csRect rect );
-
-extern inline uiPoint bottom_right_corner_cs( csRect rect );
-
-extern inline uiSize rect_size_ui( csRect rect );
+extern inline uiRect null_rect_ui( void );
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-extern inline bool eq_rect_cs( csRect rect, csRect oth );
+extern inline uiPoint top_left_corner_ui( uiRect rect );
 
-extern inline bool is_null_rect_cs( csRect rect );
+extern inline uiPoint top_right_corner_ui( uiRect rect );
 
-extern inline bool has_null_size_ui( csRect rect );
+extern inline uiPoint bottom_left_corner_ui( uiRect rect );
 
-bool write_rect_cs( cRecorder rec[static 1],
-                                  csRect rect,
+extern inline uiPoint bottom_right_corner_ui( uiRect rect );
+
+extern inline uiSize rect_size_ui( uiRect rect );
+
+/*******************************************************************************
+
+*******************************************************************************/
+
+extern inline bool eq_rect_ui( uiRect rect, uiRect oth );
+
+extern inline bool is_null_rect_ui( uiRect rect );
+
+extern inline bool has_null_size_ui( uiRect rect );
+
+bool write_rect_ui( cRecorder rec[static 1],
+                                  uiRect rect,
                                   char const fmt[static 1] )
 {
    cChars format = c_c( fmt );
@@ -62,8 +62,8 @@ bool write_rect_cs( cRecorder rec[static 1],
    return set_recorder_error_c( rec, c_InvalidWriteFormat );
 }
 
-static TAPE_C_( tape_func, csRect, write_rect_cs, do_deref_c_ )
-cTape rect_tape_cs( csRect const* rect )
+static TAPE_C_( tape_func, uiRect, write_rect_ui, do_deref_c_ )
+cTape rect_tape_ui( uiRect const* rect )
 {
    return (cTape){ .i=rect, .f=tape_func };
 }

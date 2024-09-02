@@ -43,7 +43,7 @@ bool write_size_ui( cRecorder rec[static 1],
 }
 
 static TAPE_C_( tape_func, uiSize, write_size_ui, do_deref_c_ )
-cTape size_tape_cs( uiSize const* size )
+cTape size_tape_ui( uiSize const* size )
 {
    return (cTape){ .i=size, .f=tape_func };
 }

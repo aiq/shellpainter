@@ -48,7 +48,7 @@ typedef struct csBoxType csBoxType;
 
 struct csBox
 {
-   csRect rect;
+   uiRect rect;
    void* data;
    csBoxType const* type;
    csStyle const* style;

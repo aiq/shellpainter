@@ -41,7 +41,7 @@ extern inline uiSize limit_size_ui( csLimit limit, uiSize size );
 
 *******************************************************************************/
 
-extern inline csRect set_rect_size_ui( csRect rect, uiSize size );
+extern inline uiRect set_rect_size_ui( uiRect rect, uiSize size );
 
 /*******************************************************************************
 

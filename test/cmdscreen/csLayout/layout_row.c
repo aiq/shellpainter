@@ -91,60 +91,60 @@ int main( void )
    dump_box_layout_cs( c_c( "layout_row.ppm" ), &root, es );
 
    csBox exp = exp_cs_(
-      rect_cs( 0, 0, 24, 12 ),   // row
+      rect_ui( 0, 0, 24, 12 ),   // row
       exp_cs_(  // top
-         rect_cs( 0, 0, 3, 12 ),
+         rect_ui( 0, 0, 3, 12 ),
          exp_cs_(   // fixed
-            rect_cs( 0, 0, 3, 3 ),
+            rect_ui( 0, 0, 3, 3 ),
             none_cs()
          )
       ),
       exp_cs_(  // fill
-         rect_cs( 3, 0, 2, 12 ),
+         rect_ui( 3, 0, 2, 12 ),
          exp_cs_(   // bottom right
-            rect_cs( 3, 0, 2, 12 ),
+            rect_ui( 3, 0, 2, 12 ),
             exp_cs_(    // fixed
-                rect_cs( 4, 11, 1, 1 ),
+                rect_ui( 4, 11, 1, 1 ),
                 none_cs()
             )
          )
       ),
       exp_cs_(  // center
-         rect_cs( 5, 0, 3, 12 ),
+         rect_ui( 5, 0, 3, 12 ),
          exp_cs_(   // fixed
-            rect_cs( 5, 4, 5, 5 ),
+            rect_ui( 5, 4, 5, 5 ),
             none_cs()
          )
       ),
       exp_cs_(  // fill
-         rect_cs( 10, 0, 3, 12 ),
+         rect_ui( 10, 0, 3, 12 ),
          exp_cs_(   // bottom center
-            rect_cs( 10, 0, 3, 12 ),
+            rect_ui( 10, 0, 3, 12 ),
             exp_cs_(    // fixed
-                rect_cs( 11, 11, 1, 1 ),
+                rect_ui( 11, 11, 1, 1 ),
                 none_cs()
             )
          )
       ),
       exp_cs_(  // bottom
-         rect_cs( 13, 0, 1, 12 ),
+         rect_ui( 13, 0, 1, 12 ),
          exp_cs_(   // fixed
-            rect_cs( 13, 11, 1, 1 ),
+            rect_ui( 13, 11, 1, 1 ),
             none_cs()
          )
       ),
       exp_cs_(  // fill
-         rect_cs( 14, 0, 6, 12 ),
+         rect_ui( 14, 0, 6, 12 ),
          exp_cs_(   // top left
-            rect_cs( 14, 0, 6, 12 ),
+            rect_ui( 14, 0, 6, 12 ),
             exp_cs_(    // fixed
-                rect_cs( 14, 0, 1, 1 ),
+                rect_ui( 14, 0, 1, 1 ),
                 none_cs()
             )
          )
       ),
       exp_cs_(  // fixed
-         rect_cs( 20, 0, 4, 2 ),
+         rect_ui( 20, 0, 4, 2 ),
          none_cs()
       )
    );
