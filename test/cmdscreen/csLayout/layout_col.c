@@ -91,9 +91,7 @@ int main( void )
    );
 
    cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_ui( rec, &exp, &root );
-   print_recorded_c( rec );
-   free_recorder_mem_c( rec );
+   expect_layout_at_ui_( &exp, &root, xyz );
 
    cleanup_ui();
    return finish_tap_c_();

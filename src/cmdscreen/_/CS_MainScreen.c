@@ -1,5 +1,7 @@
 #include "CS_MainScreen.h"
 
+#include "uiinabox/uiinabox.h"
+
 /*******************************************************************************
 ********************************************************* Types and Definitions
 ********************************************************************************
@@ -34,7 +36,8 @@ bool init_main_screen( void )
 {
    return alloc_pile_of_color( &CS_MainScreen.colors, COLORS ) and
           alloc_pile_of_color_pair( &CS_MainScreen.colorPairs, COLOR_PAIRS ) and 
-          init_mem_area_cs( &CS_MainScreen.mem, csBLOCK_SIZE_ );
+          init_mem_area_cs( &CS_MainScreen.mem, csBLOCK_SIZE_ ) and
+          init_ui();
 }
 
 void* alloc_one( int64_t size )
@@ -58,4 +61,5 @@ void cleanup_main_screen( void )
       free( CS_MainScreen.colorPairs.v );
    }
    cleanup_mem_area_cs( &CS_MainScreen.mem );
+   cleanup_ui();
 }

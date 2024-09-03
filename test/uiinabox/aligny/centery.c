@@ -30,7 +30,7 @@ int main( void )
    uiBox exp = exp_cs_(
       rect_ui( 0, 0, 4, 7 ),   // fixed
       exp_cs_(
-         rect_ui( 0, 0, 4, 7 ),   // centerx_ui
+         rect_ui( 0, 0, 2, 7 ),   // centerx_ui
          exp_cs_(
             rect_ui( 0, 2, 2, 3 ),    // fixed
             none_ui()
@@ -39,11 +39,7 @@ int main( void )
    );
 
    dump_box_layout_ui( c_c( "centery.ppm" ), &root, es );
-
-   cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_ui( rec, &exp, &root );
-   print_recorded_c( rec );
-   free_recorder_mem_c( rec );
+   expect_layout_at_ui_( &exp, &root, xyz );
 
    cleanup_ui();
    return finish_tap_c_();

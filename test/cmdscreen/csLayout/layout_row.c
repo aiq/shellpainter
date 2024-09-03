@@ -102,7 +102,7 @@ int main( void )
          )
       ),
       exp_cs_(  // center
-         rect_ui( 5, 0, 3, 12 ),
+         rect_ui( 5, 0, 5, 12 ),
          exp_cs_(   // fixed
             rect_ui( 5, 4, 5, 5 ),
             none_ui()
@@ -127,12 +127,9 @@ int main( void )
       ),
       exp_cs_(  // fill
          rect_ui( 14, 0, 6, 12 ),
-         exp_cs_(   // top left
-            rect_ui( 14, 0, 6, 12 ),
-            exp_cs_(    // fixed
-                rect_ui( 14, 0, 1, 1 ),
-                none_ui()
-            )
+         exp_cs_(    // fixed
+            rect_ui( 14, 0, 1, 1 ),
+            none_ui()
          )
       ),
       exp_cs_(  // fixed
@@ -141,10 +138,7 @@ int main( void )
       )
    );
 
-   cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_ui( rec, &exp, &root );
-   print_recorded_c( rec );
-   free_recorder_mem_c( rec );
+   expect_layout_at_ui_( &exp, &root, xyz );
 
    cleanup_ui();
    return finish_tap_c_();

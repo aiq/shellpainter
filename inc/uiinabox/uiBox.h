@@ -80,8 +80,4 @@ UIINABOX_API bool dump_box_layout_ui( cChars path,
                                       uiBox box[static 1],
                                       cErrorStack es[static 1] );
 
-UIINABOX_API bool record_box_diff_ui( cRecorder rec[static 1],
-                                      uiBox const box[static 1],
-                                      uiBox const oth[static 1] );
-
 #endif

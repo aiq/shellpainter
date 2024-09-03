@@ -1,7 +1,6 @@
 #include "uiinabox/uiBox.h"
 
 #include "clingo/color/cRgb24.h"
-#include "clingo/io/jot.h"
 #include "clingo/io/write.h"
 #include "clingo/lang/error_type.h"
 #include "clingo/lang/func.h"
@@ -108,57 +107,5 @@ bool dump_box_layout_ui( cChars path,
    }
 
    free( image.data );
-   return res;
-}
-
-/******************************************************************************/
-
-static bool intl_record_box_diff( cRecorder rec[static 1],
-                                  cRecorder route[static 1],
-                                  uiBox const box[static 1],
-                                  uiBox const oth[static 1] )
-{
-   if ( not eq_rect_ui( box->rect, oth->rect ) )
-   {
-      return jotln_c_( rec, "~= ", route, " different rect values: ",
-                            "expected ", rect_tape_ui_( box->rect ),
-                            ", got ", rect_tape_ui_( oth->rect ) );
-   }
-
-   if ( box->children.s != oth->children.s )
-   {
-      return jotln_c_( rec, "~= ", route, " different number of children: ",
-                            "expected ", box->children.s,
-                            ", got ", oth->children.s );
-   }
-
-   int64_t const oldPos = route->pos;
-   for ( int64_t i = 0; i < box->children.s; ++i )
-   {
-      if ( not write_c_( route, ":{i}", i ) )
-         return false;
-
-      uiBox const* boxChild = ptr_for_c_( box->children, i );
-      uiBox const* othChild = ptr_for_c_( oth->children, i );
-      if ( not intl_record_box_diff( rec, route, boxChild, othChild ) )
-         return false;
-
-      move_recorder_to_c( route, oldPos );
-   }
-
-   return true;
-}
-
-bool record_box_diff_ui( cRecorder rec[static 1],
-                         uiBox const box[static 1],
-                         uiBox const oth[static 1] )
-{
-   cRecorder* route = &dyn_recorder_c_( 0 );
-   bool res = false;
-   if ( write_c_( route, "{i}", 0 ) )
-   {
-      res = intl_record_box_diff( rec, route, box, oth );
-   }
-   free_recorder_mem_c( route );
    return res;
 }

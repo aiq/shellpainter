@@ -32,18 +32,14 @@ int main( void )
       exp_cs_(
          rect_ui( 0, 0, 7, 7 ),   // centerx_ui
          exp_cs_(
-            rect_ui( 4, 2, 3, 3 ),    // fixed
+            rect_ui( 2, 4, 3, 3 ),    // fixed
             none_ui()
          )
       )
    );
 
    dump_box_layout_ui( c_c( "bottom_center.ppm" ), &root, es );
-
-   cRecorder* rec = &dyn_recorder_c_( 0 );
-   record_box_diff_ui( rec, &exp, &root );
-   print_recorded_c( rec );
-   free_recorder_mem_c( rec );
+   expect_layout_at_ui_( &exp, &root, xyz );
 
    cleanup_ui();
    return finish_tap_c_();
