@@ -2,9 +2,7 @@
 #define UIINABOX_UIPOINT_H
 
 #include "uiinabox/apidecl.h"
-#include "clingo/type/int16.h"
-#include "clingo/io/cRecorder.h"
-#include "clingo/io/cTape.h"
+#include "clingo/clingo.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions

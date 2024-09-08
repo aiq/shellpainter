@@ -1,7 +1,6 @@
 #include "uiinabox/exp.h"
 
-#include "clingo/io/jot.h"
-#include "clingo/io/write.h"
+#include "clingo/clingo.h"
 #include "uiinabox/_/util.h"
 #include "uiinabox/global.h"
 

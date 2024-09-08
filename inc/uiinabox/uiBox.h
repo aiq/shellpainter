@@ -1,8 +1,7 @@
 #ifndef UIINABOX_UIBOX_H
 #define UIINABOX_UIBOX_H
 
-#include "clingo/color/cP3Builder.h"
-#include "clingo/lang/algo.h"
+#include "clingo/clingo.h"
 #include "uiinabox/uiLimit.h"
 
 /*******************************************************************************

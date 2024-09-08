@@ -1,7 +1,6 @@
 #include "uiinabox/uiSize.h"
 
-#include "clingo/lang/algo.h"
-#include "clingo/io/write.h"
+#include "clingo/clingo.h"
 
 /*******************************************************************************
 ********************************************************************* Functions

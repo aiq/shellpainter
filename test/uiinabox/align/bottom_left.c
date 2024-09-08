@@ -1,5 +1,3 @@
-#include "clingo/io/write.h"
-#include "clingo/lang/expect.h"
 #include "uiinabox/uiinabox.h"
 
 int main( void )

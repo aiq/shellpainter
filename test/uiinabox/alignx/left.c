@@ -1,5 +1,3 @@
-#include "clingo/io/write.h"
-#include "clingo/lang/expect.h"
 #include "uiinabox/uiinabox.h"
 
 int main( void )
@@ -30,7 +28,7 @@ int main( void )
    uiBox exp = exp_cs_(
       rect_ui( 0, 0, 7, 4 ),   // fixed
       exp_cs_(
-         rect_ui( 0, 0, 7, 4 ),   // centerx_ui
+         rect_ui( 0, 0, 7, 2),   // centerx_ui
          exp_cs_(
             rect_ui( 0, 0, 3, 2 ),    // fixed
             none_ui()

@@ -2,7 +2,7 @@
 #define CMDSCREEN_COLORS_H
 
 #include "cmdscreen/apidecl.h"
-#include "clingo/color/cColor.h"
+#include "clingo/clingo.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -46,7 +46,7 @@ typedef enum o_EbmlType o_EbmlType;
 
 *******************************************************************************/
 
-CMDSCREEN_API cColor init_colors_cs( cColorSlice colors );
+CMDSCREEN_API cColor init_colors_cs( cColors colors );
 
 CMDSCREEN_API bool clear_colors_cs( void );
 

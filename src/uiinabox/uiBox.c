@@ -1,10 +1,6 @@
 #include "uiinabox/uiBox.h"
 
-#include "clingo/color/cRgb24.h"
-#include "clingo/io/write.h"
-#include "clingo/lang/error_type.h"
-#include "clingo/lang/func.h"
-#include "clingo/type/float.h"
+#include "clingo/clingo.h"
 #include "uiinabox/global.h"
 
 /*******************************************************************************
