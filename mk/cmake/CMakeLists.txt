@@ -44,12 +44,12 @@ fetchcontent_makeavailable( clingo )
 # build - make
 ################################################################################
 add_library( ${LIB_NAME} SHARED ${SRC_FILES} )
-set_default_flags( ${LIB_NAME} )
+#set_default_flags( ${LIB_NAME} )
 target_include_directories( ${LIB_NAME} PUBLIC ${INC_DIR} PRIVATE ${SRC_DIR} )
 if( WIN32 )
-    target_link_libraries( ${LIB_NAME} clingo curses )
+    target_link_libraries( ${LIB_NAME} clingo )
 else()
-    target_link_libraries( ${LIB_NAME} PUBLIC m clingo curses )
+    target_link_libraries( ${LIB_NAME} PUBLIC m clingo )
 endif()
 
 set( TEST_INC_DIRS ${INC_DIR} ${SRC_DIR} )
@@ -62,8 +62,8 @@ add_tests( "${PROJECT_NAME}" "${TEST_FILES}" "${TEST_INC_DIRS}" "${TEST_LINK_LIB
 
 set( APP_INC_DIRS ${INC_DIR} ${SRC_DIR} ${APP_DIR} )
 if( WIN32 )
-   set( APP_LINK_LIBS ${LIB_NAME} clingo curses )
+   set( APP_LINK_LIBS ${LIB_NAME} clingo )
 else()
-   set( APP_LINK_LIBS ${LIB_NAME} m clingo curses )
+   set( APP_LINK_LIBS ${LIB_NAME} m clingo )
 endif()
 add_apps( "${APP_FILES}" "${APP_INC_DIRS}" "${APP_LINK_LIBS}" )

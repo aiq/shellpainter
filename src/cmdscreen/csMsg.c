@@ -1,15 +1,20 @@
-#include "cmdscreen/colors.h"
+#include "cmdscreen/csMsg.h"
 
-#include "clingo/type/int32.h"
-#include "clingo/type/uint8.h"
+#include "clingo/clingo.h"
 
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
-
+ error
 *******************************************************************************/
 
-cColor get_color_cs( int16_t idx )
+csMsgData const* get_msg_data_cs( csMsg const* msg )
 {
-   return color_c_( 128, 128, 128, 255 );
+   must_exist_c_( msg );
+   return msg + 1;
+}
+
+void reset_msg_stream_cs( csMsgStream stream[static 1] )
+{
+   
 }

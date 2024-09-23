@@ -30,4 +30,6 @@ aux_source_directory( ${TEST_DIR}/uiinabox/uiSize TEST_FILES )
 set( APP_FILES
    ${APP_DIR}/cal/cal.c
    ${APP_DIR}/color-info/color-info.c
+   ${APP_DIR}/echo/echo.c
+   ${APP_DIR}/keyboard/keyboard.c
 )

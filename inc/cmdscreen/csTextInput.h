@@ -1,8 +1,9 @@
-#ifndef CMDSCREEN_CSSTYLE_H
-#define CMDSCREEN_CSSTYLE_H
+#ifndef CMDSCREEN_CSTEXTINPUT_H
+#define CMDSCREEN_CSTEXTINPUT_H
 
+#include <curses.h>
 #include "cmdscreen/apidecl.h"
-#include "clingo/clingo.h"
+#include "uiinabox/uiinabox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -10,27 +11,14 @@
  type
 *******************************************************************************/
 
-struct csBorder
-{
-   cRune l;
-   cRune r;
-   cRune t;
-   cRune b;
-   cRune tl;
-   cRune tr;
-   cRune bl;
-   cRune br;
-};
-typedef struct csBorder csBorder;
+CMDSCREEN_API extern csWidget const CS_TextInput;
 
-struct csStyle
+struct csTextInput
 {
-   uint64_t f;
-   uint64_t b;
+   CStringList* options;
+   int64_t selected;
 };
-typedef struct csStyle csStyle;
-
-extern csStyle CS_DefaultStyle;
+typedef struct csTextInput csTextInput;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -38,12 +26,8 @@ extern csStyle CS_DefaultStyle;
 
 *******************************************************************************/
 
-#define none_style_cs_() ((csStyle){0,0})
+CMDSCREEN_API CString* combo_box_value_cs( CSComboBox const cb[static 1] );
 
-/*******************************************************************************
-
-*******************************************************************************/
-
-CMDSCREEN_API csStyle base_style_cs( cRgb24 front, cRgb24 back );
+CMDSCREEN_API csBox combo_box_cs( CSComboBox const cb, int64_t width );
 
 #endif

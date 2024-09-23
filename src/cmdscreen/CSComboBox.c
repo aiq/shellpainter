@@ -1,7 +1,6 @@
-#include "cmdscreen/colors.h"
+#include "cmdscreen/CSComboBox.h"
 
-#include "clingo/type/int32.h"
-#include "clingo/type/uint8.h"
+#include "_/CS_MainScreen.h"
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -9,7 +8,7 @@
 
 *******************************************************************************/
 
-cColor get_color_cs( int16_t idx )
+CString* combo_box_value_cs( CSComboBox const cb[static 1] )
 {
-   return color_c_( 128, 128, 128, 255 );
+   return empty_string_c();
 }

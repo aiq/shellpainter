@@ -5,8 +5,7 @@
 int main( int argc, char* argv[] )
 {
    csScreen* main = cmdscreen_cs();
-   box( main, 0, 0 );
-
+/*
    csScreen* dlg1 = new_screen_cs( rect_ui( 2, 4, 5, 20 ) );
    box( dlg1, 0, 0 );
    mvwaddstr( dlg1, 1, 1, "test with to much text" );
@@ -32,6 +31,6 @@ int main( int argc, char* argv[] )
 
    remove_screen_cs( dlg1 );
    cleanup_cmdscreen_cs();
-
+*/
    return EXIT_SUCCESS;
 }

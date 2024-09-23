@@ -1,8 +1,7 @@
-#ifndef CMDSCREEN_CSSTYLE_H
-#define CMDSCREEN_CSSTYLE_H
+#ifndef CMDSCREEN_CSWIDGET_H
+#define CMDSCREEN_CSWIDGET_H
 
 #include "cmdscreen/apidecl.h"
-#include "clingo/clingo.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -10,27 +9,11 @@
  type
 *******************************************************************************/
 
-struct csBorder
+struct csWidget
 {
-   cRune l;
-   cRune r;
-   cRune t;
-   cRune b;
-   cRune tl;
-   cRune tr;
-   cRune bl;
-   cRune br;
-};
-typedef struct csBorder csBorder;
 
-struct csStyle
-{
-   uint64_t f;
-   uint64_t b;
 };
-typedef struct csStyle csStyle;
-
-extern csStyle CS_DefaultStyle;
+typedef struct csWidget csWidget;
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -38,12 +21,6 @@ extern csStyle CS_DefaultStyle;
 
 *******************************************************************************/
 
-#define none_style_cs_() ((csStyle){0,0})
-
-/*******************************************************************************
-
-*******************************************************************************/
-
-CMDSCREEN_API csStyle base_style_cs( cRgb24 front, cRgb24 back );
+CMDSCREEN_API 
 
 #endif
