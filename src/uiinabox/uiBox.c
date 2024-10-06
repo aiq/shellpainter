@@ -29,7 +29,7 @@ static void intl_as_global_box( uiBox box[static 1], uiPoint vec )
 
 uiBox box_ui( void* data,
               uiBoxType const type[static 1],
-              uiStyle const* style,
+              uiContent const* content,
               uiBoxes children )
 {
    uiBox* newChildren = alloc_array_ui_( children.s, uiBox );
@@ -43,7 +43,7 @@ uiBox box_ui( void* data,
    return (uiBox){
       .data=data,
       .type=type,
-      .style=style,
+      .content=content,
       .children=(csVarBoxes){ .s=children.s, .v=newChildren }
    };
 }
@@ -56,17 +56,17 @@ void globalise_ui( uiBox box[static 1] )
 /******************************************************************************/
 
 static bool intl_dump_box_layout( cVarRgb24Image image,
-                                  uiStyle const* style,
+                                  uiContent const* content,
                                   uiBox const box[static 1] )
 {
-   cRgb24 const* color = style;
+   cRgb24 const* color = content;
    uiPoint a = top_left_corner_ui( box->rect );
    uiPoint b = bottom_right_corner_ui( box->rect );
    if ( not has_null_size_ui( box->rect ) )
    {
-      if ( box->style != NULL )
+      if ( box->content != NULL )
       {
-         color = box->style;
+         color = box->content;
       }
       if ( not fill_rgb24_rect_c( image,
                                   pixel_c_( a.x, a.y ),

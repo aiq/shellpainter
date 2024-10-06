@@ -42,14 +42,14 @@ struct uiBoxType
 };
 typedef struct uiBoxType uiBoxType;
 
-typedef void uiStyle;
+typedef void uiContent;
 
 struct uiBox
 {
    uiRect rect;
    void* data;
    uiBoxType const* type;
-   uiStyle const* style;
+   uiContent const* content;
    csVarBoxes children;
 };
 
@@ -76,7 +76,7 @@ UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
 
 UIINABOX_API uiBox box_ui( void* data,
                             uiBoxType const type[static 1],
-                            uiStyle const* style,
+                            uiContent const* content,
                             uiBoxes children );
 
 UIINABOX_API void globalise_ui( uiBox box[static 1] );

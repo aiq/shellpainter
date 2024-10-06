@@ -53,26 +53,26 @@ static uiLimit limit_for_fill( uiLimit limit, ui_Axis axis, int16_t max )
 
 *******************************************************************************/
 
-uiBox row_ui( int16_t space, uiStyle const* style, uiBoxes children )
+uiBox row_ui( int16_t space, uiContent const* content, uiBoxes children )
 {
-   return line_ui( ui_Horizontal, space, style, children );
+   return line_ui( ui_Horizontal, space, content, children );
 }
 
-uiBox col_ui( int16_t space, uiStyle const* style, uiBoxes children )
+uiBox col_ui( int16_t space, uiContent const* content, uiBoxes children )
 {
-   return line_ui( ui_Vertical, space, style, children );
+   return line_ui( ui_Vertical, space, content, children );
 }
 
 uiBox line_ui( ui_Axis axis,
                int16_t space,
-               uiStyle const* style,
+               uiContent const* content,
                uiBoxes children )
 {
    uiLine* data = alloc_ui_( uiLine );
    if ( data == NULL ) return (uiBox){0};
    else *data = (uiLine){ .axis=axis, .space=space };
 
-   return box_ui( data, &UI_Line, style, children );
+   return box_ui( data, &UI_Line, content, children );
 }
 
 bool layout_line_ui( uiBox box[static 1],

@@ -40,13 +40,13 @@ uiBoxType const UI_Fill = {
 
 *******************************************************************************/
 
-uiBox fill_ui( int16_t fill, uiStyle const* style, uiBox child )
+uiBox fill_ui( int16_t fill, uiContent const* content, uiBox child )
 {
    int16_t* data = alloc_ui_( int16_t );
    if ( data == NULL ) return (uiBox){0};
    else *data = fill;
 
-   return box_ui( data, &UI_Fill, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_Fill, content, boxes_cs_( child ) );
 }
 
 extern inline int16_t get_fill_value_ui( uiBox const box[static 1] );

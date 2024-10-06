@@ -21,13 +21,13 @@ uiBoxType const UI_Fixed = {
 
 *******************************************************************************/
 
-uiBox fixed_ui( uiSize size, uiStyle const* style, uiBox child )
+uiBox fixed_ui( uiSize size, uiContent const* content, uiBox child )
 {
    uiSize* data = alloc_ui_( uiSize );
    if ( data == NULL ) return (uiBox){0};
    else *data = size;
 
-   return box_ui( data, &UI_Fixed, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_Fixed, content, boxes_cs_( child ) );
 }
 
 bool layout_fixed_ui( uiBox box[static 1],

@@ -28,7 +28,7 @@ typedef enum ui_AlignY ui_AlignY;
 *******************************************************************************/
 
 UIINABOX_API uiBox aligny_ui( ui_AlignY align,
-                              uiStyle const* style,
+                              uiContent const* content,
                               uiBox box );
 
 /*******************************************************************************
@@ -37,23 +37,23 @@ UIINABOX_API uiBox aligny_ui( ui_AlignY align,
 
 #define top_ui_( Box )                                                         \
    top_ui( NULL, (Box) )
-UIINABOX_API inline uiBox top_ui( uiStyle const* style, uiBox box )
+UIINABOX_API inline uiBox top_ui( uiContent const* content, uiBox box )
 {
-   return aligny_ui( ui_Top, style, box );
+   return aligny_ui( ui_Top, content, box );
 }
 
 #define centery_ui_( Box )                                                     \
    centery_ui( NULL, (Box) )
-UIINABOX_API inline uiBox centery_ui( uiStyle const* style, uiBox box )
+UIINABOX_API inline uiBox centery_ui( uiContent const* content, uiBox box )
 {
-   return aligny_ui( ui_CenterY, style, box );
+   return aligny_ui( ui_CenterY, content, box );
 }
 
 #define bottom_ui_( Box )                                                      \
    bottom_ui( NULL, (Box) )
-UIINABOX_API inline uiBox bottom_ui( uiStyle const* style, uiBox box )
+UIINABOX_API inline uiBox bottom_ui( uiContent const* content, uiBox box )
 {
-   return aligny_ui( ui_Bottom, style, box );
+   return aligny_ui( ui_Bottom, content, box );
 }
 
 #endif

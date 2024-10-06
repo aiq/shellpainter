@@ -54,13 +54,13 @@ uiLimit pad_limit_ui( uiLimit limit, uiPadding pad )
 
 *******************************************************************************/
 
-uiBox pad_ui( uiPadding pad, uiStyle const* style, uiBox child )
+uiBox pad_ui( uiPadding pad, uiContent const* content, uiBox child )
 {
    uiPadding* data = alloc_ui_( uiPadding );
    if ( data == NULL ) return (uiBox){0};
    else *data = pad;
 
-   return box_ui( data, &UI_Pad, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_Pad, content, boxes_cs_( child ) );
 }
 
 bool layout_pad_ui( uiBox box[static 1],

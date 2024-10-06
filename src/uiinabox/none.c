@@ -33,7 +33,7 @@ uiBox none_ui( void )
    return (uiBox){
       .data=NULL,
       .type=&UI_None,
-      .style=NULL,
+      .content=NULL,
       .children=(csVarBoxes){ .s=0, .v=NULL }
    };
 }

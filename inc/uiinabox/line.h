@@ -27,16 +27,16 @@ typedef struct uiLine uiLine;
 #define row_ui_( Space, Children )                                             \
    row_ui( (Space), NULL, (Children))
 UIINABOX_API
-uiBox row_ui( int16_t space, uiStyle const* style, uiBoxes children );
+uiBox row_ui( int16_t space, uiContent const* content, uiBoxes children );
 
 #define col_ui_( Space, Children )                                             \
    col_ui( (Space), NULL, (Children) )
 UIINABOX_API
-uiBox col_ui( int16_t space, uiStyle const* style, uiBoxes children );
+uiBox col_ui( int16_t space, uiContent const* content, uiBoxes children );
 
 UIINABOX_API uiBox line_ui( ui_Axis axis,
                             int16_t space,
-                            uiStyle const* style,
+                            uiContent const* content,
                             uiBoxes children );
 
 UIINABOX_API bool layout_line_ui( uiBox box[static 1],

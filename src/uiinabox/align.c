@@ -47,33 +47,33 @@ char const* stringify_alignment_ui( uiAlignment alignment )
 
 *******************************************************************************/
 
-extern inline uiBox top_left_ui( uiStyle const* style, uiBox box );
-extern inline uiBox top_center_ui( uiStyle const* style, uiBox box );
-extern inline uiBox top_right_ui( uiStyle const* style, uiBox box );
+extern inline uiBox top_left_ui( uiContent const* content, uiBox box );
+extern inline uiBox top_center_ui( uiContent const* content, uiBox box );
+extern inline uiBox top_right_ui( uiContent const* content, uiBox box );
 
 /******************************************************************************/
 
-extern inline uiBox center_left_ui( uiStyle const* style, uiBox box );
-extern inline uiBox center_ui( uiStyle const* style, uiBox box );
-extern inline uiBox center_right_ui( uiStyle const* style, uiBox box );
+extern inline uiBox center_left_ui( uiContent const* content, uiBox box );
+extern inline uiBox center_ui( uiContent const* content, uiBox box );
+extern inline uiBox center_right_ui( uiContent const* content, uiBox box );
 
 /******************************************************************************/
 
-extern inline uiBox bottom_left_ui( uiStyle const* style, uiBox box );
-extern inline uiBox bottom_center_ui( uiStyle const* style, uiBox box );
-extern inline uiBox bottom_right_ui( uiStyle const* style, uiBox box );
+extern inline uiBox bottom_left_ui( uiContent const* content, uiBox box );
+extern inline uiBox bottom_center_ui( uiContent const* content, uiBox box );
+extern inline uiBox bottom_right_ui( uiContent const* content, uiBox box );
 
 /******************************************************************************/
 
 uiBox align_ui( uiAlignment align,
-                uiStyle const* style,
+                uiContent const* content,
                 uiBox child )
 {
    uiAlignment* data = alloc_ui_( uiAlignment );
    if ( data == NULL ) return (uiBox){0};
    else *data = align;
 
-   return box_ui( data, &UI_Align, style, boxes_cs_( child ) );
+   return box_ui( data, &UI_Align, content, boxes_cs_( child ) );
 }
 
 bool layout_align_ui( uiBox box[static 1],
