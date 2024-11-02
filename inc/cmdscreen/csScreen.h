@@ -3,7 +3,7 @@
 
 #include "cmdscreen/apidecl.h"
 #include "cmdscreen/csStyle.h"
-#include "uiinabox/uiRect.h"
+#include "uiinabox/uiinabox.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -11,44 +11,45 @@
  type
 *******************************************************************************/
 
-typedef void csScreen;
+#define SHOW_CS_( FuncName, Type, ShowFunc )                                   \
+bool FuncName( void const* i, uiRect area )                                    \
+{                                                                              \
+   must_exist_c_( i );                                                         \
+   Type const* val = i;                                                        \
+   return ShowFunc( val, area );                                           \
+}
+
+#define INTERN_SCREEN_CS_( FuncSuffix, Type, ShowFunc )                        \
+static bool show_##FuncSuffix( void const* i, uiRect area )                    \
+{                                                                              \
+   must_exist_c_( i );                                                         \
+   Type const* val = i;                                                        \
+   return ShowFunc( val, area );                                               \
+}                                                                              \
+static csScreen* screen_##FuncSuffix( Type const* i )                          \
+{                                                                              \
+   return screen_cs( i, show_##FuncSuffix );                                   \
+}
+
+typedef bool ( *cs_show )( void const* i, uiRect area );
+
+struct csScreen
+{
+   void const* i;
+   cs_show f;
+};
+typedef struct csScreen csScreen;
 
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
- main screen
+
 *******************************************************************************/
+
+CMDSCREEN_API csScreen* screen_cs( void const* i, cs_show f );
 
 CMDSCREEN_API csScreen* cmdscreen_cs( void );
 
 CMDSCREEN_API void cleanup_cmdscreen_cs();
-
-/*******************************************************************************
-
-*******************************************************************************/
-
-CMDSCREEN_API bool set_chars_cs( uiPoint cord, cChars text, csStyle const style[static 1] );
-
-CMDSCREEN_API bool set_rune_cs( uiPoint cord, cRune rune, csStyle const style[static 1] );
-
-CMDSCREEN_API bool clear_screen_cs( void );
-
-CMDSCREEN_API bool refresh_screen_cs( void );
-
-CMDSCREEN_API inline csScreen* new_screen_cs( uiRect rect )
-{
-   return NULL;
-}
-
-CMDSCREEN_API inline csScreen* sub_screen_cs( csScreen* scr, uiRect rect );
-
-CMDSCREEN_API inline void remove_screen_cs( csScreen* scr )
-{
-}
-
-CMDSCREEN_API inline uiSize screen_size_ui( csScreen* scr )
-{
-   return size_ui( 0, 0 );
-}
 
 #endif

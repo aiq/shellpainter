@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #include "clingo/clingo.h"
+#include "cmdscreen/term.h"
 #include "cmdscreen/csScreen.h"
 #include "termbox.h"
 
@@ -182,66 +183,70 @@ Key K_ARROW_RIGHT = {58,12,"(→)"};
 Key K_K_0 = {65,12," 0  "};
 Key K_K_PERIOD = {71,12,"."};
 
-void printf_tb(int x, int y, uint16_t fg, uint16_t bg, const char *fmt, ...)
+csStyle cyanStyle( void )
+{  return base_style_cs( rgb24_c_( 0, 255, 255 ), rgb24_c_( 0, 0, 0 ) );
+}
+csStyle greenStyle( void )
+{  return base_style_cs( rgb24_c_( 0, 255, 0 ), rgb24_c_( 0, 0, 0 ) );
+}
+csStyle magentaStyle( void )
+{  return base_style_cs( rgb24_c_( 255, 0, 255 ), rgb24_c_( 0, 0, 0 ) );
+}
+csStyle redStyle( void )
+{  return base_style_cs( rgb24_c_( 255, 0, 0 ), rgb24_c_( 0, 0, 0 ) );
+}
+csStyle whiteStyle( void )
+{  return base_style_cs( rgb24_c_( 255, 255, 255 ), rgb24_c_( 0, 0, 0 ) );
+}
+csStyle yellowStyle( void )
+{  return base_style_cs( rgb24_c_( 255, 255, 0 ), rgb24_c_( 0, 0, 0 ) );
+}
+
+void printf_tb(int x, int y, csStyle style, const char *fmt, ...)
 {
     char buf[4096];
     va_list vl;
     va_start(vl, fmt);
     vsnprintf(buf, sizeof(buf), fmt, vl);
     va_end(vl);
-    csStyle style = {
-       .f=fg,
-       .b=bg
-    };
-    set_chars_cs( point_ui( x, y ), c_c( buf ), &style );
+    set_hline_cs( point_ui( x, y ), c_c( buf ), style );
 }
 
-void draw_key(Key k, csStyle const style[static 1])
+void draw_key(Key k, csStyle style )
 {
    uiPoint cord = point_ui( k.x+2, k.y+4 );
-   set_chars_cs( cord, c_c( k.str ), style );
+   set_hline_cs( cord, c_c( k.str ), style );
 }
 
 void draw_keyboard(void)
 {
-   csStyle defStyle = {
-      .f=TB_WHITE,
-      .b=TB_DEFAULT
-   };
-    int i;
-   set_rune_cs( point_ui( 0, 0 ), rune_c( "┌" ), &defStyle );
-   set_rune_cs( point_ui( 79, 0 ), rune_c( "┐" ), &defStyle );
-   set_rune_cs( point_ui( 0, 23 ), rune_c( "└" ), &defStyle );
-   set_rune_cs( point_ui( 79, 23 ), rune_c( "┘" ), &defStyle );
+   int i;
+   set_cell_cs( point_ui( 0, 0 ), rune_c( "┌" ), whiteStyle() );
+   set_cell_cs( point_ui( 79, 0 ), rune_c( "┐" ), whiteStyle() );
+   set_cell_cs( point_ui( 0, 23 ), rune_c( "└" ), whiteStyle() );
+   set_cell_cs( point_ui( 79, 23 ), rune_c( "┘" ), whiteStyle() );
 
     for (i = 1; i < 79; ++i) {
-      set_rune_cs( point_ui( i, 0 ), rune_c( "─" ), &defStyle );
-      set_rune_cs( point_ui( i, 23 ), rune_c( "─" ), &defStyle );
-      set_rune_cs( point_ui( i, 17 ), rune_c( "─" ), &defStyle );
-      set_rune_cs( point_ui( i, 4 ), rune_c( "─" ), &defStyle );
+      set_cell_cs( point_ui( i, 0 ), rune_c( "─" ), whiteStyle() );
+      set_cell_cs( point_ui( i, 23 ), rune_c( "─" ), whiteStyle() );
+      set_cell_cs( point_ui( i, 17 ), rune_c( "─" ), whiteStyle() );
+      set_cell_cs( point_ui( i, 4 ), rune_c( "─" ), whiteStyle() );
     }
     for (i = 1; i < 23; ++i) {
-      set_rune_cs( point_ui( 0, i ), rune_c( "│" ), &defStyle );
-      set_rune_cs( point_ui( 79, i ), rune_c( "│" ), &defStyle );
+      set_cell_cs( point_ui( 0, i ), rune_c( "│" ), whiteStyle() );
+      set_cell_cs( point_ui( 79, i ), rune_c( "│" ), whiteStyle() );
     }
-    set_rune_cs( point_ui( 0, 17 ), rune_c( "├" ), &defStyle );
-    set_rune_cs( point_ui( 79, 17 ), rune_c( "┤" ), &defStyle );
-    set_rune_cs( point_ui( 0, 4 ), rune_c( "├" ), &defStyle );
-    set_rune_cs( point_ui( 79, 4 ), rune_c( "┤" ), &defStyle );
+    set_cell_cs( point_ui( 0, 17 ), rune_c( "├" ), whiteStyle() );
+    set_cell_cs( point_ui( 79, 17 ), rune_c( "┤" ), whiteStyle() );
+    set_cell_cs( point_ui( 0, 4 ), rune_c( "├" ), whiteStyle() );
+    set_cell_cs( point_ui( 79, 4 ), rune_c( "┤" ), whiteStyle() );
 
-    csStyle yellow = {
-      .f=TB_YELLOW,
-      .b=TB_YELLOW
-    };
     for (i = 5; i < 17; ++i) {
-      set_rune_cs( point_ui( 1, i ), rune_c( "█" ), &yellow );
-      set_rune_cs( point_ui( 78, i ), rune_c( "█" ), &yellow );
+      set_cell_cs( point_ui( 1, i ), rune_c( "█" ), yellowStyle() );
+      set_cell_cs( point_ui( 78, i ), rune_c( "█" ), yellowStyle() );
     }
 
-    csStyle keyStyle = {
-       .f=TB_WHITE,
-       .b=TB_BLUE
-    };
+   csStyle keyStyle = base_style_cs( rgb24_c_( 255, 255, 255 ), rgb24_c_( 0, 0, 255 ) );
 
    Keys keys = keys_(
       K_ESC,
@@ -266,13 +271,13 @@ void draw_keyboard(void)
    );
     each_c_( Key const*, k, keys )
     {
-       draw_key( *k, &keyStyle );
+       draw_key( *k, keyStyle );
     }
 
 
-    printf_tb(33, 1, (uint16_t)(TB_MAGENTA | TB_BOLD), TB_DEFAULT, "Keyboard demo!");
-    printf_tb(21, 2, TB_MAGENTA, TB_DEFAULT, "(press CTRL+X and then CTRL+Q to exit)");
-    printf_tb(15, 3, TB_MAGENTA, TB_DEFAULT, "(press CTRL+X and then CTRL+C to change input mode)");
+    printf_tb(33, 1, magentaStyle(), "Keyboard demo!");
+    printf_tb(21, 2, magentaStyle(), "(press CTRL+X and then CTRL+Q to exit)");
+    printf_tb(15, 3, magentaStyle(), "(press CTRL+X and then CTRL+C to change input mode)");
 
     int inputmode = tb_set_input_mode(0);
     char inputmode_str[64];
@@ -284,7 +289,7 @@ void draw_keyboard(void)
     if (inputmode & TB_INPUT_MOUSE)
         sprintf(inputmode_str + 12, " | TB_INPUT_MOUSE");
 
-    printf_tb(3, 18, TB_WHITE, TB_DEFAULT, "Input mode: %s", inputmode_str);
+    printf_tb(3, 18, whiteStyle(), "Input mode: %s", inputmode_str);
 }
 
 const char *funckeymap(int k)
@@ -362,19 +367,19 @@ void pretty_print_press(struct tb_event *ev)
 {
     char buf[7];
     buf[tb_utf8_unicode_to_char(buf, ev->ch)] = '\0';
-    printf_tb(3, 19, TB_WHITE , TB_DEFAULT, "Key: ");
-    printf_tb(8, 19, TB_YELLOW, TB_DEFAULT, "decimal: %d", ev->key);
-    printf_tb(8, 20, TB_GREEN , TB_DEFAULT, "hex:     0x%X", ev->key);
-    printf_tb(8, 21, TB_CYAN  , TB_DEFAULT, "octal:   0%o", ev->key);
-    printf_tb(8, 22, TB_RED   , TB_DEFAULT, "string:  %s", funckeymap(ev->key));
+    printf_tb(3, 19, whiteStyle(), "Key: ");
+    printf_tb(8, 19, yellowStyle(), "decimal: %d", ev->key);
+    printf_tb(8, 20, greenStyle(), "hex:     0x%X", ev->key);
+    printf_tb(8, 21, cyanStyle(), "octal:   0%o", ev->key);
+    printf_tb(8, 22, redStyle(), "string:  %s", funckeymap(ev->key));
 
-    printf_tb(54, 19, TB_WHITE , TB_DEFAULT, "Char: ");
-    printf_tb(60, 19, TB_YELLOW, TB_DEFAULT, "decimal: %d", ev->ch);
-    printf_tb(60, 20, TB_GREEN , TB_DEFAULT, "hex:     0x%X", ev->ch);
-    printf_tb(60, 21, TB_CYAN  , TB_DEFAULT, "octal:   0%o", ev->ch);
-    printf_tb(60, 22, TB_RED   , TB_DEFAULT, "string:  %s", buf);
+    printf_tb(54, 19, whiteStyle(), "Char: ");
+    printf_tb(60, 19, yellowStyle(), "decimal: %d", ev->ch);
+    printf_tb(60, 20, greenStyle(), "hex:     0x%X", ev->ch);
+    printf_tb(60, 21, cyanStyle(), "octal:   0%o", ev->ch);
+    printf_tb(60, 22, redStyle(), "string:  %s", buf);
 
-    printf_tb(54, 18, TB_WHITE, TB_DEFAULT, "Modifier: %c%c%c%c",
+    printf_tb(54, 18, whiteStyle(), "Modifier: %c%c%c%c",
             (ev->mod & TB_MOD_CTRL)   ? 'C' : ' ',
             (ev->mod & TB_MOD_ALT)    ? 'A' : ' ',
             (ev->mod & TB_MOD_SHIFT)  ? 'S' : ' ',
@@ -384,13 +389,13 @@ void pretty_print_press(struct tb_event *ev)
 
 void pretty_print_resize(struct tb_event *ev)
 {
-    printf_tb(3, 19, TB_WHITE, TB_DEFAULT, "Resize event: %d x %d", ev->w, ev->h);
+    printf_tb(3, 19, whiteStyle(), "Resize event: %d x %d", ev->w, ev->h);
 }
 
 int counter = 0;
 
 void pretty_print_mouse(struct tb_event *ev) {
-    printf_tb(3, 19, TB_WHITE, TB_DEFAULT, "Mouse event: %d x %d %c", ev->x, ev->y, (ev->mod & TB_MOD_MOTION) ? '*' : ' ');
+    printf_tb(3, 19, whiteStyle(), "Mouse event: %d x %d %c", ev->x, ev->y, (ev->mod & TB_MOD_MOTION) ? '*' : ' ');
     char *btn = "";
     switch (ev->key) {
     case TB_KEY_MOUSE_LEFT:
@@ -412,8 +417,8 @@ void pretty_print_mouse(struct tb_event *ev) {
         btn = "MouseRelease: %d";
     }
     counter++;
-    printf_tb(43, 19, TB_WHITE, TB_DEFAULT, "Key: ");
-    printf_tb(48, 19, TB_YELLOW, TB_DEFAULT, btn, counter);
+    printf_tb(43, 19, whiteStyle(), "Key: ");
+    printf_tb(48, 19, yellowStyle(), btn, counter);
 }
 
 void dispatch_press(struct tb_event *ev)
@@ -574,21 +579,18 @@ void dispatch_press(struct tb_event *ev)
       keys_( K_ARROW_RIGHT )
    };
 
-    csStyle pressedStyle = {
-      .f=TB_WHITE,
-      .b=TB_RED
-    };
+    csStyle pressedStyle = base_style_cs( rgb24_c_( 255, 255, 255 ), rgb24_c_( 255, 0, 0 ) );
     if (ev->mod & TB_MOD_ALT) {
-        draw_key(K_LALT, &pressedStyle);
-        draw_key(K_RALT, &pressedStyle);
+        draw_key(K_LALT, pressedStyle);
+        draw_key(K_RALT, pressedStyle);
     }
     if (ev->mod & TB_MOD_CTRL) {
-        draw_key(K_LCTRL, &pressedStyle);
-        draw_key(K_RCTRL, &pressedStyle);
+        draw_key(K_LCTRL, pressedStyle);
+        draw_key(K_RCTRL, pressedStyle);
     }
     if (ev->mod & TB_MOD_SHIFT) {
-        draw_key(K_LSHIFT, &pressedStyle);
-        draw_key(K_RSHIFT, &pressedStyle);
+        draw_key(K_LSHIFT, pressedStyle);
+        draw_key(K_RSHIFT, pressedStyle);
     }
 
     Keys *combo = 0;
@@ -605,7 +607,7 @@ void dispatch_press(struct tb_event *ev)
 
     each_c_( Key const*, key, *combo )
     {
-       draw_key( *key, &pressedStyle );
+       draw_key( *key, pressedStyle );
     }
 }
 
@@ -618,18 +620,15 @@ int main(int argc, char **argv)
     char const* locale = get_locale_c( LC_ALL, var_chars_c_( 128 ) );
     println_c_( "locale: {s:q}", locale );
 
-    csScreen* main = cmdscreen_cs();
-    if ( main == NULL ) {
-        //fprintf(stderr, "tb_init() failed with error code\n" );
-        //return 1;
-    }
+    cmdscreen_cs();
+    tb_set_output_mode( TB_OUTPUT_TRUECOLOR );
 
     tb_set_input_mode(TB_INPUT_ESC | TB_INPUT_MOUSE);
     struct tb_event ev;
 
-    clear_screen_cs();
+    clear_cs();
     draw_keyboard();
-    tb_present();
+    refresh_cs();
     int inputmode = 0;
     int ctrlxpressed = 0;
 
@@ -669,25 +668,25 @@ int main(int argc, char **argv)
             else
                 ctrlxpressed = 0;
 
-            clear_screen_cs();
+            clear_cs();
             draw_keyboard();
             dispatch_press(&ev);
             pretty_print_press(&ev);
             break;
         case TB_EVENT_RESIZE:
-            clear_screen_cs();
+            clear_cs();
             draw_keyboard();
             pretty_print_resize(&ev);
             break;
         case TB_EVENT_MOUSE:
-            clear_screen_cs();
+            clear_cs();
             draw_keyboard();
             pretty_print_mouse(&ev);
             break;
         default:
             break;
         }
-      refresh_screen_cs();
+      refresh_cs();
     }
     cleanup_cmdscreen_cs();
     return 0;

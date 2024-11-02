@@ -10,7 +10,7 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_line, uiLine, layout_line_ui, do_deref_c_ )
+static LAYOUT_UI_( do_line, uiLine, layout_line_ui, do_deref_c_ )
 uiBoxType const UI_Line = {
    .desc = "line",
    .layout = &do_line
@@ -80,7 +80,8 @@ bool layout_line_ui( uiBox box[static 1],
                      uiLine line,
                      cErrorStack es[static 1] )
 {
-   int16_t mainAxis = main_axis_ui_( limit, line.axis );
+   int16_t const availableAxis = main_axis_ui_( limit, line.axis );
+   int16_t mainAxis = availableAxis;
    int16_t fillCount = 0;
    for_each_c_( i, uiBox*, child, box->children )
    {
@@ -88,7 +89,7 @@ bool layout_line_ui( uiBox box[static 1],
       {
          mainAxis -= line.space;
       }
-      int16_t const fill = get_fill_value_ui( child );
+      int16_t const fill = fill_value_ui( child );
       if ( fill > 0 )
       {
          int16_t fillPart = fill;
@@ -108,7 +109,13 @@ bool layout_line_ui( uiBox box[static 1],
          mainAxis -= mainPart;
          if ( mainAxis < 0 )
          {
-            return push_lit_error_c( es, "not engouh space on the main axis" );
+            return push_text_error_c_( es,
+               "{i64}", i+1,
+               ": not engouh space on the main axis",
+               ": available = {i64}", availableAxis,
+               ", child.rect = {t}", rect_tape_ui_( child->rect ),
+               ", limit = {t}", limit_tape_ui_( limit )
+            );
          }
       }
    }
@@ -117,9 +124,12 @@ bool layout_line_ui( uiBox box[static 1],
    float diff = 0.0;
    each_c_( uiBox*, child, box->children )
    {
-      int16_t const fill = get_fill_value_ui( child );
+      int16_t const fill = fill_value_ui( child );
       if ( fill == 0 )
          continue;
+
+      if ( not set_fill_axis_ui( child, line.axis ) )
+         return push_lit_error_c( es, "not able to set fill axis" );
 
       float mainVal = float_c_( fill ) * part;
       mainVal = trunc_float( mainVal + diff, &diff );

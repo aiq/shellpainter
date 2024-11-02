@@ -82,7 +82,7 @@ int main( void )
          )
       ),
       exp_cs_(  // fill
-         rect_ui( 0, 11, 12, 13 ),
+         rect_ui( 0, 11, 1, 13 ),
          exp_cs_(   // fixed
             rect_ui( 0, 11, 1, 1 ),
             none_ui()

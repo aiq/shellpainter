@@ -11,7 +11,7 @@ static inline uint32_t rgb24_as_uint32( cRgb24 rgb )
    v.s[ 1 ] = rgb.red;
    v.s[ 2 ] = rgb.green;
    v.s[ 3 ] = rgb.blue;
-   return swap_uint32_from_c( v.i, system_order_c() );
+   return swap_uint32_from_c( v.i, c_BigEndian );
 }
 
 /*******************************************************************************

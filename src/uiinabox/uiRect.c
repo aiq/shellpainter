@@ -19,12 +19,18 @@ extern inline uiRect null_rect_ui( void );
 
 *******************************************************************************/
 
+extern inline int16_t rect_left_ui( uiRect rect );
+extern inline int16_t rect_right_ui( uiRect rect );
+extern inline int16_t rect_top_ui( uiRect rect );
+extern inline int16_t rect_bottom_ui( uiRect rect );
+
+/*******************************************************************************
+
+*******************************************************************************/
+
 extern inline uiPoint top_left_corner_ui( uiRect rect );
-
 extern inline uiPoint top_right_corner_ui( uiRect rect );
-
 extern inline uiPoint bottom_left_corner_ui( uiRect rect );
-
 extern inline uiPoint bottom_right_corner_ui( uiRect rect );
 
 extern inline uiSize rect_size_ui( uiRect rect );
@@ -39,9 +45,23 @@ extern inline bool is_null_rect_ui( uiRect rect );
 
 extern inline bool has_null_size_ui( uiRect rect );
 
+/*******************************************************************************
+
+*******************************************************************************/
+
+extern inline bool in_rect_ui( uiRect rect, uiPoint point );
+
+extern inline uiRect intersection_ui( uiRect a, uiRect b );
+
+extern inline bool overlap_ui( uiRect a, uiRect b );
+
+/*******************************************************************************
+
+*******************************************************************************/
+
 bool write_rect_ui( cRecorder rec[static 1],
-                                  uiRect rect,
-                                  char const fmt[static 1] )
+                    uiRect rect,
+                    char const fmt[static 1] )
 {
    cChars format = c_c( fmt );
 

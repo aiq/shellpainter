@@ -40,7 +40,7 @@ static bool layout_alignx( uiBox box[static 1],
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_align_x, uiAlignment, layout_alignx, do_deref_c_ )
+static LAYOUT_UI_( do_align_x, uiAlignment, layout_alignx, do_deref_c_ )
 uiBoxType const UI_AlignX = {
    .desc = "alignx",
    .layout = &do_align_x

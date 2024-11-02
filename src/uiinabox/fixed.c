@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_fixed, uiSize, layout_fixed_ui, do_deref_c_ )
+static LAYOUT_UI_( do_fixed, uiSize, layout_fixed_ui, do_deref_c_ )
 uiBoxType const UI_Fixed = {
    .desc = "fixed",
    .layout = &do_fixed

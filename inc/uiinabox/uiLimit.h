@@ -10,7 +10,7 @@
  type
 *******************************************************************************/
 
-UIINABOX_API extern int16_t const CS_Infinity;
+UIINABOX_API extern int16_t const UI_Infinity;
 
 struct uiLimit
 {
@@ -25,11 +25,11 @@ typedef struct uiLimit uiLimit;
 
 *******************************************************************************/
 
-UIINABOX_API inline uiLimit default_limit_ui( void )
+UIINABOX_API inline uiLimit no_limit_ui( void )
 {
    return (uiLimit){
       .min=size_ui( 0, 0 ),
-      .max=size_ui( CS_Infinity, CS_Infinity )
+      .max=size_ui( UI_Infinity, UI_Infinity )
    };
 }
 
@@ -42,24 +42,15 @@ UIINABOX_API inline uiLimit fix_limit_ui( int16_t w, int16_t h )
 
 *******************************************************************************/
 
-UIINABOX_API inline bool is_fix_limit_ui( uiLimit limit )
-{
-   return limit.min.w == limit.max.w and limit.min.h == limit.max.h;
-}
-
-/*******************************************************************************
-
-*******************************************************************************/
-
 #define limit_height_ui_( Limit )                                              \
-   limit_height_ui( (Limit), CS_Infinity )
+   limit_height_ui( (Limit), UI_Infinity )
 UIINABOX_API inline int16_t limit_height_ui( uiLimit limit, int16_t h )
 {
    return clamp_c_( limit.min.h, h, limit.max.h );
 }
 
 #define limit_width_ui_( Limit )                                               \
-   limit_width_ui( (Limit), CS_Infinity )
+   limit_width_ui( (Limit), UI_Infinity )
 UIINABOX_API inline int16_t limit_width_ui( uiLimit limit, int16_t w )
 {
    return clamp_c_( limit.min.w, w, limit.max.w );
@@ -78,7 +69,7 @@ UIINABOX_API inline uiSize limit_size_ui( uiLimit limit, uiSize size )
 *******************************************************************************/
 
 #define main_axis_ui_( Limit, Axis )                                           \
-   main_axis_ui( (Limit), (Axis), CS_Infinity )
+   main_axis_ui( (Limit), (Axis), UI_Infinity )
 UIINABOX_API
 inline int16_t main_axis_ui( uiLimit limit, ui_Axis axis, int16_t val )
 {
@@ -90,7 +81,7 @@ inline int16_t main_axis_ui( uiLimit limit, ui_Axis axis, int16_t val )
 }
 
 #define cross_axis_ui_( Limit, Axis )                                          \
-   cross_axis_ui( (Limit), (Axis), CS_Infinity )
+   cross_axis_ui( (Limit), (Axis), UI_Infinity )
 UIINABOX_API
 inline int16_t cross_axis_ui( uiLimit limit, ui_Axis axis, int16_t val )
 {
@@ -104,5 +95,13 @@ inline int16_t cross_axis_ui( uiLimit limit, ui_Axis axis, int16_t val )
 /*******************************************************************************
 
 *******************************************************************************/
+
+UIINABOX_API bool write_limit_ui( cRecorder rec[static 1],
+                                  uiLimit limit,
+                                  char const fmt[static 1] );
+
+#define limit_tape_ui_( Limit )                                                \
+   limit_tape_ui( ref_c_( uiLimit, (Limit) ) )
+UIINABOX_API cTape limit_tape_ui( uiLimit const* limit );
 
 #endif

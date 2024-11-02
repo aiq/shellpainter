@@ -16,8 +16,8 @@ int main( void )
    init_tap_c_();
 
    testSlice tests = slice_c_( test,
-      t_( fix_limit_ui( 1280, 720 ), ui_Horizontal, CS_Infinity, 720 ),
-      t_( fix_limit_ui( 1280, 720 ), ui_Vertical, CS_Infinity, 1280 )
+      t_( fix_limit_ui( 1280, 720 ), ui_Horizontal, UI_Infinity, 720 ),
+      t_( fix_limit_ui( 1280, 720 ), ui_Vertical, UI_Infinity, 1280 )
    );
 
    for_each_c_( i, test const*, t, tests )

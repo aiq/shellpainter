@@ -16,12 +16,15 @@ set( TEST_FILES
 
 aux_source_directory( ${TEST_DIR}/cmdscreen TEST_FILES )
 aux_source_directory( ${TEST_DIR}/cmdscreen/csLayout TEST_FILES )
+aux_source_directory( ${TEST_DIR}/cmdscreen/CSTextInput TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/uiLimit TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/align TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/alignx TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/aligny TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/line TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/pad TEST_FILES )
+aux_source_directory( ${TEST_DIR}/uiinabox/sized TEST_FILES )
+aux_source_directory( ${TEST_DIR}/uiinabox/uiRect TEST_FILES )
 aux_source_directory( ${TEST_DIR}/uiinabox/uiSize TEST_FILES )
 
 ################################################################################
@@ -32,4 +35,6 @@ set( APP_FILES
    ${APP_DIR}/color-info/color-info.c
    ${APP_DIR}/echo/echo.c
    ${APP_DIR}/keyboard/keyboard.c
+   ${APP_DIR}/msg-log/msg-log.c
+   ${APP_DIR}/textinput/textinput.c
 )

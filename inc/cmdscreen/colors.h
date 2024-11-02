@@ -9,47 +9,32 @@
 ********************************************************************************
  type
 *******************************************************************************/
-/*
-#define csCOLOR_                                                               \
-   XMAP_C_( cs_Black, 0, "black" )                                                      \
-   XMAP_C_( cs_Maroon, 1, "maroon" )                                                     \
-   XMAP_C_( cs_Green, 2, "green" )                                                      \
-   XMAP_C_( cs_Olive, 3, "olive" )                                                      \
-   XMAP_C_( cs_Navy, 4, "navy" )                                                       \
-   XMAP_C_( cs_Purple, 5, "purple" )                                                     \
-   XMAP_C_( cs_Teal, 6, "teal" )                                                       \
-   XMAP_C_( cs_Silver, 7, "silver" )                                                     \
-                                                                               \
-   XMAP_C_( cs_Grey, 8, "grey" )        \
-   XMAP_C_( cs_Red, 9 )         \
-   XMAP_C_( cs_Lime, 10 )       \
-   XMAP_C_( cs_Yellow, 11 )     \
-   XMAP_C_( cs_Blue, 12 )       \
-   XMAP_C_( cs_Fuchsia, 13 )        \
-   XMAP_C_( cs_Aqua, 14 )       \
-   XMAP_C_( cs_White, 15 )      \
-   \
-   XMAP_C_( cs_Grey0, 16 )      \
-   XMAP_C_( cs_NavyBlue, 17 )       \
-   XMAP_C_( cs_DarkBlue, 18 )       \
-   XMAP_C_( cs_Blue3 )
 
-#define XMAP_C_( N, I ) N = I,
-enum cs_Color { csCOLOR_ };
-#undef XMAP_C_
+#define csRED_      rgb24_c_( 230,  25,  75 )
+#define csGREEN_    rgb24_c_(  60, 180,  75 )
+#define csYELLOW_   rgb24_c_( 255, 255,  25 )
+#define csBLUE_     rgb24_c_(   0, 130, 200 )
+#define csORANGE_   rgb24_c_( 245, 130,  48 )
 
-typedef enum o_EbmlType o_EbmlType;
-*/
-/*******************************************************************************
-********************************************************************* Functions
-********************************************************************************
+#define csPURPLE_   rgb24_c_( 145,  30, 180 )
+#define csCYAN_     rgb24_c_(  70, 240, 240 )
+#define csMAGENTA_  rgb24_c_( 240,  50, 230 )
+#define csLIME_     rgb24_c_( 210, 245,  60 )
+#define csPINK_     rgb24_c_( 250, 190, 212 )
 
-*******************************************************************************/
+#define csTEAL_     rgb24_c_(   0, 128, 128 )
+#define csLAVENDER_ rgb24_c_( 220, 190, 255 )
+#define csBROWN_    rgb24_c_( 170, 110,  40 )
+#define csBEIGE_    rgb24_c_( 255, 250, 200 )
+#define csMAROON_   rgb24_c_( 128,   0,   0 )
 
-CMDSCREEN_API cColor init_colors_cs( cColors colors );
+#define csMINT_     rgb24_c_( 170, 255, 195 )
+#define csOLIVE_    rgb24_c_( 128, 128,   0 )
+#define csAPRICOT_  rgb24_c_( 255, 215, 180 )
+#define csNAVY_     rgb24_c_(   0,   0, 128 )
+#define csGREY_     rgb24_c_( 128, 128, 128 )
 
-CMDSCREEN_API bool clear_colors_cs( void );
-
-CMDSCREEN_API cColor get_color_cs( int16_t idx );
+#define csWHITE_    rgb24_c_( 255, 255, 255 )
+#define csBLACK_    rgb24_c_(   0,   0,   0 )
 
 #endif

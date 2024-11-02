@@ -126,7 +126,7 @@ int main( void )
          )
       ),
       exp_cs_(  // fill
-         rect_ui( 14, 0, 6, 12 ),
+         rect_ui( 14, 0, 6, 1 ),
          exp_cs_(    // fixed
             rect_ui( 14, 0, 1, 1 ),
             none_ui()

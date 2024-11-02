@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_pad, uiPadding, layout_pad_ui, do_deref_c_ )
+static LAYOUT_UI_( do_pad, uiPadding, layout_pad_ui, do_deref_c_ )
 uiBoxType const UI_Pad = {
    .desc = "pad",
    .layout = &do_pad
@@ -28,7 +28,7 @@ extern inline uiRect pad_rect_ui( uiRect rect, uiPadding pad );
 
 #define pad_value_( Value, Pad )                                               \
 (                                                                              \
-    ( (Value) == CS_Infinity ) ? CS_Infinity                                   \
+    ( (Value) == UI_Infinity ) ? UI_Infinity                                   \
                                : (Value) - (Pad)                               \
 )
 

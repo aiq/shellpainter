@@ -11,6 +11,7 @@
 #include "uiinabox/line.h"
 #include "uiinabox/none.h"
 #include "uiinabox/pad.h"
+#include "uiinabox/sized.h"
 #include "uiinabox/ui_Axis.h"
 #include "uiinabox/uiBox.h"
 #include "uiinabox/uiLimit.h"

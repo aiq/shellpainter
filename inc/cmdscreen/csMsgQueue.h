@@ -5,6 +5,7 @@
 #include <stdbool.h>
 
 #include "cmdscreen/apidecl.h"
+#include "clingo/clingo.h"
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -12,28 +13,10 @@
  type
 *******************************************************************************/
 
-typedef void csMsgData;
-
-struct csMsg;
-typedef struct csMsg csMsg;
-
-struct csMsgType
-{
-   char const* desc;
-};
-typedef struct csMsgType csMsgType;
-
-struct csMsg
-{
-   csMsgType const* type;
-};
-
-struct csMsgStream
-{
-   int64_t space;
-   void* mem;
-};
-typedef struct csMsgStream csMsgStream;
+PILE_C_(
+   CObject*,   // Type
+   csMsgQueue  // PileType
+)
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -41,13 +24,10 @@ typedef struct csMsgStream csMsgStream;
  error
 *******************************************************************************/
 
-CMDSCREEN_API bool push_msg_cs( csMsgStream stream[static 1],
-                                csMsgType const type[static 1],
-                                csMsgData const* data,
-                                int64_t dataSize );
+CMDSCREEN_API bool init_msg_queue_cs( csMsgQueue queue[static 1], int64_t cap );
 
-CMDSCREEN_API csMsgData const* get_msg_data_cs( csMsg const* msg );
+CMDSCREEN_API bool push_msg_cs( csMsgQueue queue[static 1], CObject* msg );
 
-CMDSCREEN_API void reset_msg_stream_cs( csMsgStream stream[static 1] );
+CMDSCREEN_API CObject* pull_msg_cs( csMsgQueue queue[static 1] );
 
 #endif

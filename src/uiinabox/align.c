@@ -9,7 +9,7 @@
  type
 *******************************************************************************/
 
-static LAYOUT_CS_( do_align, uiAlignment, layout_align_ui, do_deref_c_ )
+static LAYOUT_UI_( do_align, uiAlignment, layout_align_ui, do_deref_c_ )
 uiBoxType const UI_Align = {
    .desc = "align",
    .layout = &do_align

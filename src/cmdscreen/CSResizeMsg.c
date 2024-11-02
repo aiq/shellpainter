@@ -1,14 +1,17 @@
-#include "CS_MainScreen.h"
-
-#include "uiinabox/uiinabox.h"
+#include "cmdscreen/CSResizeMsg.h"
 
 /*******************************************************************************
-********************************************************* Types and Definitions
+************************************************************************* types
 ********************************************************************************
- type
+ basic
 *******************************************************************************/
 
-MainScreen CS_MainScreen = {0};
+static inline void cleanup( void* instance ) {}
+
+cMeta const CS_ResizeMsg = {
+   .desc = stringify_c_( CS_ResizeMsg ),
+   .cleanup = &cleanup
+};
 
 /*******************************************************************************
 ********************************************************************* Functions
@@ -16,14 +19,11 @@ MainScreen CS_MainScreen = {0};
 
 *******************************************************************************/
 
-bool init_main_screen( void )
+bool write_resize_msg_cs( cRecorder rec[static 1],
+                          CSResizeMsg const* msg,
+                          char const fmt[static 1] )
 {
-   return init_mem_area_cs( &CS_MainScreen.mem, csBLOCK_SIZE_ ) and
-          init_ui();
-}
+   must_exist_c_( msg );
 
-void cleanup_main_screen( void )
-{
-   cleanup_mem_area_cs( &CS_MainScreen.mem );
-   cleanup_ui();
+   return write_c_( rec, "resize msg => w:{i16} / h:{i16}", msg->w, msg->h );
 }

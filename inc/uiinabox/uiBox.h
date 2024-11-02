@@ -10,7 +10,7 @@
  type
 *******************************************************************************/
 
-#define LAYOUT_CS_( FuncName, Type, LayoutFunc, DoDeref )                      \
+#define LAYOUT_UI_( FuncName, Type, LayoutFunc, DoDeref )                      \
 bool FuncName( uiBox box[static 1],                                            \
                uiLimit limit,                                                  \
                void const* i,                                                  \
@@ -67,7 +67,20 @@ UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
                                         cErrorStack es[static 1] )
 {
    must_exist_c_( box->type );
-   return box->type->layout( box, limit, box->data, es );
+   bool ok = box->type->layout( box, limit, box->data, es );
+   if ( not ok )
+   {
+      return false;
+   }
+   if ( box->rect.w == UI_Infinity )
+   {
+      return push_lit_error_c( es, "a w value is infinity" );
+   }
+   if ( box->rect.h == UI_Infinity )
+   {
+      return push_lit_error_c( es, "a h value is infitity" );
+   }
+   return true;
 }
 
 /*******************************************************************************
@@ -75,9 +88,9 @@ UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
 *******************************************************************************/
 
 UIINABOX_API uiBox box_ui( void* data,
-                            uiBoxType const type[static 1],
-                            uiContent const* content,
-                            uiBoxes children );
+                           uiBoxType const type[static 1],
+                           uiContent const* content,
+                           uiBoxes children );
 
 UIINABOX_API void globalise_ui( uiBox box[static 1] );
 
