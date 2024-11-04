@@ -62,6 +62,12 @@ bool set_cell_cs( uiPoint cord, cRune rune, csStyle style )
    return ret == 0;
 }
 
+bool set_cursor_cs( uiPoint cord )
+{
+   int const ret = tb_set_cursor( cord.x, cord.y );
+   return ret == 0;
+}
+
 bool clear_cs( void )
 {
    int const ret = tb_clear();

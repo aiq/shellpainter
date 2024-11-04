@@ -44,7 +44,13 @@ CMDSCREEN_API bool set_hline_cs( uiPoint cord, cChars text, csStyle style );
 
 CMDSCREEN_API bool set_vline_cs( uiPoint cord, cChars text, csStyle style );
 
+#define set_cell_cs_( X, Y, Rune, Style )                                      \
+   set_cell_cs( point_ui( (X), (Y) ), (Rune), (Style) )
 CMDSCREEN_API bool set_cell_cs( uiPoint cord, cRune rune, csStyle style );
+
+#define set_cursor_cs_( X, Y )                                                 \
+   set_cursor_cs( point_ui( (X), (Y) ) )
+CMDSCREEN_API bool set_cursor_cs( uiPoint cord );
 
 CMDSCREEN_API bool clear_cs( void );
 

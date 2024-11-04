@@ -31,7 +31,7 @@ bool update_model( void* instance, CObject const* msg )
    if ( meta == &CS_KeyMsg )
    {
       CSKeyMsg const* keyMsg = msg;
-      if ( rune_is_c( keyMsg->rune, "q" ) )
+      if ( keyMsg->code == cs_EscapeKey )
       {
          quit_app_cs();
       }
@@ -52,7 +52,7 @@ int main( int argc, char* argv[] )
    {
       model.input->prompt = lit_c( "> " );
       model.input->placeHolder = lit_c( "thursday" );
-      model.input->style = base_style_cs( csPINK_, csBLACK_ );
+      model.input->textStyle = base_style_cs( csPINK_, csBLACK_ );
    }
 
    csApp app = {

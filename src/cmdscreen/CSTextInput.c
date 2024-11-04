@@ -1,5 +1,6 @@
 #include "cmdscreen/CSTextInput.h"
 
+#include "cmdscreen/colors.h"
 #include "cmdscreen/term.h"
 
 /*******************************************************************************
@@ -8,28 +9,31 @@
 
 static void init_text_input_commands( csTextInputCommands commands[static 1] )
 {
-   commands->charForward = cs_NoKey;
-   commands->charBackward = cs_NoKey;
-   commands->wordForward = cs_NoKey;
-   commands->wordBackward = cs_NoKey;
-   commands->delWordForward = cs_NoKey;
-   commands->delWordBackward = cs_NoKey;
-   commands->delAfterCursor = cs_NoKey;
-   commands->delBeforeCursor = cs_NoKey;
-   commands->delCharBackward = cs_BackspaceKey;
-   commands->delCharForward = cs_DeleteKey;
-   commands->lineStart = cs_NoKey;
-   commands->lineEnd = cs_NoKey;
-   commands->paste = cs_NoKey;
-   commands->acceptSuggestion = cs_NoKey;
-   commands->nextSuggestion = cs_NoKey;
-   commands->prevSuggestio = cs_NoKey;
+   commands->deleteBackward = cs_BackspaceKey;
+   commands->deleteForward = cs_DeleteKey;
+   commands->moveBackward = cs_LeftKey;
+   commands->moveForward = cs_RightKey;
+   commands->moveToStart = cs_UpKey;
+   commands->moveToEnd = cs_DownKey;
 }
 
 static void* tail( CSTextInput* input )
 {
    return input+1;
 }
+
+STATIC_VAL_PILE_IMPL_C_(
+   __attribute__((unused)),   // Attr
+   cRune,                     // Type
+   csRunePile,                // PileType
+   rune_cs                    // FuncSuffix
+)
+
+static REMOVE_C_(
+   remove_rune, // FuncName
+   csRunePile,  // SliceType
+   cRune        // Value
+)
 
 /*******************************************************************************
 ********************************************************* Types and Definitions
@@ -40,7 +44,8 @@ static void* tail( CSTextInput* input )
 struct csTextInputInternal
 {
    cRecorder rec;
-   int64_t len;
+   csRunePile pile;
+   int64_t pos;
 };
 
 static inline void cleanup( void* instance )
@@ -49,6 +54,10 @@ static inline void cleanup( void* instance )
    if ( input->_->rec.mem != NULL)
    {
       free_recorder_mem_c( &input->_->rec );
+   }
+   if ( input->_->pile.v != NULL )
+   {
+      free( input->_->pile.v );
    }
 }
 
@@ -60,6 +69,24 @@ cMeta const CS_TextInput = {
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
+
+*******************************************************************************/
+
+static bool sync_recorded( csTextInputInternal internal[static 1] )
+{
+   reset_recorder_c( &internal->rec );
+   cRunes runes = as_c_( cRunes, internal->pile );
+   each_c_( cRune const*, r, runes )
+   {
+      if ( not record_rune_c( &internal->rec, *r ) )
+      {
+         return false;
+      }
+   }
+   return true;
+}
+
+/*******************************************************************************
 
 *******************************************************************************/
 
@@ -78,13 +105,21 @@ CSTextInput* new_text_input_cs( void )
       return NULL;
    }
    input->_ = tail( input );
+   if ( not alloc_pile_of_rune_cs( &input->_->pile, 40 ) )
+   {
+      return release_c( input );
+   }
    input->_->rec = dyn_recorder_c_( 40 );
    if ( input->_->rec.mem == NULL )
    {
       return release_c( input );
    }
+   input->_->pos = 0;
+
    input->prompt = retain_c( lit_c( "> " ) );
-   input->style = base_style_cs( rgb24_c_( 0, 255, 0 ), rgb24_c_( 0, 0, 0 ) );
+   input->promptStyle = base_style_cs( csORANGE_, csBLACK_ );
+   input->placeHolderStyle = base_style_cs( csGREY_, csBLACK_ );
+   input->textStyle = base_style_cs( csRED_, csBLACK_ );
    init_text_input_commands( &input->commands );
 
    return input;
@@ -112,29 +147,93 @@ bool show_text_input_cs( CSTextInput const* input, uiRect area )
    uiPoint cord = top_left_corner_ui( area );
    if ( input->prompt )
    {
-      if ( not set_hline_cs( cord, sc_c( input->prompt ), input->style ) )
+      if ( not set_hline_cs( cord, sc_c( input->prompt ), input->promptStyle ) )
       {
          return false;
       }
       cord.x += string_length_c( input->prompt );
    }
 
-   return set_hline_cs( cord, text_input_value_cs( input ), input->style );
+   if ( not set_hline_cs( cord, text_input_value_cs( input ), input->textStyle ) )
+   {
+      return false;
+   }
+
+   return set_cursor_cs_( cord.x + input->_->pos, cord.y );
 }
 
 bool update_text_input_cs( CSTextInput* input, CSKeyMsg const* msg )
 {
    must_exist_c_( input );
-   if ( msg->code == input->commands.delCharBackward )
+   if ( msg->code == input->commands.deleteBackward )
    {
-      
+      if ( input->_->pos > 0 )
+      {
+         if ( not remove_rune( &input->_->pile, input->_->pos-1 ) )
+         {
+            return false;
+         }
+         input->_->pos--;
+      }
+      return sync_recorded( input->_ );
    }
-   if ( not record_rune_c( &input->_->rec, msg->rune ) )
+   else if ( msg->code == input->commands.deleteForward )
    {
-      return false;
+      if ( input->_->pos < input->_->pile.s )
+      {
+         if ( not remove_rune( &input->_->pile, input->_->pos ) )
+         {
+            return false;
+         }
+      }
+      return sync_recorded( input->_ );
    }
-   input->_->len += 1;
-   return true;
+   else if ( msg->code == input->commands.moveBackward )
+   {
+      if ( input->_->pos > 0 )
+      {
+         input->_->pos--;
+      }
+      return true;
+   }
+   else if ( msg->code == input->commands.moveForward )
+   {
+      if ( input->_->pos < input->_->pile.s )
+      {
+         input->_->pos++;
+      }
+      return true;
+   }
+   else if ( msg->code == input->commands.moveToStart )
+   {
+      input->_->pos = 0;
+      return true;
+   }
+   else if ( msg->code == input->commands.moveToEnd )
+   {
+      input->_->pos = input->_->pile.s;
+      return true;
+   }
+   else if ( rune_is_valid_c( msg->rune ) and msg->rune.ctrl != 0 )
+   {
+      if ( insert_rune_cs( &input->_->pile, input->_->pos, msg->rune ) and
+           sync_recorded( input->_ ) )
+      {
+        input->_->pos++;
+        return true;
+      }
+   }
+   else
+   {
+      return true;
+   }
+   return false;
+}
+
+int64_t text_input_pos_cs( CSTextInput const* input )
+{
+   must_exist_c_( input );
+   return 0;
 }
 
 cChars text_input_value_cs( CSTextInput const* input )
