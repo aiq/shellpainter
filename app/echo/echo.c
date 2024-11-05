@@ -209,13 +209,13 @@ void printf_tb(int x, int y, csStyle style, const char *fmt, ...)
     va_start(vl, fmt);
     vsnprintf(buf, sizeof(buf), fmt, vl);
     va_end(vl);
-    set_hline_cs( point_ui( x, y ), c_c( buf ), style );
+    set_htext_cs( point_ui( x, y ), c_c( buf ), style );
 }
 
 void draw_key(Key k, csStyle style )
 {
    uiPoint cord = point_ui( k.x+2, k.y+4 );
-   set_hline_cs( cord, c_c( k.str ), style );
+   set_htext_cs( cord, c_c( k.str ), style );
 }
 
 void draw_keyboard(void)

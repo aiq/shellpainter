@@ -40,13 +40,25 @@ CMDSCREEN_API void cleanup_term_cs( void );
 
 *******************************************************************************/
 
-CMDSCREEN_API bool set_hline_cs( uiPoint cord, cChars text, csStyle style );
+CMDSCREEN_API bool set_htext_cs( uiPoint cord, cChars text, csStyle style );
 
-CMDSCREEN_API bool set_vline_cs( uiPoint cord, cChars text, csStyle style );
+CMDSCREEN_API bool set_vtext_cs( uiPoint cord, cChars text, csStyle style );
 
 #define set_cell_cs_( X, Y, Rune, Style )                                      \
    set_cell_cs( point_ui( (X), (Y) ), (Rune), (Style) )
 CMDSCREEN_API bool set_cell_cs( uiPoint cord, cRune rune, csStyle style );
+
+#define set_hcells_cs_( X, Y, Runes, Style )                                   \
+   set_hcells_cs( point_ui( (X), (Y) ), (Runes), (Style) )
+CMDSCREEN_API bool set_hcells_cs( uiPoint cord, cRunes runes, csStyle style );
+
+#define set_hline_cs_( X, Y, N, Rune, Style )                                  \
+   set_hline_cs( point_ui( (X), (Y) ), (N), (Rune), (Style) )
+CMDSCREEN_API bool set_hline_cs( uiPoint cord, int16_t n, cRune rune, csStyle style );
+
+#define set_vline_cs_( X, Y, N, Rune, Style )                                  \
+   set_vline_cs( point_ui( (X), (Y) ), (N), (Rune), (Style) )
+CMDSCREEN_API bool set_vline_cs( uiPoint cord, int16_t n, cRune rune, csStyle style );
 
 #define set_cursor_cs_( X, Y )                                                 \
    set_cursor_cs( point_ui( (X), (Y) ) )

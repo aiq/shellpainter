@@ -25,7 +25,7 @@ void cleanup_term_cs( void )
 
 *******************************************************************************/
 
-bool set_hline_cs( uiPoint cord, cChars text, csStyle style )
+bool set_htext_cs( uiPoint cord, cChars text, csStyle style )
 {
    cRune r;
    iterate_runes_c_( itr, &r, text )
@@ -38,7 +38,7 @@ bool set_hline_cs( uiPoint cord, cChars text, csStyle style )
    return true;
 }
 
-bool set_vline_cs( uiPoint cord, cChars text, csStyle style )
+bool set_vtext_cs( uiPoint cord, cChars text, csStyle style )
 {
    cRune r;
    iterate_runes_c_( itr, &r, text )
@@ -56,10 +56,56 @@ bool set_cell_cs( uiPoint cord, cRune rune, csStyle style )
    uiRect rectTerm = make_rect_ui( point_ui( 0, 0 ), term_size_cs() );
    if ( not in_rect_ui( rectTerm, cord ) )
    {
-      return true;
+      return false;
    }
    int const ret = tb_set_cell( cord.x, cord.y, rune_code_c( rune ), style.f, style.b );
    return ret == 0;
+}
+
+bool set_hcells_cs( uiPoint cord, cRunes runes, csStyle style )
+{
+   each_c_( cRune const*, r, runes )
+   {
+      if ( not set_cell_cs( cord, *r, style ) )
+         return false;
+
+      cord.x += 1;
+   }
+   return true;
+}
+
+bool set_vcells_cs( uiPoint cord, cRunes runes, csStyle style )
+{
+   each_c_( cRune const*, r, runes )
+   {
+      if ( not set_cell_cs( cord, *r, style ) )
+         return false;
+
+      cord.y += 1;
+   }
+   return true;
+}
+
+bool set_hline_cs( uiPoint cord, int16_t n, cRune rune, csStyle style )
+{
+   must_be_positive_c_( n );
+   times_c_( n, i )
+   {
+      if ( not set_cell_cs_( cord.x+i, cord.y, rune, style ) )
+         return false;
+   }
+   return true;
+}
+
+bool set_vline_cs( uiPoint cord, int16_t n, cRune rune, csStyle style )
+{
+   must_be_positive_c_( n );
+   times_c_( n, i )
+   {
+      if ( not set_cell_cs_( cord.x, cord.y+i, rune, style ) )
+         return false;
+   }
+   return true;
 }
 
 bool set_cursor_cs( uiPoint cord )

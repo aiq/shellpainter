@@ -26,8 +26,8 @@ bool write_key_msg_cs( cRecorder rec[static 1],
    must_exist_c_( msg );
 
    return write_c_( rec, "key msg ",
-                    "=> dec:{u16}", msg->code,
-                    " / hex:{u16:x}", msg->code,
+                    "=> dec:{u16}", msg->cmd,
+                    " / hex:{u16:x}", msg->cmd,
                     " / rune:{r}", msg->rune,
                     " / rune code:{r:n}", msg->rune );
 }

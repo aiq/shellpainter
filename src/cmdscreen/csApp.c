@@ -54,7 +54,7 @@ static bool event_as_key_msg( struct tb_event event[static 1],
    {
       return push_errno_error_c( es, errno );
    }
-   msg->code = event->key;
+   msg->cmd = event->key;
    msg->rune = utf32_rune_c( event->ch );
    if ( not push_msg_cs( &State.msgs, msg ) )
    {

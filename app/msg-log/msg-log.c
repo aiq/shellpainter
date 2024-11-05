@@ -20,7 +20,7 @@ bool show_model( Model const* model, uiRect area )
                       base_style_cs( csBLACK_, csWHITE_ );
       cRecorder* rec = &recorder_c_( 1024 );
       write_c_( rec, "{t} {cs}", rect_tape_ui( &area ), tok.x );
-      if ( not set_hline_cs( cord, recorded_chars_c( rec ), style ) )
+      if ( not set_htext_cs( cord, recorded_chars_c( rec ), style ) )
       {
          return false;
       }

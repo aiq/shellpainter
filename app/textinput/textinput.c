@@ -4,6 +4,7 @@ struct Model
 {
    CSLabel* question;
    CSTextInput* input;
+   CSLabel* note;
 };
 typedef struct Model Model;
 
@@ -17,7 +18,10 @@ uiBox layout_model( void const* instance )
             1,
             boxes_cs_(
                label_box_cs( model->question ),
-               text_input_box_cs( model->input )
+               text_input_box_cs( model->input ),
+               centerx_ui_(
+                  label_box_cs( model->note )
+               )
             )
          )
       )
@@ -31,7 +35,7 @@ bool update_model( void* instance, CObject const* msg )
    if ( meta == &CS_KeyMsg )
    {
       CSKeyMsg const* keyMsg = msg;
-      if ( keyMsg->code == cs_EscapeKey )
+      if ( keyMsg->cmd == cs_EscapeKey )
       {
          quit_app_cs();
       }
@@ -53,6 +57,11 @@ int main( int argc, char* argv[] )
       model.input->prompt = lit_c( "> " );
       model.input->placeHolder = lit_c( "thursday" );
       model.input->textStyle = base_style_cs( csPINK_, csBLACK_ );
+   }
+   model.note = new_label_cs_();
+   {
+      model.note->text = lit_c( "press 'esc' to quit" );
+      model.note->style = base_style_cs( csTEAL_, csBLACK_ );
    }
 
    csApp app = {

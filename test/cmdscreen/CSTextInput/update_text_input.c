@@ -13,14 +13,14 @@
 
 static inline CSKeyMsg* with_rune_msg( CSKeyMsg* msg, char const cstr[static 1] )
 {
-   msg->code = 0;
+   msg->cmd = cs_NoCmd;
    msg->rune = rune_c( cstr );
    return msg;
 }
 
-static inline CSKeyMsg* with_command( CSKeyMsg* msg, uint16_t code )
+static inline CSKeyMsg* with_cmd_msg( CSKeyMsg* msg, uint16_t code )
 {
-   msg->code = code;
+   msg->cmd = code;
    return msg;
 }
 
@@ -43,21 +43,21 @@ int main( void )
    require_c_( update_text_input_cs( input, with_rune_msg( msg, "o") ) );
    expect_( input, 5, "hello" );
 
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.moveBackward ) ) );
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.moveBackward ) ) );
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.moveBackward ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.moveBackward ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.moveBackward ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.moveBackward ) ) );
    expect_( input, 2, "hello" );
 
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.deleteBackward ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.deleteBackward ) ) );
    expect_( input, 1, "hllo" );
 
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.moveToStart ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.moveToStart ) ) );
    expect_( input, 0, "hllo" );
 
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.deleteForward ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.deleteForward ) ) );
    expect_( input, 0, "llo" );
 
-   require_c_( update_text_input_cs( input, with_command( msg, input->commands.deleteBackward ) ) );
+   require_c_( update_text_input_cs( input, with_cmd_msg( msg, input->commands.deleteBackward ) ) );
    expect_( input, 0, "llo" );
 
    release_c( input );
