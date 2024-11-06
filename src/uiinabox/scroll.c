@@ -11,7 +11,6 @@
 
 static bool do_scroll( uiBox box[static 1],
                        uiLimit limit,
-                       void const* ignore,
                        cErrorStack es[static 1] )
 {
    if ( not has_just_single_child( "scroll", box->children, es ) )

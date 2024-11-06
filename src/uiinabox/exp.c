@@ -6,7 +6,6 @@
 
 static bool do_exp( uiBox box[static 1],
                     uiLimit limit,
-                    void const* nothing,
                     cErrorStack es[static 1] )
 {
    return true;

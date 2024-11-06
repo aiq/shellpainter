@@ -5,7 +5,6 @@
 
 static bool do_fill( uiBox box[static 1],
                      uiLimit limit,
-                     void const* nothing,
                      cErrorStack es[static 1] )
 {
    if ( not has_just_single_child( "fill", box->children, es ) )

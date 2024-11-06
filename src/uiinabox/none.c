@@ -10,7 +10,6 @@
 
 static bool do_none( uiBox box[static 1],
                      uiLimit limit,
-                     void const* i,
                      cErrorStack es[static 1] )
 {
    box->rect.w = 0;

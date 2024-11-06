@@ -13,12 +13,10 @@
 #define LAYOUT_UI_( FuncName, Type, LayoutFunc, DoDeref )                      \
 bool FuncName( uiBox box[static 1],                                            \
                uiLimit limit,                                                  \
-               void const* i,                                                  \
                cErrorStack es[static 1] )                                      \
 {                                                                              \
-   must_exist_c_( i );                                                         \
-   Type const* val = i;                                                        \
-   return LayoutFunc( box, limit, DoDeref( val ), es );                       \
+   Type const* val = box->data;                                                \
+   return LayoutFunc( box, limit, DoDeref( val ), es );                        \
 }
 
 struct uiBox;
@@ -32,7 +30,6 @@ SLICES_C_(
 
 typedef bool ( *ui_layout )( uiBox* box,
                              uiLimit limit,
-                             void const* val,
                              cErrorStack es[static 1] );
 
 struct uiBoxType
@@ -67,7 +64,7 @@ UIINABOX_API inline bool layout_box_ui( uiBox box[static 1],
                                         cErrorStack es[static 1] )
 {
    must_exist_c_( box->type );
-   bool ok = box->type->layout( box, limit, box->data, es );
+   bool ok = box->type->layout( box, limit, es );
    if ( not ok )
    {
       return false;
