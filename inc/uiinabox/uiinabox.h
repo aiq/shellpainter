@@ -4,6 +4,7 @@
 #include "uiinabox/align.h"
 #include "uiinabox/alignx.h"
 #include "uiinabox/aligny.h"
+#include "uiinabox/cover.h"
 #include "uiinabox/exp.h"
 #include "uiinabox/fill.h"
 #include "uiinabox/fixed.h"
