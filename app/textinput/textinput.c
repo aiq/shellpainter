@@ -37,7 +37,7 @@ bool update_model( void* instance, CObject const* msg )
       CSKeyMsg const* keyMsg = msg;
       if ( keyMsg->cmd == cs_EscapeKey )
       {
-         quit_app_cs();
+         return quit_app_cs();
       }
       return update_text_input_cs( model->input, keyMsg );
    }

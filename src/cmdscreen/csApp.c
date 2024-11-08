@@ -208,7 +208,8 @@ bool run_app_cs( csApp app, cErrorStack es[static 1] )
    return res;
 }
 
-void quit_app_cs( void )
+bool quit_app_cs( void )
 {
    doRun = false;
+   return true;
 }

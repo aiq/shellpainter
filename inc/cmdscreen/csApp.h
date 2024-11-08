@@ -28,6 +28,6 @@ typedef struct csApp csApp;
 
 CMDSCREEN_API bool run_app_cs( csApp app, cErrorStack es[static 1] );
 
-CMDSCREEN_API void quit_app_cs( void );
+CMDSCREEN_API bool quit_app_cs( void );
 
 #endif
