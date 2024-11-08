@@ -12,6 +12,7 @@
 
 #define csKeyCmd_                                                              \
    XMAP_C_( cs_NoCmd, 0x00, "no-command" )                                     \
+   XMAP_C_( cs_TabKey, 0x09, "tab" )                                           \
    XMAP_C_( cs_EnterKey, 0x0d, "enter" )                                       \
    XMAP_C_( cs_EscapeKey, 0x1b, "escape" )                                     \
    XMAP_C_( cs_BackspaceKey, 0x7f, "backspace" )                               \
