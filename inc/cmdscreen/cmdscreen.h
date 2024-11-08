@@ -1,6 +1,7 @@
 #ifndef CMDSCREEN_CMDSCREEN_H
 #define CMDSCREEN_CMDSCREEN_H
 
+#include "cmdscreen/border.h"
 #include "cmdscreen/colors.h"
 #include "cmdscreen/csApp.h"
 #include "cmdscreen/CSComboBox.h"
