@@ -9,6 +9,12 @@
       tap_exp_line_c_( "{s}", (ExpVal) );                                      \
       tap_got_line_c_( "{cs}", val );                                          \
    }                                                                           \
+   int64_t pos = text_input_pos_cs( Input );                                   \
+   expect_block_at_c_( pos == (ExpPos) )                                       \
+   {                                                                           \
+      tap_exp_line_c_( "{i64}", (ExpPos) );                                    \
+      tap_got_line_c_( "{i64}", pos );                                         \
+   }                                                                           \
 }
 
 static inline CSKeyMsg* with_rune_msg( CSKeyMsg* msg, char const cstr[static 1] )

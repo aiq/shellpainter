@@ -148,7 +148,7 @@ bool show_text_input_cs( CSTextInput const* input, uiRect area )
 {
    must_exist_c_( input );
    uiPoint cord = top_left_corner_ui( area );
-   uiPoint const end = bottom_right_corner_ui( area );
+   int16_t width = area.w;
    if ( input->prompt )
    {
       if ( not set_htext_cs( cord, sc_c( input->prompt ), input->promptStyle ) )
@@ -156,9 +156,9 @@ bool show_text_input_cs( CSTextInput const* input, uiRect area )
          return false;
       }
       cord.x += string_length_c( input->prompt );
+      width -= string_length_c( input->prompt );
    }
 
-   int16_t const width = end.x - cord.x;
    if ( is_empty_c_( input->_->pile ) and input->placeHolder != NULL )
    {
       if ( not set_hline_cs( cord, width, input->unsetMarker, input->placeHolderStyle ) )
@@ -204,8 +204,7 @@ bool update_text_input_cs( CSTextInput* input, CSKeyMsg const* msg )
    }
    else if ( rune_is_valid_c( msg->rune ) and msg->rune.ctrl != 0 )
    {
-      if ( insert_rune_cs( &input->_->pile, input->_->pos, msg->rune ) and
-           sync_recorded( input->_ ) )
+      if ( insert_rune_cs( &input->_->pile, input->_->pos, msg->rune ) )
       {
         input->_->pos++;
         return true;
@@ -235,7 +234,7 @@ bool command_text_input_cs( CSTextInput* input, cs_KeyCmd cmd )
          }
          input->_->pos--;
       }
-      return sync_recorded( input->_ );
+      return true;
    }
    else if ( cmd == input->commands.deleteForward )
    {
@@ -246,7 +245,7 @@ bool command_text_input_cs( CSTextInput* input, cs_KeyCmd cmd )
             return false;
          }
       }
-      return sync_recorded( input->_ );
+      return true;
    }
    else if ( cmd == input->commands.moveBackward )
    {
@@ -275,18 +274,19 @@ bool command_text_input_cs( CSTextInput* input, cs_KeyCmd cmd )
       return true;
    }
 
-   return false;
+   return true;
 }
 
 int64_t text_input_pos_cs( CSTextInput const* input )
 {
    must_exist_c_( input );
-   return 0;
+   return input->_->pos;
 }
 
 cChars text_input_value_cs( CSTextInput const* input )
 {
    must_exist_c_( input );
+   sync_recorded( input->_ );
    cChars value = recorded_chars_c( &input->_->rec );
    if ( is_empty_c_( value ) and input->placeHolder != NULL )
    {
