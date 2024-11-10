@@ -10,19 +10,6 @@
  type
 *******************************************************************************/
 
-struct csBorder
-{
-   cRune l;
-   cRune r;
-   cRune t;
-   cRune b;
-   cRune tl;
-   cRune tr;
-   cRune bl;
-   cRune br;
-};
-typedef struct csBorder csBorder;
-
 struct csStyle
 {
    uint64_t f;
