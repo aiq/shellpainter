@@ -43,7 +43,6 @@ static REMOVE_C_(
 
 struct csTextInputInternal
 {
-   cRecorder rec;
    csRunePile pile;
    int16_t pos;
    int16_t watermark;
@@ -52,10 +51,6 @@ struct csTextInputInternal
 static inline void cleanup( void* instance )
 {
    CSTextInput* input = instance;
-   if ( input->_->rec.mem != NULL)
-   {
-      free_recorder_mem_c( &input->_->rec );
-   }
    if ( input->_->pile.v != NULL )
    {
       free( input->_->pile.v );
@@ -70,24 +65,6 @@ cMeta const CS_TextInput = {
 /*******************************************************************************
 ********************************************************************* Functions
 ********************************************************************************
-
-*******************************************************************************/
-
-static bool sync_recorded( csTextInputInternal internal[static 1] )
-{
-   reset_recorder_c( &internal->rec );
-   cRunes runes = as_c_( cRunes, internal->pile );
-   each_c_( cRune const*, r, runes )
-   {
-      if ( not record_rune_c( &internal->rec, *r ) )
-      {
-         return false;
-      }
-   }
-   return true;
-}
-
-/*******************************************************************************
 
 *******************************************************************************/
 
@@ -107,11 +84,6 @@ CSTextInput* new_text_input_cs( void )
    }
    input->_ = tail( input );
    if ( not alloc_pile_of_rune_cs( &input->_->pile, 40 ) )
-   {
-      return release_c( input );
-   }
-   input->_->rec = dyn_recorder_c_( 40 );
-   if ( input->_->rec.mem == NULL )
    {
       return release_c( input );
    }
@@ -195,33 +167,26 @@ bool show_text_input_cs( CSTextInput const* input, uiRect area )
    return set_cursor_cs( cursor );
 }
 
-bool update_text_input_cs( CSTextInput* input, CSKeyMsg const* msg )
+bool update_text_input_cs( CSTextInput* input, CObject const* msg )
 {
    must_exist_c_( input );
-   if ( msg->cmd != cs_NoCmd )
+   must_exist_c_( msg );
+
+   cMeta const* meta = get_meta_c( msg );
+   if ( meta == &CS_KeyMsg )
    {
-      return command_text_input_cs( input, msg->cmd );
+      CSKeyMsg const* keyMsg = msg;
+      return key_msg_text_input_cs( input, keyMsg );
    }
-   else if ( rune_is_valid_c( msg->rune ) and msg->rune.ctrl != 0 )
-   {
-      if ( insert_rune_cs( &input->_->pile, input->_->pos, msg->rune ) )
-      {
-        input->_->pos++;
-        return true;
-      }
-   }
-   else
-   {
-      return true;
-   }
-   return false;
+
+   return true;
 }
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-bool command_text_input_cs( CSTextInput* input, cs_KeyCmd cmd )
+bool key_cmd_text_input_cs( CSTextInput* input, cs_KeyCmd cmd )
 {
    must_exist_c_( input );
    if ( cmd == input->commands.deleteBackward )
@@ -277,20 +242,54 @@ bool command_text_input_cs( CSTextInput* input, cs_KeyCmd cmd )
    return true;
 }
 
+bool key_msg_text_input_cs( CSTextInput* input, CSKeyMsg const* msg )
+{
+   must_exist_c_( input );
+   if ( msg->cmd != cs_NoCmd )
+   {
+      return key_cmd_text_input_cs( input, msg->cmd );
+   }
+   else if ( rune_is_valid_c( msg->rune ) and msg->rune.ctrl != 0 )
+   {
+      if ( insert_rune_cs( &input->_->pile, input->_->pos, msg->rune ) )
+      {
+        input->_->pos++;
+        return true;
+      }
+   }
+
+   return true;
+}
+
+/*******************************************************************************
+
+*******************************************************************************/
+
 int64_t text_input_pos_cs( CSTextInput const* input )
 {
    must_exist_c_( input );
    return input->_->pos;
 }
 
-cChars text_input_value_cs( CSTextInput const* input )
+bool get_text_input_value_cs( CSTextInput const* input,
+                              cRecorder rec[static 1] )
 {
    must_exist_c_( input );
-   sync_recorded( input->_ );
-   cChars value = recorded_chars_c( &input->_->rec );
-   if ( is_empty_c_( value ) and input->placeHolder != NULL )
+   if ( is_empty_c_( input->_->pile ) and input->placeHolder != NULL )
    {
-      return sc_c( input->placeHolder );
+      return record_chars_c( rec, sc_c( input->placeHolder ) );
    }
-   return value;
+
+   int64_t const oldPos = rec->pos;
+   cRunes runes = as_c_( cRunes, input->_->pile );
+   each_c_( cRune const*, r, runes )
+   {
+      if ( not record_rune_c( rec, *r ) )
+      {
+         move_recorder_to_c( rec, oldPos );
+         return false;
+      }
+   }
+
+   return true;
 }

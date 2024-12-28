@@ -3,7 +3,9 @@
 
 #define expect_( Input, ExpPos, ExpVal )                                       \
 {                                                                              \
-   cChars val = text_input_value_cs( Input );                                  \
+   cRecorder* rec = &recorder_c_( 1024 );                                      \
+   get_text_input_value_cs( Input, rec );                                      \
+   cChars val = recorded_chars_c( rec );                                       \
    expect_block_at_c_( chars_is_c( val, (ExpVal) ) )                           \
    {                                                                           \
       tap_exp_line_c_( "{s}", (ExpVal) );                                      \

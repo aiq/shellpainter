@@ -12,7 +12,8 @@
 
 CMDSCREEN_API extern cMeta const CS_TextInput;
 
-struct csTextInputCmds {
+struct csTextInputCmds
+{
    cs_KeyCmd deleteBackward;
    cs_KeyCmd deleteForward;
    cs_KeyCmd moveBackward;
@@ -46,22 +47,29 @@ typedef struct CSTextInput CSTextInput;
 
 *******************************************************************************/
 
-CSTextInput* new_text_input_cs( void );
+CMDSCREEN_API CSTextInput* new_text_input_cs( void );
 
 CMDSCREEN_API uiBox text_input_box_cs( CSTextInput const* input );
 
 CMDSCREEN_API bool show_text_input_cs( CSTextInput const* input, uiRect area );
 
-CMDSCREEN_API bool update_text_input_cs( CSTextInput* input, CSKeyMsg const* msg );
+CMDSCREEN_API bool update_text_input_cs( CSTextInput* input, CObject const* msg );
 
 /*******************************************************************************
 
 *******************************************************************************/
 
-CMDSCREEN_API bool command_text_input_cs( CSTextInput* input, cs_KeyCmd cmd );
+CMDSCREEN_API bool key_cmd_text_input_cs( CSTextInput* input, cs_KeyCmd cmd );
+
+CMDSCREEN_API bool key_msg_text_input_cs( CSTextInput* input, CSKeyMsg const* msg );
+
+/*******************************************************************************
+
+*******************************************************************************/
 
 CMDSCREEN_API int64_t text_input_pos_cs( CSTextInput const* input );
 
-CMDSCREEN_API cChars text_input_value_cs( CSTextInput const* input );
+CMDSCREEN_API bool get_text_input_value_cs( CSTextInput const* input,
+                                            cRecorder rec[static 1] );
 
 #endif

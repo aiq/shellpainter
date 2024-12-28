@@ -13,14 +13,17 @@ uiBox layout_model( void const* instance )
    Model const* model = instance;
    return center_ui_(
       sized_ui_(
-         size_ui( 40, UI_Shrink ),
-         col_ui_(
-            1,
-            boxes_cs_(
-               label_box_cs( model->question ),
-               text_input_box_cs( model->input ),
-               centerx_ui_(
-                  label_box_cs( model->note )
+         size_ui( 42, UI_Shrink ),
+         border_cs(
+            thin_border_cs( base_style_cs( csAPRICOT_, csBLACK_ ) ),
+            col_ui_(
+               1,
+               boxes_cs_(
+                  label_box_cs( model->question ),
+                  text_input_box_cs( model->input ),
+                  centerx_ui_(
+                     label_box_cs( model->note )
+                  )
                )
             )
          )
