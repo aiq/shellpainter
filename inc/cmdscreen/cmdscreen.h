@@ -12,6 +12,7 @@
 #include "cmdscreen/CSResizeMsg.h"
 #include "cmdscreen/csScreen.h"
 #include "cmdscreen/csStyle.h"
+#include "cmdscreen/CSTextArea.h"
 #include "cmdscreen/CSTextInput.h"
 #include "cmdscreen/term.h"
 

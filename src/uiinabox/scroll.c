@@ -48,13 +48,18 @@ uiBoxType const UI_Scroll = {
 
 uiBox scroll_ui( uiBox window, uiBox area )
 {
-   return box_ui( NULL, &UI_Scroll, NULL, boxes_cs_( window ) );
+   uiBox* data = alloc_ui_( uiBox );
+   if ( data == NULL ) return (uiBox){0};
+   else *data = area;
+
+   return box_ui( data, &UI_Scroll, NULL, boxes_cs_( window ) );
 }
 
 bool update_scroll_ui( uiBox const box[static 1] )
 {
    if ( box->type == &UI_Scroll )
    {
+      
    }
    return true; 
 }
